@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
   <div>
     <h1 class="text-lg font-bold justify-center flex mb-8">Anexo I – Formulário de Declaração de Informações de Bens e
@@ -15,19 +11,156 @@
       <h2 class="font-semibold">Consulte as normas de preenchimento.</h2>
     </div>
     <div class="border flex flex-col border-zinc-950 mt-8 justify-center items-start">
-      <h1 class="text-lg font-semibold">I - DADOS PESSOAIS</h1>
-      <form id="form" class="mt-8 flex w-full px-4">
-        <div class="flex grid-cols-2 flex-1">
-          <div class="flex ">
-            <label for="name">Nome completo: </label>
-            <input type="text" id="name" class="border border-zinc-950 h-7" /><br>
+      <form id="form" class="mt-8 w-full px-4 space-y-10">
+        <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
+        <div class="grid grid-cols-3 gap-4">
+          <label for="name">1. Nome completo: </label>
+          <input type="text" id="name" class="border border-zinc-950 h-7 col-span-2" />
+          <label for="date-input">2. Data de nascimento</label>
+          <input ref="datepicker1" class="border border-zinc-950 w-40 placeholder-center centered-input" id="date-input"
+            placeholder="dd/mm/yyyy" type="text" />
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label class="col-span-3" for="skill">3. Formação profissional: </label>
+          <input type="text" id="skill" class="border border-zinc-950 h-7 col-span-3" />
+          <label class="col-span-2 mx-8" for="work">4. Cargo: </label>
+          <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" />
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label class="col-span-2 mt-2" for="name">5. Cargo Efetivo: </label>
+          <input type="text" id="name" class="border border-zinc-950 h-7 col-span-2 w-40 mt-2 -mx-6" />
+          <label class="col-span-2 w-40 mt-2 -mx-2" for="name">6. Órgão / Entidade: </label>
+          <input type="text" id="name" class="border border-zinc-950 h-7 col-span-3 mt-2" />
+          <div class="flex flex-col -mt-10 ml-8">
+            <label class="w-56" for="date-input">7. Data da nomeação/
+              <br> designação: </label>
+            <input ref="datepicker2" class="border border-zinc-950 w-40 placeholder-center centered-input"
+              id="date-input" type="text" placeholder="dd/mm/yyyy" />
           </div>
-          <div class="flex flex-col -mt-6 mb-8">
-            <label for="date">Data de nascimento</label>
-            <input type="date" class="border border-zinc-950" id="date" />
+        </div>
+        <div>
+          <legend>8. Ocupa outro cargo ou emprego de quadro permanente na Administração Pública?</legend>
+          <div class="flex items-center gap-4 justify-around">
+            <div>
+              <input type="radio" id="sim1" name="drone1" value="sim1" checked />
+              <label for="sim1">Sim</label>
+            </div>
+
+            <div>
+              <input type="radio" id="nao1" name="drone1" value="nao1" />
+              <label for="nao1">Não</label>
+            </div>
+            <div>
+              <label for="name">Qual? </label>
+              <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
+              <label class="mx-2" for="name">Órgão/entidade de origem: </label>
+              <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
+            </div>
           </div>
+        </div>
+        <div>
+          <legend>9. É membro de Conselho Municipal ou Conselho de Empresa Municipal?</legend>
+          <div class="flex gap-4 items-center justify-around">
+            <div>
+              <input type="radio" id="sim2" name="drone2" value="sim2" checked />
+              <label for="sim2">Sim</label>
+            </div>
+            <div>
+              <input type="radio" id="nao2" name="drone2" value="nao2" />
+              <label for="nao2">Não</label>
+            </div>
+            <div>
+              <input type="radio" id="outro" name="drone2" value="outro" />
+              <label for="outro">Qual?</label>
+              <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="cep">10. CEP do trabalho: </label><br>
+          <input v-model="cep1" @blur="fetchCepData1" name="cep" placeholder="Digite o CEP" />
+          <input v-model="cidade1" name="cidade" placeholder="Cidade" disabled />
+          <input v-model="logradouro1" name="rua" placeholder="Rua" disabled />
+        </div>
+        <div>
+          <label for="phone">11. Telefone do trabalho: </label>
+          <input type="text" id="phone" v-model="formattedPhone" @input="handleInput" placeholder="(00) 00000-0000"
+            maxlength="16">
+        </div>
+        <div>
+          <label for="cep">12. CEP residencial: </label><br>
+          <input v-model="cep2" @blur="fetchCepData2" name="cep" placeholder="Digite o CEP" />
+          <input v-model="cidade2" name="cidade" placeholder="Cidade" disabled />
+          <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />
+        </div>
+        <div>
+          <label for="email">14. E-mail: </label>
+          <input type="email" id="email" pattern=".+@example\.com" size="30" required class="border border-zinc-950"
+            placeholder=".+@example.com" />
+        </div>
+        <div>
+
         </div>
       </form>
     </div>
   </div>
 </template>
+
+<script>
+import { onMounted } from 'vue';
+import { useCep } from '../lib/useCep';
+import { useDatepicker } from "../lib/useDatepicker";
+import { useFormatPhone } from "../lib/useFormatPhone";
+
+export default {
+  setup() {
+
+    const { datepicker1, datepicker2, initializeDatepickers } = useDatepicker();
+    const { cep1, cep2, logradouro1, logradouro2, fetchCepData1, fetchCepData2, cidade1, cidade2 } = useCep();
+    const { phone, formattedPhone, formatPhone } = useFormatPhone();
+
+    const handleInput = (event) => {
+      phone.value = event.target.value.replace(/\D/g, '');
+      formatPhone();
+    };
+
+    onMounted(() => {
+      initializeDatepickers();
+    });
+
+    return {
+      datepicker1,
+      datepicker2,
+      cep1,
+      cep2,
+      fetchCepData1,
+      fetchCepData2,
+      logradouro1,
+      logradouro2,
+      cidade1,
+      cidade2,
+      phone,
+      formattedPhone,
+      formatPhone,
+      handleInput
+    };
+  }
+};
+</script>
+
+<style scoped>
+.placeholder-center::placeholder {
+  text-align: center;
+}
+
+.centered-input {
+  text-align: center;
+}
+
+input#phone {
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+</style>

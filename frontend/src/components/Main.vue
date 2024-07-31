@@ -14,8 +14,8 @@
       <form id="form" class="mt-8 w-full px-4 space-y-10">
         <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
         <div class="grid grid-cols-3 gap-4">
-          <label for="name">1. Nome completo: </label>
-          <input type="text" id="name" class="border border-zinc-950 h-7 col-span-2" />
+          <label for="fullName">1. Nome completo: </label>
+          <input type="text" id="fullName" class="border border-zinc-950 h-7 col-span-2" />
           <label for="date-input">2. Data de nascimento</label>
           <input ref="datepicker1" class="border border-zinc-950 w-40 placeholder-center centered-input" id="date-input"
             placeholder="dd/mm/yyyy" type="text" />
@@ -27,10 +27,10 @@
           <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" />
         </div>
         <div class="grid grid-cols-12 gap-4">
-          <label class="col-span-2 mt-2" for="name">5. Cargo Efetivo: </label>
-          <input type="text" id="name" class="border border-zinc-950 h-7 col-span-2 w-40 mt-2 -mx-6" />
-          <label class="col-span-2 w-40 mt-2 -mx-2" for="name">6. Órgão / Entidade: </label>
-          <input type="text" id="name" class="border border-zinc-950 h-7 col-span-3 mt-2" />
+          <label class="col-span-2 mt-2" for="position">5. Cargo Efetivo: </label>
+          <input type="text" id="position" class="border border-zinc-950 h-7 col-span-2 w-40 mt-2 -mx-6" />
+          <label class="col-span-2 w-40 mt-2 -mx-2" for="org">6. Órgão / Entidade: </label>
+          <input type="text" id="org" class="border border-zinc-950 h-7 col-span-3 mt-2 uppercase" />
           <div class="flex flex-col -mt-10 ml-8">
             <label class="w-56" for="date-input">7. Data da nomeação/
               <br> designação: </label>

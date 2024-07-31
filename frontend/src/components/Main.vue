@@ -40,19 +40,21 @@
         </div>
         <div>
           <legend>8. Ocupa outro cargo ou emprego de quadro permanente na Administração Pública?</legend>
-          <div class="flex items-center gap-4 justify-around">
+          <div class="flex items-center gap-4 justify-around mt-2">
             <div>
-              <input type="radio" id="sim1" name="drone1" value="sim1" checked />
+              <input type="radio" id="sim1" name="drone1" value="sim1" v-model="selectedOption1" checked />
               <label for="sim1">Sim</label>
             </div>
-
             <div>
-              <input type="radio" id="nao1" name="drone1" value="nao1" />
+              <input type="radio" id="nao1" name="drone1" value="nao1" v-model="selectedOption1" />
               <label for="nao1">Não</label>
             </div>
+            <div v-if="selectedOption1 === 'sim1'">
+              <label for="outro1">Qual?</label>
+              <input type="text" id="outro1" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+                :disabled="selectedOption1 !== 'sim1'" />
+            </div>
             <div>
-              <label for="name">Qual? </label>
-              <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
               <label class="mx-2" for="name">Órgão/entidade de origem: </label>
               <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
             </div>
@@ -60,27 +62,32 @@
         </div>
         <div>
           <legend>9. É membro de Conselho Municipal ou Conselho de Empresa Municipal?</legend>
-          <div class="flex gap-4 items-center justify-around">
+          <div class="flex gap-4 items-center justify-around mt-2">
             <div>
-              <input type="radio" id="sim2" name="drone2" value="sim2" checked />
+              <input type="radio" id="sim2" name="drone2" value="sim2" v-model="selectedOption2" checked />
               <label for="sim2">Sim</label>
             </div>
             <div>
-              <input type="radio" id="nao2" name="drone2" value="nao2" />
+              <input type="radio" id="nao2" name="drone2" value="nao2" v-model="selectedOption2" />
               <label for="nao2">Não</label>
             </div>
-            <div>
-              <input type="radio" id="outro" name="drone2" value="outro" />
-              <label for="outro">Qual? </label>
-              <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
+            <div v-if="selectedOption2 === 'sim2'">
+              <label for="outro2" :disabled="selectedOption2 !== 'sim2'">Qual?</label>
+              <input type="text" id="outro2" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+                :disabled="selectedOption2 !== 'sim2'" />
             </div>
           </div>
         </div>
         <div>
-          <label for="cep1">10. CEP do trabalho: </label><br>
-          <input v-model="cep1" @input="handleInputCep1" name="cep1" placeholder="D0000-000" class="outline-none" />
+          <label for="cep1">10. CEP do trabalho:</label>
+          <input v-model="cep1" @input="handleInputCep1" name="cep1" placeholder="D0000-000"
+            class="outline-none mx-2" />
           <input v-model="cidade1" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro1" name="rua" placeholder="Rua" disabled />
+          <!-- N° -->
+          <label for="numberAddress">N°</label>
+          <input type="text" class="border border-zinc-950 h-7 mx-2" size="5" id="numberAddress"
+            @input="handleInputNumber" />
         </div>
         <div>
           <label for="phone">11. Telefone do trabalho: </label>
@@ -88,15 +95,30 @@
             maxlength="16">
         </div>
         <div>
-          <label for="cep2">13. CEP da residência: </label><br>
-          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="D0000-000" class="outline-none" />
+          <label for="cep2">12. CEP da residência: </label>
+          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="D0000-000" class="outline-none mx-2"
+            size="19" />
           <input v-model="cidade2" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />
+          <!-- N° 2 -->
+          <label for="numberAddress2">N°</label>
+          <input type="text" class="border border-zinc-950 h-7 mx-2" size="5" id="numberAddress2"
+            @input="handleInputNumber2" />
+        </div>
+        <div>
+          <label for="phone">13. Telefone residencial: </label>
+          <input type="text" id="phone" v-model="formattedPhone" @input="handleInput" placeholder="(00) 00000-0000"
+            maxlength="16">
         </div>
         <div>
           <label for="email">14. E-mail: </label>
-          <input type="email" id="email" pattern=".+@example\.com" size="30" required class="border border-zinc-950"
+          <input type="email" id="email" pattern=".+@example\.com" size="20" required class="border border-zinc-950"
             placeholder=".+@example.com" />
+        </div>
+        <div>
+          <label for="phone">15. Celular: </label>
+          <input type="text" id="phone" v-model="formattedPhone" @input="handleInput" placeholder="(00) 00000-0000"
+            maxlength="16">
         </div>
         <div>
 
@@ -113,6 +135,12 @@ import { useDatepicker } from "./lib/useDatepicker";
 import { useFormatPhone } from "./lib/useFormatPhone";
 
 export default {
+  data() {
+    return {
+      selectedOption1: null,
+      selectedOption2: null
+    };
+  },
   setup() {
 
     const {
@@ -138,6 +166,24 @@ export default {
       formattedPhone,
       formatPhone
     } = useFormatPhone();
+
+    const handleInputNumber = (event) => {
+      let input = event.target.value.replace(/\D/g, '');
+      let numberAddressInPortoVelho = 5
+      if (input.length > numberAddressInPortoVelho) {
+        input = input.slice(0, numberAddressInPortoVelho);
+      }
+      numberAddress.value = input;
+    };
+
+    const handleInputNumber2 = (event) => {
+      let input = event.target.value.replace(/\D/g, '');
+      let numberAddressInPortoVelho = 5
+      if (input.length > numberAddressInPortoVelho) {
+        input = input.slice(0, numberAddressInPortoVelho);
+      }
+      numberAddress2.value = input;
+    };
 
     // Formatting phone
     const handleInput = (event) => {
@@ -180,7 +226,9 @@ export default {
       phone,
       formattedPhone,
       formatPhone,
-      handleInput
+      handleInput,
+      handleInputNumber,
+      handleInputNumber2
     };
   }
 };

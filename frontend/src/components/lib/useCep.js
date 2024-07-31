@@ -11,7 +11,7 @@ export function useCep() {
   const formattedCep2 = ref("");
 
   const formatCep = (cep) => {
-    let value = cep.replace(/\D/g, ""); 
+    let value = cep.replace(/\D/g, "");
 
     if (value.length > 8) {
       value = value.slice(0, 8);
@@ -43,12 +43,12 @@ export function useCep() {
 
   watch(cep1, (newValue) => {
     formattedCep1.value = formatCep(newValue);
-    cep1.value = formattedCep1.value; 
+    cep1.value = formattedCep1.value;
   });
 
   watch(cep2, (newValue) => {
     formattedCep2.value = formatCep(newValue);
-    cep2.value = formattedCep2.value; 
+    cep2.value = formattedCep2.value;
   });
 
   return {

@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 export function useCep() {
   const cep1 = ref("");
@@ -7,9 +7,25 @@ export function useCep() {
   const cidade2 = ref("");
   const logradouro1 = ref("");
   const logradouro2 = ref("");
+  const formattedCep1 = ref("");
+  const formattedCep2 = ref("");
 
-  const fetchCepData1 = async () => {
-    const value = cep1.value.replace(/[^0-9]+/, "");
+  const formatCep = (cep) => {
+    let value = cep.replace(/\D/g, ""); 
+
+    if (value.length > 8) {
+      value = value.slice(0, 8);
+    }
+
+    if (value.length <= 5) {
+      return value;
+    } else {
+      return `${value.slice(0, 5)}-${value.slice(5)}`;
+    }
+  };
+
+  const fetchCepData = async (cepRef, cidadeRef, logradouroRef) => {
+    const value = cepRef.value.replace(/\D/g, "");
     const url = `https://viacep.com.br/ws/${value}/json/`;
 
     try {
@@ -17,39 +33,33 @@ export function useCep() {
       const json = await response.json();
 
       if (json.logradouro) {
-        logradouro1.value = json.logradouro;
-        cidade1.value = json.localidade;
+        logradouroRef.value = json.logradouro;
+        cidadeRef.value = json.localidade;
       }
     } catch (error) {
       console.error("Erro ao buscar CEP:", error);
     }
   };
 
-  const fetchCepData2 = async () => {
-    const value2 = cep2.value.replace(/[^0-9]+/, "");
-    const url = `https://viacep.com.br/ws/${value2}/json/`;
+  watch(cep1, (newValue) => {
+    formattedCep1.value = formatCep(newValue);
+    cep1.value = formattedCep1.value; 
+  });
 
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-
-      if (json.logradouro) {
-        logradouro2.value = json.logradouro;
-        cidade2.value = json.localidade;
-      }
-    } catch (error) {
-      console.error("Erro ao buscar CEP:", error);
-    }
-  };
+  watch(cep2, (newValue) => {
+    formattedCep2.value = formatCep(newValue);
+    cep2.value = formattedCep2.value; 
+  });
 
   return {
     cep1,
     cep2,
-    fetchCepData1,
-    fetchCepData2,
+    formattedCep1,
+    formattedCep2,
     logradouro1,
     logradouro2,
     cidade1,
     cidade2,
+    fetchCepData,
   };
 }

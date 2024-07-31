@@ -71,14 +71,14 @@
             </div>
             <div>
               <input type="radio" id="outro" name="drone2" value="outro" />
-              <label for="outro">Qual?</label>
+              <label for="outro">Qual? </label>
               <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
             </div>
           </div>
         </div>
         <div>
-          <label for="cep">10. CEP do trabalho: </label><br>
-          <input v-model="cep1" @blur="fetchCepData1" name="cep" placeholder="Digite o CEP" />
+          <label for="cep1">10. CEP do trabalho: </label><br>
+          <input v-model="cep1" @input="handleInputCep1" name="cep1" placeholder="D0000-000" class="outline-none" />
           <input v-model="cidade1" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro1" name="rua" placeholder="Rua" disabled />
         </div>
@@ -88,8 +88,8 @@
             maxlength="16">
         </div>
         <div>
-          <label for="cep">12. CEP residencial: </label><br>
-          <input v-model="cep2" @blur="fetchCepData2" name="cep" placeholder="Digite o CEP" />
+          <label for="cep2">13. CEP da residência: </label><br>
+          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="D0000-000" class="outline-none" />
           <input v-model="cidade2" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />
         </div>
@@ -108,20 +108,53 @@
 
 <script>
 import { onMounted } from 'vue';
-import { useCep } from '../lib/useCep';
-import { useDatepicker } from "../lib/useDatepicker";
-import { useFormatPhone } from "../lib/useFormatPhone";
+import { useCep } from './lib/useCep';
+import { useDatepicker } from "./lib/useDatepicker";
+import { useFormatPhone } from "./lib/useFormatPhone";
 
 export default {
   setup() {
 
-    const { datepicker1, datepicker2, initializeDatepickers } = useDatepicker();
-    const { cep1, cep2, logradouro1, logradouro2, fetchCepData1, fetchCepData2, cidade1, cidade2 } = useCep();
-    const { phone, formattedPhone, formatPhone } = useFormatPhone();
+    const {
+      datepicker1,
+      datepicker2,
+      initializeDatepickers
+    } = useDatepicker();
 
+    const {
+      cep1,
+      cep2,
+      formattedCep1,
+      formattedCep2,
+      logradouro1,
+      logradouro2,
+      cidade1,
+      cidade2,
+      fetchCepData,
+    } = useCep();
+
+    const {
+      phone,
+      formattedPhone,
+      formatPhone
+    } = useFormatPhone();
+
+    // Formatting phone
     const handleInput = (event) => {
       phone.value = event.target.value.replace(/\D/g, '');
       formatPhone();
+    };
+    // Formatting cep
+    const handleInputCep1 = () => {
+      if (cep1.value.replace(/\D/g, "").length === 8) {
+        fetchCepData(cep1, cidade1, logradouro1);
+      }
+    };
+
+    const handleInputCep2 = () => {
+      if (cep2.value.replace(/\D/g, "").length === 8) {
+        fetchCepData(cep2, cidade2, logradouro2);
+      }
     };
 
     onMounted(() => {
@@ -129,16 +162,21 @@ export default {
     });
 
     return {
-      datepicker1,
-      datepicker2,
+      // formatting cep
       cep1,
       cep2,
-      fetchCepData1,
-      fetchCepData2,
+      formattedCep1,
+      formattedCep2,
       logradouro1,
       logradouro2,
       cidade1,
       cidade2,
+      handleInputCep1,
+      handleInputCep2,
+      // formatting date
+      datepicker1,
+      datepicker2,
+      // formatting phone
       phone,
       formattedPhone,
       formatPhone,

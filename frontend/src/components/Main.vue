@@ -133,14 +133,9 @@ import { onMounted } from 'vue';
 import { useCep } from './lib/useCep';
 import { useDatepicker } from "./lib/useDatepicker";
 import { useFormatPhone } from "./lib/useFormatPhone";
+import { ref } from 'vue';
 
 export default {
-  data() {
-    return {
-      selectedOption1: null,
-      selectedOption2: null
-    };
-  },
   setup() {
 
     const {
@@ -148,6 +143,8 @@ export default {
       datepicker2,
       initializeDatepickers
     } = useDatepicker();
+    const selectedOption1 = ref('sim1');
+    const selectedOption2 = ref('sim2');
 
     const {
       cep1,
@@ -228,7 +225,9 @@ export default {
       formatPhone,
       handleInput,
       handleInputNumber,
-      handleInputNumber2
+      handleInputNumber2,
+      selectedOption1,
+      selectedOption2
     };
   }
 };

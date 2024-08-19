@@ -5,12 +5,7 @@ import Main from "./components/Main.vue";
 
 <template>
   <div class="mx-auto mt-14 max-w-7xl px-2">
-    <header>
-      <Header />
-    </header>
-
-    <main>
-      <Main />
-    </main>
+    <Header />
+    <Main />
   </div>
 </template>

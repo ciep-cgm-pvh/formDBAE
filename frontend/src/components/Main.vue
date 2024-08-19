@@ -595,7 +595,56 @@
             </label>
           </div>
         </div>
-        <div></div>
+        <div>
+          <legend>
+            31. Possui familiar proprietário de instituição cuja atividade está
+            relacionada ao campo de atuação do órgão/entidade em que tomou posse
+            atualmente?
+          </legend>
+          <div class="flex gap-4 items-center justify-around mt-2">
+            <div>
+              <input
+                type="radio"
+                id="nao6"
+                name="drone5"
+                value="nao6"
+                v-model="selectedOption6"
+                checked
+              />
+              <label for="nao6"> Não</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="sim6"
+                name="drone5"
+                value="sim6"
+                v-model="selectedOption6"
+              />
+              <label for="sim6"> Sim</label>
+            </div>
+            <div v-if="selectedOption6 === 'sim6'">
+              <label for="outro4" :disabled="selectedOption6 !== 'sim6'"
+                >Descrever:</label
+              >
+              <input
+                type="text"
+                id="outro4"
+                class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+                :disabled="selectedOption6 !== 'sim6'"
+              />
+            </div>
+          </div>
+        </div>
+        <!--! section 4 -->
+        <div>
+          <h1 class="text-lg font-semibold">
+            IV. SITUAÇÕES QUE PODEM SUSCITAR CONFLITO COM O INTERESSE PÚBLICO.
+          </h1>
+        </div>
+        <div>
+          <!-- TODO make section 4 -->
+        </div>
       </form>
     </div>
   </div>
@@ -615,6 +664,7 @@ export default {
     const selectedOption3 = ref("Casado");
     const selectedOption4 = ref("sim3");
     const selectedOption5 = ref("nao5");
+    const selectedOption6 = ref("nao6");
     const checked = ref(false);
     const checked2 = ref(false);
     const checked3 = ref(false);
@@ -701,6 +751,7 @@ export default {
       selectedOption3,
       selectedOption4,
       selectedOption5,
+      selectedOption6,
       checked,
       checked2,
       checked3,

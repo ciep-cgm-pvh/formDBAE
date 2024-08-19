@@ -24,6 +24,7 @@
       class="border flex flex-col border-zinc-950 mt-8 justify-center items-start"
     >
       <form id="form" class="mt-8 w-full px-4 space-y-10">
+        <!--! Section 1 -->
         <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
         <div class="grid grid-cols-3 gap-4">
           <label for="fullName">1. Nome completo: </label>
@@ -162,8 +163,8 @@
             </div>
             <div v-if="selectedOption2 === 'sim2'">
               <label for="outro2" :disabled="selectedOption2 !== 'sim2'"
-                >Qual?</label
-              >
+                >Qual(is)?
+              </label>
               <input
                 type="text"
                 id="outro2"
@@ -227,7 +228,6 @@
             disabled
           />
           <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />
-          <!-- N° 2 -->
           <label for="numberAddress2">N°</label>
           <input
             type="text"
@@ -293,52 +293,309 @@
             </div>
           </div>
         </div>
-        <!-- TODO fazer essa sessão -->
         <div>
           <label>17. Estado Civil </label>
           <div class="flex items-center gap-4">
             <div>
               <input
                 type="radio"
-                id="Residencial"
-                name="address"
-                value="Residencial"
+                id="Casado"
+                name="civil"
+                value="Casado"
+                v-model="selectedOption3"
                 checked
               />
-              <label for="Residencial"> Residencial</label>
+              <label for="Casado"> Casado</label>
             </div>
             <div>
               <input
                 type="radio"
-                id="Trabalho"
-                name="address"
-                value="Trabalho"
+                id="Solteiro"
+                name="civil"
+                v-model="selectedOption3"
+                value="Solteiro"
               />
-              <label for="Trabalho"> Trabalho</label>
+              <label for="Solteiro"> Solteiro</label>
             </div>
             <div>
               <input
                 type="radio"
-                id="Trabalho"
-                name="address"
-                value="Trabalho"
+                id="outro3"
+                name="civil"
+                v-model="selectedOption3"
+                value="outro3"
               />
-              <label for="Trabalho"> outro</label>
+              <label for="outro3"> Outros:</label>
             </div>
-            <div v-if="selectedOption1 === 'sim1'">
-              <label for="outro1">Qual?</label>
+            <div v-if="selectedOption3 === 'outro3'">
+              <label for="out">Qual?</label>
               <input
                 type="text"
-                id="outro1"
+                id="out"
                 class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
-                :disabled="selectedOption1 !== 'sim1'"
+                :disabled="selectedOption3 !== 'outro3'"
               />
             </div>
           </div>
         </div>
-        <div>
-
+        <div class="grid grid-cols-10 gap-4">
+          <label class="col-span-3" for="skill"
+            >18. Cônjuge /Companheiro (a)</label
+          >
+          <input
+            type="text"
+            id="skill"
+            class="border border-zinc-950 h-7 col-span-3"
+          />
+          <label class="col-span-5 mx-8" for="work"
+            >19. Atividade profissional do cônjuge</label
+          >
+          <input
+            type="text"
+            id="work"
+            class="border border-zinc-950 h-7 col-span-3"
+          />
         </div>
+        <!--! Section 2 -->
+        <div>
+          <h1 class="text-lg font-semibold">
+            II - ATIVIDADE(S) ANTERIOR(ES) -
+            <span class="text-sm font-medium"
+              >Atividades exercidas nos últimos 12 meses antes da posse
+              atual</span
+            >
+          </h1>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div>
+            <label for="atividade" class="block mb-2">20. Atividade</label>
+            <input
+              id="atividade"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+          <div>
+            <label for="orgao" class="block mb-2"
+              >1. Órgão, Empresa, etc.</label
+            >
+            <input
+              id="orgao"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+          <div>
+            <label for="remuneracao" class="block mb-2"
+              >22. Remuneração/Renda</label
+            >
+            <input
+              id="remuneracao"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <label>23. </label>
+          <div>
+            <input
+              type="checkbox"
+              id="checkersection2"
+              v-model="checked"
+              class="mr-2"
+            />
+            <label for="checkersection2">
+              Não exerci nenhuma atividade profissional neste período.
+            </label>
+          </div>
+        </div>
+        <div>
+          <legend>
+            24. Permanece exercendo alguma(s) atividade(s) citada(s) acima?
+          </legend>
+          <div class="flex gap-4 items-center justify-around mt-2">
+            <div>
+              <input
+                type="radio"
+                id="sim3"
+                name="drone3"
+                value="sim3"
+                v-model="selectedOption4"
+                checked
+              />
+              <label for="sim3">Sim</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="nao3"
+                name="drone3"
+                value="nao3"
+                v-model="selectedOption4"
+              />
+              <label for="nao3">Não</label>
+            </div>
+            <div v-if="selectedOption4 === 'sim3'">
+              <label for="outro4" :disabled="selectedOption4 !== 'sim3'"
+                >Qual(is)?</label
+              >
+              <input
+                type="text"
+                id="outro4"
+                class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+                :disabled="selectedOption4 !== 'sim3'"
+              />
+            </div>
+          </div>
+        </div>
+        <!--! section 3 -->
+        <div>
+          <h1 class="text-lg font-semibold">
+            III - BENS E DIREITOS -
+            <span class="text-sm font-medium"
+              >Bens e direitos pessoais ou entrega de cópia da declaração de
+              imposto de renda da RFB</span
+            >
+          </h1>
+        </div>
+        <div class="grid grid-cols-3 gap-4 items-end">
+          <div>
+            <label for="atividade" class="block mb-2">25. Tipo</label>
+            <input
+              id="atividade"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+          <div>
+            <label for="orgao" class="block mb-2"
+              >26. Administrador, se terceiro, e parentesco com o
+              declarante.</label
+            >
+            <input
+              id="orgao"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+          <div>
+            <label for="remuneracao" class="block mb-2">27. Valor do bem</label>
+            <input
+              id="remuneracao"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+        </div>
+        <div>
+          <legend>
+            28. Possui participação superior a 5% (cinco por cento) do capital
+            social ou votante de sociedade de economia mista, instituição
+            financeira ou empresa que negocie com o Poder Executivo do Município
+            de Porto Velho?
+          </legend>
+          <div class="flex gap-4 items-center justify-around mt-2">
+            <div>
+              <input
+                type="radio"
+                id="nao5"
+                name="drone4"
+                value="nao5"
+                v-model="selectedOption5"
+                checked
+              />
+              <label for="nao5"> Não</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="sim5"
+                name="drone4"
+                value="sim5"
+                v-model="selectedOption5"
+              />
+              <label for="sim5"> Sim</label>
+            </div>
+            <div v-if="selectedOption5 === 'sim5'">
+              <label for="outro4" :disabled="selectedOption5 !== 'sim5'"
+                >Qual(is)?</label
+              >
+              <input
+                type="text"
+                id="outro4"
+                class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+                :disabled="selectedOption5 !== 'sim5'"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <label>29. </label>
+          <div>
+            <input
+              type="checkbox"
+              id="checkersection3"
+              v-model="checked2"
+              class="mr-2"
+            />
+            <label for="checkersection3">
+              Não possuo nenhum bem ou direito.
+            </label>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <label>30. </label>
+          <div>
+            <input
+              type="checkbox"
+              id="checkersection4"
+              v-model="checked3"
+              class="mr-2"
+            />
+            <label for="checkersection4">
+              Não possuo bem ou direito além dos constantes na declaração de
+              imposto de renda da RFB.
+            </label>
+          </div>
+        </div>
+        <div></div>
       </form>
     </div>
   </div>
@@ -355,6 +612,12 @@ export default {
     const { datepicker1, datepicker2, initializeDatepickers } = useDatepicker();
     const selectedOption1 = ref("sim1");
     const selectedOption2 = ref("sim2");
+    const selectedOption3 = ref("Casado");
+    const selectedOption4 = ref("sim3");
+    const selectedOption5 = ref("nao5");
+    const checked = ref(false);
+    const checked2 = ref(false);
+    const checked3 = ref(false);
 
     const {
       cep1,
@@ -432,8 +695,15 @@ export default {
       handleInput,
       handleInputNumber,
       handleInputNumber2,
+      // options
       selectedOption1,
       selectedOption2,
+      selectedOption3,
+      selectedOption4,
+      selectedOption5,
+      checked,
+      checked2,
+      checked3,
     };
   },
 };

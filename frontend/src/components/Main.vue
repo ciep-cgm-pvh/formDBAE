@@ -554,12 +554,12 @@
               <label for="sim5"> Sim</label>
             </div>
             <div v-if="selectedOption5 === 'sim5'">
-              <label for="outro4" :disabled="selectedOption5 !== 'sim5'"
+              <label for="outro5" :disabled="selectedOption5 !== 'sim5'"
                 >Qual(is)?</label
               >
               <input
                 type="text"
-                id="outro4"
+                id="outro5"
                 class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption5 !== 'sim5'"
               />
@@ -624,12 +624,12 @@
               <label for="sim6"> Sim</label>
             </div>
             <div v-if="selectedOption6 === 'sim6'">
-              <label for="outro4" :disabled="selectedOption6 !== 'sim6'"
+              <label for="outro6" :disabled="selectedOption6 !== 'sim6'"
                 >Descrever:</label
               >
               <input
                 type="text"
-                id="outro4"
+                id="outro6"
                 class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption6 !== 'sim6'"
               />
@@ -643,7 +643,138 @@
           </h1>
         </div>
         <div>
-          <!-- TODO make section 4 -->
+          <legend>
+            32. Exerce outra(s) atividade(s) além do cargo, função ou emprego
+            público?
+          </legend>
+          <div class="flex gap-4 items-center justify-start mt-2">
+            <div class="flex items-center justify-start">
+              <input
+                type="radio"
+                id="nao7"
+                name="drone7"
+                value="nao7"
+                v-model="selectedOption7"
+                checked
+              />
+              <label for="nao7"> Não</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="sim7"
+                name="drone7"
+                value="sim7"
+                v-model="selectedOption7"
+              />
+              <label for="sim7"> Sim</label>
+            </div>
+            <div v-if="selectedOption7 === 'sim7'">
+              <label for="outro7" :disabled="selectedOption7 !== 'sim7'"
+                >Qual?
+              </label>
+            </div>
+            <input
+              type="text"
+              id="outro7"
+              class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              :disabled="selectedOption7 !== 'sim7'"
+            />
+          </div>
+        </div>
+        <div>
+          <legend>
+            33. Possui outra renda além do cargo, função ou emprego público?
+          </legend>
+          <div class="flex gap-4 items-center justify-start mt-2">
+            <div class="flex items-center justify-start">
+              <input
+                type="radio"
+                id="nao8"
+                name="drone8"
+                value="nao8"
+                v-model="selectedOption8"
+                checked
+              />
+              <label for="nao8"> Não</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="sim8"
+                name="drone8"
+                value="sim8"
+                v-model="selectedOption8"
+              />
+              <label for="sim8"> Sim</label>
+            </div>
+            <div v-if="selectedOption8 === 'sim8'">
+              <label for="outro8" :disabled="selectedOption8 !== 'sim8'"
+                >Qual?
+              </label>
+            </div>
+            <input
+              type="text"
+              id="outro8"
+              class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              :disabled="selectedOption8 !== 'sim8'"
+            />
+          </div>
+        </div>
+        <div>
+          <legend>
+            34. Em caso afirmativo no campo 32 ou 33, há conflito potencial com
+            o Interesse Público?
+          </legend>
+          <div class="flex gap-4 items-center justify-start mt-2">
+            <div class="flex items-center justify-start">
+              <input
+                type="radio"
+                id="nao9"
+                name="drone9"
+                value="nao9"
+                v-model="selectedOption9"
+                checked
+              />
+              <label for="nao9"> Não</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="sim9"
+                name="drone9"
+                value="sim9"
+                v-model="selectedOption9"
+              />
+              <label for="sim9"> Sim. Preencher campo 35</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="tenho"
+                name="drone9"
+                value="tenho"
+                v-model="selectedOption9"
+              />
+              <label for="tenho"> Tenho dúvida. Preencher campo 35</label>
+            </div>
+          </div>
+        </div>
+        <div>
+          <legend>
+            35. Descrever a situação ou atividade, no caso de marcar “Sim” ou
+            “Tenho dúvida” no campo 34.
+          </legend>
+          <div class="flex gap-4 items-center justify-start mt-2">
+            <textarea
+              v-if="selectedOption9 === 'tenho' || selectedOption9 === 'sim9'"
+              v-model="textAreaContent"
+              placeholder="Digite aqui..."
+            ></textarea>
+          </div>
+        </div>
+        <div>
+          <!-- TODO section V attach file -->
         </div>
       </form>
     </div>
@@ -665,6 +796,9 @@ export default {
     const selectedOption4 = ref("sim3");
     const selectedOption5 = ref("nao5");
     const selectedOption6 = ref("nao6");
+    const selectedOption7 = ref("nao7");
+    const selectedOption8 = ref("nao8");
+    const selectedOption9 = ref("nao9");
     const checked = ref(false);
     const checked2 = ref(false);
     const checked3 = ref(false);
@@ -752,6 +886,9 @@ export default {
       selectedOption4,
       selectedOption5,
       selectedOption6,
+      selectedOption7,
+      selectedOption8,
+      selectedOption9,
       checked,
       checked2,
       checked3,

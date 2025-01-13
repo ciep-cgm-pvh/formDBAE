@@ -423,6 +423,17 @@
             </label>
           </div>
         </div>
+        <div class="flex items-start gap-2">
+          <div>
+            <input type="checkbox" id="checkersection6" v-model="checked5" class="mr-2" />
+            <label for="checkersection6">
+              <a href="../router/index.js" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400">
+                Concordo que os dados fornecidos poderão ser utilizados pela prefeitura para fins administrativos e
+                estatísticos.
+              </a>
+            </label>
+          </div>
+        </div>
         <div>
           <h2 class="text-sm text-start">
             Comprometo-me com a veracidade dos fatos relatados e responsabilizo-me por possíveis omissões, que possam
@@ -584,6 +595,7 @@ export default {
     const checked2 = ref(false);
     const checked3 = ref(false);
     const checked4 = ref(false);
+    const checked5 = ref(false);
     const cpf = ref('');
 
     const {
@@ -708,6 +720,7 @@ export default {
       checked2,
       checked3,
       checked4,
+      checked5,
       cpf,
     };
   },

@@ -29,26 +29,26 @@
           <input ref="datepicker1" class="border border-zinc-950 w-40 placeholder-center centered-input" id="date-input"
             placeholder="dd/mm/yyyy" type="text" />
         </div>
-        <div class="grid grid-cols-12 gap-4">
+        <div class="grid md:grid-cols-12 gap-4">
           <label class="col-span-3" for="skill">3. Formação profissional:
           </label>
           <input type="text" id="skill" class="border border-zinc-950 h-7 col-span-3" />
-          <label class="col-span-2 mx-8" for="work">4. Cargo: </label>
+          <label class="md:col-span-2 md:mx-8" for="work">4. Cargo: </label>
           <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" />
         </div>
-        <div class="grid grid-cols-12 gap-4">
-          <label class="col-span-2 mt-2" for="position">5. Cargo Efetivo:
+        <div class="md:grid-cols-12 md:grid gap-4 flex flex-col">
+          <label class="md:col-span-2 md:mt-2" for="position">5. Cargo Efetivo:
           </label>
-          <input type="text" id="position" class="border border-zinc-950 h-7 col-span-2 w-40 mt-2 -mx-6" />
-          <label class="col-span-2 w-40 mt-2 -mx-2" for="org">6. Órgão / Entidade:
+          <input type="text" id="position" class="border border-zinc-950 h-7 md:col-span-2 w-40 mt-2 md:-mx-6" />
+          <label class="md:col-span-2 md:w-40 md:mt-2 md:-mx-2" for="org">6. Órgão / Entidade:
           </label>
           <input type="text" id="org" class="border border-zinc-950 h-7 col-span-3 mt-2 uppercase" />
-          <div class="flex flex-col -mt-10 ml-8">
-            <label class="w-56" for="date-input">7. Data da nomeação/ <br />
+          <div class="md:flex md:flex-col md:-mt-10 md:ml-8">
+            <label class="w-56" for="date-input2">7. Data da nomeação/ <br />
               designação:
             </label>
             <input ref="datepicker2" class="border border-zinc-950 w-40 placeholder-center centered-input"
-              id="date-input" type="text" placeholder="dd/mm/yyyy" />
+              id="date-input2" type="text" placeholder="dd/mm/yyyy" />
           </div>
         </div>
         <div>
@@ -56,13 +56,13 @@
             8. Ocupa outro cargo ou emprego de quadro permanente na
             Administração Pública?
           </legend>
-          <div class="flex items-center gap-4 justify-around mt-2">
+          <div class="md:grid-cols-3 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
             <div>
-              <input type="radio" id="sim1" name="drone1" value="sim1" v-model="selectedOption1" checked />
+              <input type="radio" id="sim1" name="drone1" value="sim1" v-model="selectedOption1" />
               <label for="sim1">Sim</label>
             </div>
             <div>
-              <input type="radio" id="nao1" name="drone1" value="nao1" v-model="selectedOption1" />
+              <input type="radio" id="nao1" name="drone1" value="nao1" v-model="selectedOption1" checked />
               <label for="nao1">Não</label>
             </div>
             <div v-if="selectedOption1 === 'sim1'">
@@ -71,7 +71,7 @@
                 :disabled="selectedOption1 !== 'sim1'" />
             </div>
             <div>
-              <label class="mx-2" for="name">Órgão/entidade de origem: </label>
+              <label class="md:mx-2" for="name">Órgão/entidade de origem: </label>
               <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
             </div>
           </div>
@@ -80,7 +80,7 @@
           <legend>
             9. É membro de Conselho Municipal ou Conselho de Empresa Municipal?
           </legend>
-          <div class="flex gap-4 items-center justify-around mt-2">
+          <div class="md:grid-cols-3 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
             <div>
               <input type="radio" id="sim2" name="drone2" value="sim2" v-model="selectedOption2" checked />
               <label for="sim2">Sim</label>
@@ -97,7 +97,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="grid grid-cols-3 gap-3">
           <label for="cep1">10. CEP do trabalho:</label>
           <input v-model="cep1" @input="handleInputCep1" name="cep1" placeholder="D0000-000"
             class="outline-none mx-2" />
@@ -105,7 +105,7 @@
           <input v-model="logradouro1" name="rua" placeholder="Rua" disabled />
           <!-- N° -->
           <label for="numberAddress">N°</label>
-          <input type="text" class="border border-zinc-950 h-7 mx-2" size="5" id="numberAddress"
+          <input type="text" class="border border-zinc-950 h-7" size="5" id="numberAddress"
             @input="handleInputNumber" />
         </div>
         <div>
@@ -113,10 +113,10 @@
           <input type="text" id="phoneTra" v-model="formattedPhoneTra" @input="handleInputTra"
             placeholder="(00) 00000-0000" maxlength="16" />
         </div>
-        <div>
+        <div class="grid grid-cols-3 gap-3">
           <label for="cep2">12. CEP da residência: </label>
-          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="D0000-000" class="outline-none mx-2"
-            size="19" />
+          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="D0000-000"
+            class="outline-none mx-2" />
           <input v-model="cidade2" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />
           <label for="numberAddress2">N°</label>
@@ -128,10 +128,9 @@
           <input type="text" id="phoneRes" v-model="formattedPhoneRes" @input="handleInputRes"
             placeholder="(00) 00000-0000" maxlength="16" />
         </div>
-        <div class="flex justify-around items-center">
+        <div class="md:grid-cols-4 md:grid gap-4 flex flex-col">
           <label for="email">14. E-mail: </label>
-          <input type="email" id="email" pattern=".+@example\.com" size="20" required class="border border-zinc-950"
-            placeholder=".+@example.com" />
+          <input type="email" id="email" pattern=".+@example\.com" size="20" required placeholder=".+@example.com" />
           <label for="phoneCel">15. Celular: </label>
           <input type="text" id="phoneCel" v-model="formattedPhoneCel" @input="handleInputCel"
             placeholder="(00) 00000-0000" maxlength="16" />
@@ -151,7 +150,7 @@
         </div>
         <div>
           <label>17. Estado Civil </label>
-          <div class="flex items-center gap-4">
+          <div class="md:grid-cols-3 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
             <div>
               <input type="radio" id="Casado" name="civil" value="Casado" v-model="selectedOption3" checked />
               <label for="Casado"> Casado</label>
@@ -171,11 +170,11 @@
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-10 gap-4">
-          <label class="col-span-3" for="skill">18. Cônjuge /Companheiro (a)</label>
-          <input type="text" id="skill" class="border border-zinc-950 h-7 col-span-3" />
-          <label class="col-span-5 mx-8" for="work">19. Atividade profissional do cônjuge</label>
-          <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" />
+        <div class="md:grid-cols-3 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
+          <label class="col-span-3" for="skill2">18. Cônjuge /Companheiro (a)</label>
+          <input type="text" id="skill2" class="border border-zinc-950 h-7 col-span-3" />
+          <label class="md:col-span-5" for="work2">19. Atividade profissional do cônjuge</label>
+          <input type="text" id="work2" class="border border-zinc-950 h-7 col-span-3" />
         </div>
         <!--! Section 2 -->
         <div>
@@ -185,14 +184,14 @@
               atual</span>
           </h1>
         </div>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="md:grid md:grid-cols-3 gap-4">
           <div>
             <label for="atividade" class="block mb-2">20. Atividade</label>
             <input id="atividade" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
             <input type="text" class="w-full p-2 border border-gray-300 rounded" />
           </div>
           <div>
-            <label for="orgao" class="block mb-2">1. Órgão, Empresa, etc.</label>
+            <label for="orgao" class="block mb-2">21. Órgão, Empresa, etc.</label>
             <input id="orgao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
             <input type="text" class="w-full p-2 border border-gray-300 rounded" />
           </div>
@@ -202,7 +201,7 @@
             <input type="text" class="w-full p-2 border border-gray-300 rounded" />
           </div>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-start gap-2">
           <label>23. </label>
           <div>
             <input type="checkbox" id="checkersection2" v-model="checked" class="mr-2" />
@@ -239,23 +238,23 @@
               imposto de renda da RFB</span>
           </h1>
         </div>
-        <div class="grid grid-cols-3 gap-4 items-end">
+        <div class="md:grid md:grid-cols-3 gap-4 items-end">
           <div>
-            <label for="atividade" class="block mb-2">25. Tipo</label>
-            <input id="atividade" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
+            <label for="atividade2" class="block mb-2">25. Tipo</label>
+            <input id="atividade2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
             <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
             <input type="text" class="w-full p-2 border border-gray-300 rounded" />
           </div>
           <div>
-            <label for="orgao" class="block mb-2">26. Administrador, se terceiro, e parentesco com o
+            <label for="orgao2" class="block mb-2">26. Administrador, se terceiro, e parentesco com o
               declarante.</label>
-            <input id="orgao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
+            <input id="orgao2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
             <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
             <input type="text" class="w-full p-2 border border-gray-300 rounded" />
           </div>
           <div>
-            <label for="remuneracao" class="block mb-2">27. Valor do bem</label>
-            <input id="remuneracao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
+            <label for="remuneracao2" class="block mb-2">27. Valor do bem</label>
+            <input id="remuneracao2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
             <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
             <input type="text" class="w-full p-2 border border-gray-300 rounded" />
           </div>
@@ -335,7 +334,7 @@
             32. Exerce outra(s) atividade(s) além do cargo, função ou emprego
             público?
           </legend>
-          <div class="flex gap-4 items-center justify-start mt-2">
+          <div class="md:grid-cols-6 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
             <div class="flex items-center justify-start">
               <input type="radio" id="nao7" name="drone7" value="nao7" v-model="selectedOption7" checked />
               <label for="nao7"> Não</label>
@@ -356,7 +355,7 @@
           <legend>
             33. Possui outra renda além do cargo, função ou emprego público?
           </legend>
-          <div class="flex gap-4 items-center justify-start mt-2">
+          <div class="md:grid-cols-6 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
             <div class="flex items-center justify-start">
               <input type="radio" id="nao8" name="drone8" value="nao8" v-model="selectedOption8" checked />
               <label for="nao8"> Não</label>
@@ -378,7 +377,7 @@
             34. Em caso afirmativo no campo 32 ou 33, há conflito potencial com
             o Interesse Público?
           </legend>
-          <div class="flex gap-4 items-center justify-start mt-2">
+          <div class="md:grid-cols-3 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
             <div class="flex items-center justify-start">
               <input type="radio" id="nao9" name="drone9" value="nao9" v-model="selectedOption9" checked />
               <label for="nao9"> Não</label>
@@ -398,7 +397,7 @@
             35. Descrever a situação ou atividade, no caso de marcar “Sim” ou
             “Tenho dúvida” no campo 34.
           </legend>
-          <input type="text" class="w-2/3 p-2 border border-gray-300 rounded mb-4" />
+          <textarea name="campFinal" class="border w-full outline-none"></textarea>
         </div>
         <!--! section 5 -->
         <div>
@@ -415,42 +414,42 @@
           </h2>
         </div>
         <h2 class="text-sm">✅ Outros documentos.</h2>
-        <div class="flex items-center gap-2">
+        <div class="flex items-start gap-2">
           <label>36. </label>
           <div>
-            <input type="checkbox" id="checkersection4" v-model="checked4" class="mr-2" />
-            <label for="checkersection4">
+            <input type="checkbox" id="checkersection5" v-model="checked4" class="mr-2" />
+            <label for="checkersection5">
               Isento de declarar Imposto de Renda de Pessoa Física (IRPF).
             </label>
           </div>
         </div>
         <div>
-          <h2 class="text-sm text-center">
+          <h2 class="text-sm text-start">
             Comprometo-me com a veracidade dos fatos relatados e responsabilizo-me por possíveis omissões, que possam
             resultar na transgressão do Código de Conduta Ética do Agente Público e da Alta Administração municipal.
           </h2>
         </div>
         <div class="flex flex-col items-end text-center p-4 space-y-4">
           <!-- Linha para Local e Data -->
-          <div class="flex space-x-4">
+          <div class="md:flex space-x-4">
             <div class="flex flex-col">
               <label for="local" class="mb-1">Local</label>
               <input id="local" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center">
             </div>
-            <div class="flex flex-col">
+            <div class="md:flex flex-col">
               <label for="data" class="mb-1">Data</label>
               <input id="data" type="date" class="border-b border-gray-400 focus:outline-none px-2 text-center">
             </div>
           </div>
 
           <!-- Assinatura -->
-          <div class="flex flex-col w-full max-w-xs">
+          <div class="md:flex flex-col w-full max-w-xs">
             <label for="assinatura" class="mb-1">Assinatura:</label>
             <input id="assinatura" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center">
           </div>
 
           <!-- Nome e CPF -->
-          <div class="flex space-x-4">
+          <div class="md:flex space-x-4">
             <div class="flex flex-col">
               <label for="nome" class="mb-1">Nome:</label>
               <input id="nome" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center">
@@ -458,7 +457,7 @@
             <div class="flex flex-col">
               <label for="cpf" class="mb-1">CPF:</label>
               <input id="cpf" type="text" v-model="cpf" placeholder="000.000.000-00"
-                class="border-b border-gray-400 focus:outline-none px-2 text-center" />
+                class="border-b border-gray-400 focus:outline-none px-2 text-center" maxlength="14" />
             </div>
           </div>
         </div>
@@ -565,15 +564,15 @@
 
 <script>
 import { onMounted, ref, watch } from "vue";
-import { useCep } from "./lib/useCep";
-import { useDatepicker } from "./lib/useDatepicker";
-import { useFormatPhoneTra, useFormatPhoneCel, useFormatPhoneRes } from "./lib/useFormatPhone";
+import { useCep } from "../hooks/useCep";
+import { useDatepicker } from "../hooks/useDatepicker";
+import { useFormatPhoneTra, useFormatPhoneCel, useFormatPhoneRes } from "../hooks/useFormatPhone";
 
 export default {
   setup() {
     const { datepicker1, datepicker2, initializeDatepickers } = useDatepicker();
-    const selectedOption1 = ref("sim1");
-    const selectedOption2 = ref("sim2");
+    const selectedOption1 = ref("nao1");
+    const selectedOption2 = ref("nao2");
     const selectedOption3 = ref("Casado");
     const selectedOption4 = ref("sim3");
     const selectedOption5 = ref("nao5");

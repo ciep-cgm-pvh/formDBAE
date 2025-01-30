@@ -18,6 +18,10 @@ const routes = [
     name: "Protecao",
     component: lazyLoad("Protecao"),
   },
+  {
+    path: "/:pathMatch(.*)*",
+    component: lazyLoad("PageNotFound"),
+  },
 ];
 
 const router = createRouter({

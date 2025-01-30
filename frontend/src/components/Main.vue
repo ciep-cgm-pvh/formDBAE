@@ -416,35 +416,10 @@
             <label for="checkersection6">Concordo que os dados fornecidos poderão ser utilizados pela prefeitura para
               fins administrativos e
               estatísticos.
-              <a href="#" @click.prevent="showDialog = true" class="text-blue-500" rel="noopener noreferrer">
+              <router-link to="/protecao" class="text-blue-500" target="_blank">
                 Leia mais.
-              </a>
+              </router-link>
             </label>
-            <div v-if="showDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-              <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-xl font-semibold mb-4">Aviso de Privacidade</h2>
-                <p>
-                  A Controladoria Geral do Município (CGM) informa que os dados fornecidos por meio deste formulário
-                  serão utilizados exclusivamente para fins internos, administrativos e estatísticos, alinhados aos
-                  objetivos institucionais.
-                </p>
-                <p>
-                  Garantimos que as informações inseridas serão tratadas de forma confidencial, respeitando as
-                  diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018). Não haverá qualquer
-                  divulgação ou compartilhamento não autorizado desses dados.
-                </p>
-                <p>
-                  Ao prosseguir, você declara estar ciente e concorda que seus dados serão utilizados pela Prefeitura
-                  para os fins mencionados acima.
-                </p>
-                <div class="mt-4 flex justify-end">
-                  <button @click="showDialog = false"
-                    class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                    Fechar
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="flex items-center gap-2">

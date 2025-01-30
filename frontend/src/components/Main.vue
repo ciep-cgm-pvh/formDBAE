@@ -99,7 +99,7 @@
         </div>
         <div class="grid grid-cols-3 gap-3 items-center">
           <label for="cep1">10. CEP do trabalho:</label>
-          <input v-model="cep1" @input="handleInputCep1" name="cep1" placeholder="D0000-000"
+          <input v-model="cep1" @input="handleInputCep1" name="cep1" placeholder="00000-000"
             class="outline-none mx-2" />
           <input v-model="cidade1" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro1" name="rua" placeholder="Rua" disabled />
@@ -115,7 +115,7 @@
         </div>
         <div class="grid grid-cols-3 gap-3 items-center">
           <label for="cep2">12. CEP da residência: </label>
-          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="D0000-000"
+          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="00000-000"
             class="outline-none mx-2" />
           <input v-model="cidade2" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />

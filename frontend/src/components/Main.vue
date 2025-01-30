@@ -36,15 +36,15 @@
           <label class="md:col-span-2 md:mx-8" for="work">4. Cargo: </label>
           <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" />
         </div>
-        <div class="md:grid-cols-12 md:grid gap-4 flex flex-col items-center">
-          <label class="md:col-span-2 md:mt-2" for="position">5. Cargo Efetivo:
+        <div class="md:grid md:grid-cols-8 gap-4 flex flex-col items-center justify-center">
+          <label class="" for="position">5. Cargo Efetivo:
           </label>
           <input type="text" id="position" class="border border-zinc-950 h-7 md:col-span-2 w-40 mt-2 md:-mx-6" />
-          <label class="md:col-span-2 md:w-40 md:mt-2 md:-mx-2" for="org">6. Órgão / Entidade:
+          <label class="mt-2 -mx-2" for="org">6. Órgão / Entidade:
           </label>
-          <input type="text" id="org" class="border border-zinc-950 h-7 col-span-3 mt-2 uppercase" />
-          <div class="md:flex md:flex-col md:-mt-10 md:ml-8">
-            <label class="w-56" for="date-input2">7. Data da nomeação/ <br />
+          <input type="text" id="org" class="border border-zinc-950 h-7 mt-2 uppercase" />
+          <div class="flex flex-wrap mt-4 ml-8">
+            <label for="date-input2">7. Data da nomeação/ <br />
               designação:
             </label>
             <input ref="datepicker2" class="border border-zinc-950 w-40 placeholder-center centered-input"

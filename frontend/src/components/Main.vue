@@ -22,34 +22,30 @@
       <form id="form" class="mt-8 w-full px-4 space-y-10 mb-10">
         <!--! Section 1 -->
         <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-14 gap-4">
           <label for="fullName">1. Nome completo: </label>
-          <input type="text" id="fullName" class="border border-zinc-950 h-7 col-span-2" />
-          <label for="date-input">2. Data de nascimento</label>
-          <input ref="datepicker1" class="border border-zinc-950 w-40 placeholder-center centered-input" id="date-input"
-            placeholder="dd/mm/yyyy" type="text" />
+          <input type="text" id="fullName" class="border border-zinc-950 h-7 col-span-6" />
+          <label for="dataNas" class="mt-4">2. Data de nascimento</label>
+          <input id="dataNas" type="date" class="border-b border-gray-400 focus:outline-none text-center w-56">
         </div>
-        <div class="grid md:grid-cols-12 gap-4 items-center">
+        <div class="grid md:grid-cols-12 gap-4 items-center justify-start">
           <label class="col-span-3" for="skill">3. Formação profissional:
           </label>
           <input type="text" id="skill" class="border border-zinc-950 h-7 col-span-3" />
           <label class="md:col-span-2 md:mx-8" for="work">4. Cargo: </label>
           <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" />
         </div>
-        <div class="md:grid md:grid-cols-8 gap-4 flex flex-col items-center justify-center">
-          <label class="" for="position">5. Cargo Efetivo:
+        <div class="grid md:grid-cols-12 items-center justify-start">
+          <label for="position" class="md:col-span-2">5. Cargo Efetivo:
           </label>
-          <input type="text" id="position" class="border border-zinc-950 h-7 md:col-span-2 w-40 mt-2 md:-mx-6" />
-          <label class="mt-2 -mx-2" for="org">6. Órgão / Entidade:
+          <input type="text" id="position" class="border border-zinc-950 h-7 col-span-3" />
+          <label class="md:col-span-2 md:mx-8" for="org">6. Órgão / Entidade:
           </label>
-          <input type="text" id="org" class="border border-zinc-950 h-7 mt-2 uppercase" />
-          <div class="flex flex-wrap mt-4 ml-8">
-            <label for="date-input2">7. Data da nomeação/ <br />
-              designação:
-            </label>
-            <input ref="datepicker2" class="border border-zinc-950 w-40 placeholder-center centered-input"
-              id="date-input2" type="text" placeholder="dd/mm/yyyy" />
-          </div>
+          <input type="text" id="org" class="border border-zinc-950 h-7 col-span-3 uppercase" />
+        </div>
+        <div class="grid md:grid-cols-4 items-center justify-start">
+          <label for="dataNome" class="mb-1">7. Data da nomeação / designação:</label>
+          <input id="dataNome" type="date" class="border-b border-gray-400 focus:outline-none text-center">
         </div>
         <div>
           <legend>
@@ -110,8 +106,8 @@
         </div>
         <div>
           <label for="phoneTra">11. Telefone do trabalho: </label>
-          <input type="text" id="phoneTra" v-model="formattedPhoneTra" @input="handleInputTra"
-            placeholder="(00) 00000-0000" maxlength="16" />
+          <input v-model="telefone" type="tel" placeholder="(99) 99999-9999" id="phoneTra"
+            class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
         </div>
         <div class="grid grid-cols-3 gap-3 items-center">
           <label for="cep2">12. CEP da residência: </label>
@@ -125,15 +121,15 @@
         </div>
         <div>
           <label for="phoneRes">13. Telefone residencial: </label>
-          <input type="text" id="phoneRes" v-model="formattedPhoneRes" @input="handleInputRes"
-            placeholder="(00) 00000-0000" maxlength="16" />
+          <input v-model="telefoneRes" type="tel" placeholder="(99) 99999-9999" id="phoneRes"
+            class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
         </div>
         <div class="md:grid-cols-4 md:grid gap-4 flex flex-col items-center">
           <label for="email">14. E-mail: </label>
           <input type="email" id="email" size="20" placeholder=".+@example.com" />
           <label for="phoneCel">15. Celular: </label>
-          <input type="text" id="phoneCel" v-model="formattedPhoneCel" @input="handleInputCel"
-            placeholder="(00) 00000-0000" maxlength="16" />
+          <input v-model="telefoneCel" type="tel" placeholder="(99) 99999-9999" id="phoneCel"
+            class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
         </div>
         <div>
           <label>16. Endereço para correspondências: </label>
@@ -463,6 +459,8 @@
         </div>
         <!--! section 6 and final -->
         <SectionSix />
+        <button class="border-2 w-56 h-14 bg-zinc-400 text-lg rounded font-semibold hover:bg-zinc-300 ">Enviar
+          Formulário</button>
       </form>
     </div>
   </div>
@@ -473,10 +471,7 @@ import SectionSix from "../components/sectionsTheMain/SectionsSix.vue";
 import SectionFive from "../components/sectionsTheMain/SectionFive.vue";
 import { ref, onMounted, watch } from "vue";
 import { useCep } from "../hooks/useCep";
-import { useDatepicker } from "../hooks/useDatepicker";
-import { useFormatPhoneTra, useFormatPhoneCel, useFormatPhoneRes } from "../hooks/useFormatPhone";
 
-const { datepicker1, datepicker2, initializeDatepickers } = useDatepicker();
 const selectedOption1 = ref("nao1");
 const selectedOption2 = ref("nao2");
 const selectedOption3 = ref("Casado");
@@ -493,7 +488,75 @@ const checked4 = ref(false);
 const checked5 = ref(false);
 const checked6 = ref(false);
 const cpf = ref('');
-const showDialog = ref(false);
+const telefone = ref("");
+const telefoneRes = ref("");
+const telefoneCel = ref("");
+
+const formatarTelefone = (valor) => {
+  let num = valor.replace(/\D/g, "");
+
+  if (num.length === 0) return "";
+
+  if (num.length > 11) num = num.slice(0, 11);
+
+  if (num.length <= 10) {
+    return num.replace(/(\d{2})(\d{0,4})(\d{0,4})/, (_, ddd, p1, p2) =>
+      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
+    );
+  } else {
+    return num.replace(/(\d{2})(\d{0,5})(\d{0,4})/, (_, ddd, p1, p2) =>
+      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
+    );
+  }
+};
+
+watch(telefone, (novoValor) => {
+  telefone.value = formatarTelefone(novoValor);
+});
+
+const formatarTelefoneRes = (valor) => {
+  let num = valor.replace(/\D/g, "");
+
+  if (num.length === 0) return "";
+
+  if (num.length > 11) num = num.slice(0, 11);
+
+  if (num.length <= 10) {
+    return num.replace(/(\d{2})(\d{0,4})(\d{0,4})/, (_, ddd, p1, p2) =>
+      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
+    );
+  } else {
+    return num.replace(/(\d{2})(\d{0,5})(\d{0,4})/, (_, ddd, p1, p2) =>
+      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
+    );
+  }
+};
+
+watch(telefoneRes, (novoValor) => {
+  telefoneRes.value = formatarTelefoneRes(novoValor);
+});
+
+const formatarTelefoneCel = (valor) => {
+  let num = valor.replace(/\D/g, "");
+
+  if (num.length === 0) return "";
+
+  if (num.length > 11) num = num.slice(0, 11);
+
+  if (num.length <= 10) {
+    return num.replace(/(\d{2})(\d{0,4})(\d{0,4})/, (_, ddd, p1, p2) =>
+      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
+    );
+  } else {
+    return num.replace(/(\d{2})(\d{0,5})(\d{0,4})/, (_, ddd, p1, p2) =>
+      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
+    );
+  }
+};
+
+watch(telefoneCel, (novoValor) => {
+  telefoneCel.value = formatarTelefoneCel(novoValor);
+});
 
 const {
   cep1,
@@ -504,10 +567,6 @@ const {
   cidade2,
   fetchCepData,
 } = useCep();
-
-const { phoneTra, formattedPhoneTra, formatPhoneTra } = useFormatPhoneTra();
-const { phoneCel, formattedPhoneCel, formatPhoneCel } = useFormatPhoneCel();
-const { phoneRes, formattedPhoneRes, formatPhoneRes } = useFormatPhoneRes();
 
 const handleInputNumber = (event) => {
   let input = event.target.value.replace(/\D/g, "");
@@ -527,19 +586,6 @@ const handleInputNumber2 = (event) => {
   event.target.value = input;
 };
 
-// Formatting phone
-const handleInputTra = (event) => {
-  phoneTra.value = event.target.value.replace(/\D/g, "");
-  formatPhoneTra();
-};
-const handleInputRes = (event) => {
-  phoneRes.value = event.target.value.replace(/\D/g, "");
-  formatPhoneRes();
-};
-const handleInputCel = (event) => {
-  phoneCel.value = event.target.value.replace(/\D/g, "");
-  formatPhoneCel();
-};
 // Formatting cep
 const handleInputCep1 = () => {
   if (cep1.value.replace(/\D/g, "").length === 8) {

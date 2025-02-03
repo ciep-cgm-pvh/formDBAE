@@ -1,6 +1,6 @@
 <template>
-  <div class="border-2 flex flex-col items-center justify-center border-zinc-950">
-    <h1 class="text-lg font-semibold flex justify-center">LGPD</h1>
+  <div class="border-2 flex flex-col items-center justify-center border-zinc-950 p-4">
+    <h1 class="text-lg font-semibold flex justify-center mt-2">LGPD</h1>
     <div class="space-y-4 mb-4 mt-2">
       <p>A Controladoria Geral do Município (CGM) informa que os dados fornecidos por meio deste formulário
         serão utilizados exclusivamente para fins internos, administrativos e estatísticos, alinhados aos

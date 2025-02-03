@@ -469,7 +469,7 @@
 <script setup>
 import SectionSix from "../components/sectionsTheMain/SectionsSix.vue";
 import SectionFive from "../components/sectionsTheMain/SectionFive.vue";
-import { ref, onMounted, watch } from "vue";
+import { ref, watch } from "vue";
 import { useCep } from "../hooks/useCep";
 
 const selectedOption1 = ref("nao1");
@@ -492,7 +492,7 @@ const telefone = ref("");
 const telefoneRes = ref("");
 const telefoneCel = ref("");
 
-const formatarTelefone = (valor) => {
+const formatarTelefone = (valorTel) => {
   let num = valor.replace(/\D/g, "");
 
   if (num.length === 0) return "";
@@ -510,11 +510,7 @@ const formatarTelefone = (valor) => {
   }
 };
 
-watch(telefone, (novoValor) => {
-  telefone.value = formatarTelefone(novoValor);
-});
-
-const formatarTelefoneRes = (valor) => {
+const formatarTelefoneRes = (valorRes) => {
   let num = valor.replace(/\D/g, "");
 
   if (num.length === 0) return "";
@@ -532,11 +528,7 @@ const formatarTelefoneRes = (valor) => {
   }
 };
 
-watch(telefoneRes, (novoValor) => {
-  telefoneRes.value = formatarTelefoneRes(novoValor);
-});
-
-const formatarTelefoneCel = (valor) => {
+const formatarTelefoneCel = (valorCel) => {
   let num = valor.replace(/\D/g, "");
 
   if (num.length === 0) return "";
@@ -553,10 +545,6 @@ const formatarTelefoneCel = (valor) => {
     );
   }
 };
-
-watch(telefoneCel, (novoValor) => {
-  telefoneCel.value = formatarTelefoneCel(novoValor);
-});
 
 const {
   cep1,
@@ -599,10 +587,6 @@ const handleInputCep2 = () => {
   }
 };
 
-onMounted(() => {
-  initializeDatepickers();
-});
-
 watch(cpf, (newValue) => {
   cpf.value = formatCPF(newValue);
 });
@@ -614,7 +598,17 @@ function formatCPF(value) {
   value = value.replace(/(\d{3})(\d)/, '$1.$2');
   value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
   return value;
-}
+};
+
+watch(telefone, (valorTel) => {
+  telefone.value = formatarTelefone(valorTel);
+});
+watch(telefoneRes, (valorRes) => {
+  telefoneRes.value = formatarTelefoneRes(valorRes);
+});
+watch(telefoneCel, (valorCel) => {
+  telefoneCel.value = formatarTelefoneCel(valorCel);
+});
 </script>
 
 <style scoped>

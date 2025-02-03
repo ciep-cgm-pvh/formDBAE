@@ -63,3 +63,25 @@ export function useCep() {
     fetchCepData,
   };
 }
+
+export const handleInputCep1 = () => {
+  if (cep1.value.replace(/\D/g, "").length === 8) {
+    fetchCepData(cep1, cidade1, logradouro1);
+  }
+};
+
+export const handleInputCep2 = () => {
+  if (cep2.value.replace(/\D/g, "").length === 8) {
+    fetchCepData(cep2, cidade2, logradouro2);
+  }
+};
+
+export const {
+  cep1,
+  cep2,
+  logradouro1,
+  logradouro2,
+  cidade1,
+  cidade2,
+  fetchCepData,
+} = useCep();

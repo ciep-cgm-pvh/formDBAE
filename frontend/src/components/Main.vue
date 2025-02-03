@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="text-lg font-bold justify-center flex mb-8">
+  <div class="flex-grow">
+    <h1 class=" text-lg font-bold justify-center flex mb-8">
       Anexo I – Formulário de Declaração de Informações de Bens e Atividades
       Econômicas
     </h1>
@@ -23,9 +23,14 @@
         <!--! Section 1 -->
         <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
         <div class="grid grid-cols-14 gap-4">
-          <label for="fullName">1. Nome completo: </label>
-          <input type="text" id="fullName" class="border border-zinc-950 h-7 col-span-6" />
-          <label for="dataNas" class="mt-4">2. Data de nascimento</label>
+          <label for="fullName" class="flex items-center">
+            1. Nome completo:
+            <span class="text-red-500 ml-1">*</span>
+          </label>
+          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72" required />
+          <label for="dataNas" class="mt-4">2. Data de nascimento:
+            <span class="text-red-500 ml-1">*</span>
+          </label>
           <input id="dataNas" type="date" class="border-b border-gray-400 focus:outline-none text-center w-56">
         </div>
         <div class="grid md:grid-cols-12 gap-4 items-center justify-start">
@@ -35,7 +40,7 @@
           <label class="md:col-span-2 md:mx-8" for="work">4. Cargo: </label>
           <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" />
         </div>
-        <div class="grid md:grid-cols-12 items-center justify-start">
+        <div class="grid md:grid-cols-12 gap-4 items-center justify-start">
           <label for="position" class="md:col-span-2">5. Cargo Efetivo:
           </label>
           <input type="text" id="position" class="border border-zinc-950 h-7 col-span-3" />
@@ -93,7 +98,7 @@
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-3 gap-3 items-center">
+        <div class="grid grid-cols-13 md:grid-cols-3 gap-4 items-center">
           <label for="cep1">10. CEP do trabalho:</label>
           <input v-model="cep1" @input="handleInputCep1" name="cep1" placeholder="00000-000"
             class="outline-none mx-2" />
@@ -101,7 +106,7 @@
           <input v-model="logradouro1" name="rua" placeholder="Rua" disabled />
           <!-- N° -->
           <label for="numberAddress">N°</label>
-          <input type="text" class="border border-zinc-950 h-7" size="5" id="numberAddress"
+          <input type="text" class="border border-zinc-950 h-7 w-20 text-center" size="5" id="numberAddress"
             @input="handleInputNumber" />
         </div>
         <div>
@@ -109,26 +114,26 @@
           <input v-model="telefone" type="tel" placeholder="(99) 99999-9999" id="phoneTra"
             class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
         </div>
-        <div class="grid grid-cols-3 gap-3 items-center">
+        <div class="grid grid-cols-13 md:grid-cols-3 gap-4 items-center">
           <label for="cep2">12. CEP da residência: </label>
           <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="00000-000"
             class="outline-none mx-2" />
           <input v-model="cidade2" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />
           <label for="numberAddress2">N°</label>
-          <input type="text" class="border border-zinc-950 h-7 mx-2" size="5" id="numberAddress2"
+          <input type="text" class="border border-zinc-950 h-7 w-20 text-center" size="5" id="numberAddress2"
             @input="handleInputNumber2" />
         </div>
         <div>
-          <label for="phoneRes">13. Telefone residencial: </label>
-          <input v-model="telefoneRes" type="tel" placeholder="(99) 99999-9999" id="phoneRes"
+          <label for="telefoneRes">13. Telefone residencial: </label>
+          <input v-model="telefoneRes" type="tel" placeholder="(99) 99999-9999" id="telefoneRes"
             class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
         </div>
-        <div class="md:grid-cols-4 md:grid gap-4 flex flex-col items-center">
+        <div class="md:grid-cols-4 grid gap-4 items-center justify-start">
           <label for="email">14. E-mail: </label>
           <input type="email" id="email" size="20" placeholder=".+@example.com" />
-          <label for="phoneCel">15. Celular: </label>
-          <input v-model="telefoneCel" type="tel" placeholder="(99) 99999-9999" id="phoneCel"
+          <label for="telefoneCel">15. Celular: </label>
+          <input v-model="telefoneCel" type="tel" placeholder="(99) 99999-9999" id="telefoneCel"
             class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
         </div>
         <div>
@@ -459,18 +464,23 @@
         </div>
         <!--! section 6 and final -->
         <SectionSix />
-        <button class="border-2 w-56 h-14 bg-zinc-400 text-lg rounded font-semibold hover:bg-zinc-300 ">Enviar
+        <button
+          class="border-2 w-56 h-14 bg-zinc-400 text-lg rounded-lg shadow-lg font-semibold hover:bg-zinc-300 mb-72">Enviar
           Formulário</button>
+        <div />
       </form>
     </div>
   </div>
 </template>
 
 <script setup>
-import SectionSix from "../components/sectionsTheMain/SectionsSix.vue";
-import SectionFive from "../components/sectionsTheMain/SectionFive.vue";
-import { ref, watch } from "vue";
-import { useCep } from "../hooks/useCep";
+import SectionSix from "@/components/sectionsTheMain/SectionsSix.vue";
+import SectionFive from "@/components/sectionsTheMain/SectionFive.vue";
+import { ref } from "vue";
+import { handleInputCep1, handleInputCep2, cep1, cep2, logradouro1, logradouro2, cidade1, cidade2 } from "@/hooks/useCep";
+import { telefone, telefoneCel, telefoneRes } from "@/hooks/formatTel";
+import { handleInputNumber, handleInputNumber2 } from "@/hooks/formatNCasa";
+import { cpf } from "@/hooks/formatCPF";
 
 const selectedOption1 = ref("nao1");
 const selectedOption2 = ref("nao2");
@@ -487,128 +497,7 @@ const checked3 = ref(false);
 const checked4 = ref(false);
 const checked5 = ref(false);
 const checked6 = ref(false);
-const cpf = ref('');
-const telefone = ref("");
-const telefoneRes = ref("");
-const telefoneCel = ref("");
 
-const formatarTelefone = (valorTel) => {
-  let num = valor.replace(/\D/g, "");
-
-  if (num.length === 0) return "";
-
-  if (num.length > 11) num = num.slice(0, 11);
-
-  if (num.length <= 10) {
-    return num.replace(/(\d{2})(\d{0,4})(\d{0,4})/, (_, ddd, p1, p2) =>
-      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
-    );
-  } else {
-    return num.replace(/(\d{2})(\d{0,5})(\d{0,4})/, (_, ddd, p1, p2) =>
-      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
-    );
-  }
-};
-
-const formatarTelefoneRes = (valorRes) => {
-  let num = valor.replace(/\D/g, "");
-
-  if (num.length === 0) return "";
-
-  if (num.length > 11) num = num.slice(0, 11);
-
-  if (num.length <= 10) {
-    return num.replace(/(\d{2})(\d{0,4})(\d{0,4})/, (_, ddd, p1, p2) =>
-      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
-    );
-  } else {
-    return num.replace(/(\d{2})(\d{0,5})(\d{0,4})/, (_, ddd, p1, p2) =>
-      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
-    );
-  }
-};
-
-const formatarTelefoneCel = (valorCel) => {
-  let num = valor.replace(/\D/g, "");
-
-  if (num.length === 0) return "";
-
-  if (num.length > 11) num = num.slice(0, 11);
-
-  if (num.length <= 10) {
-    return num.replace(/(\d{2})(\d{0,4})(\d{0,4})/, (_, ddd, p1, p2) =>
-      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
-    );
-  } else {
-    return num.replace(/(\d{2})(\d{0,5})(\d{0,4})/, (_, ddd, p1, p2) =>
-      `(${ddd}${p1 ? `) ${p1}` : ""}${p2 ? `-${p2}` : ""}`
-    );
-  }
-};
-
-const {
-  cep1,
-  cep2,
-  logradouro1,
-  logradouro2,
-  cidade1,
-  cidade2,
-  fetchCepData,
-} = useCep();
-
-const handleInputNumber = (event) => {
-  let input = event.target.value.replace(/\D/g, "");
-  const numberAddressInPortoVelho = 5;
-  if (input.length > numberAddressInPortoVelho) {
-    input = input.slice(0, numberAddressInPortoVelho);
-  }
-  event.target.value = input;
-};
-
-const handleInputNumber2 = (event) => {
-  let input = event.target.value.replace(/\D/g, "");
-  const numberAddressInPortoVelho = 5;
-  if (input.length > numberAddressInPortoVelho) {
-    input = input.slice(0, numberAddressInPortoVelho);
-  }
-  event.target.value = input;
-};
-
-// Formatting cep
-const handleInputCep1 = () => {
-  if (cep1.value.replace(/\D/g, "").length === 8) {
-    fetchCepData(cep1, cidade1, logradouro1);
-  }
-};
-
-const handleInputCep2 = () => {
-  if (cep2.value.replace(/\D/g, "").length === 8) {
-    fetchCepData(cep2, cidade2, logradouro2);
-  }
-};
-
-watch(cpf, (newValue) => {
-  cpf.value = formatCPF(newValue);
-});
-
-// Função de formatação de CPF
-function formatCPF(value) {
-  value = value.replace(/\D/g, '');
-  value = value.replace(/(\d{3})(\d)/, '$1.$2');
-  value = value.replace(/(\d{3})(\d)/, '$1.$2');
-  value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-  return value;
-};
-
-watch(telefone, (valorTel) => {
-  telefone.value = formatarTelefone(valorTel);
-});
-watch(telefoneRes, (valorRes) => {
-  telefoneRes.value = formatarTelefoneRes(valorRes);
-});
-watch(telefoneCel, (valorCel) => {
-  telefoneCel.value = formatarTelefoneCel(valorCel);
-});
 </script>
 
 <style scoped>

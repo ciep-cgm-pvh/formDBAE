@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto mt-10 max-w-7xl px-2 bg-white text-black">
+  <div class="mx-auto mt-10 max-w-7xl min-h-screen px-2 bg-white text-black">
     <Header v-once />
     <router-view />
   </div>

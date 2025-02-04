@@ -27,30 +27,34 @@
             1. Nome completo:
             <span class="text-red-500 ml-1">*</span>
           </label>
-          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72" required />
+          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72" required
+            @input="handleInputChange" />
           <label for="dataNas" class="mt-4">2. Data de nascimento:
             <span class="text-red-500 ml-1">*</span>
           </label>
-          <input id="dataNas" type="date" class="border-b border-gray-400 focus:outline-none text-center w-56">
+          <input id="dataNas" type="date" class="border-b border-gray-400 focus:outline-none text-center w-56"
+            @input="handleInputChange">
         </div>
         <div class="grid md:grid-cols-12 gap-4 items-center justify-start">
           <label class="col-span-3" for="skill">3. Formação profissional:
           </label>
-          <input type="text" id="skill" class="border border-zinc-950 h-7 col-span-3" />
+          <input type="text" id="skill" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
           <label class="md:col-span-2 md:mx-8" for="work">4. Cargo: </label>
-          <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" />
+          <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
         </div>
         <div class="grid md:grid-cols-12 gap-4 items-center justify-start">
           <label for="position" class="md:col-span-2">5. Cargo Efetivo:
           </label>
-          <input type="text" id="position" class="border border-zinc-950 h-7 col-span-3" />
+          <input type="text" id="position" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
           <label class="md:col-span-2 md:mx-8" for="org">6. Órgão / Entidade:
           </label>
-          <input type="text" id="org" class="border border-zinc-950 h-7 col-span-3 uppercase" />
+          <input type="text" id="org" class="border border-zinc-950 h-7 col-span-3 uppercase"
+            @input="handleInputChange" />
         </div>
         <div class="grid md:grid-cols-4 items-center justify-start">
           <label for="dataNome" class="mb-1">7. Data da nomeação / designação:</label>
-          <input id="dataNome" type="date" class="border-b border-gray-400 focus:outline-none text-center">
+          <input id="dataNome" type="date" class="border-b border-gray-400 focus:outline-none text-center"
+            @input="handleInputChange">
         </div>
         <div>
           <legend>
@@ -73,7 +77,7 @@
             </div>
             <div>
               <label class="md:mx-2" for="name">Órgão/entidade de origem: </label>
-              <input type="text" id="name" class="border border-zinc-950 h-7 w-56" />
+              <input type="text" id="name" class="border border-zinc-950 h-7 w-56" @input="handleInputChange" />
             </div>
           </div>
         </div>
@@ -131,7 +135,7 @@
         </div>
         <div class="md:grid-cols-4 grid gap-4 items-center justify-start">
           <label for="email">14. E-mail: </label>
-          <input type="email" id="email" size="20" placeholder=".+@example.com" />
+          <input type="email" id="email" size="20" placeholder=".+@example.com" @input="handleInputChange" />
           <label for="telefoneCel">15. Celular: </label>
           <input v-model="telefoneCel" type="tel" placeholder="(99) 99999-9999" id="telefoneCel"
             class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
@@ -140,11 +144,12 @@
           <label>16. Endereço para correspondências: </label>
           <div class="flex items-center gap-4">
             <div>
-              <input type="radio" id="Residencial" name="address" value="Residencial" checked />
+              <input type="radio" id="Residencial" name="address" value="Residencial" checked
+                @input="handleInputChange" />
               <label for="Residencial"> Residencial</label>
             </div>
             <div>
-              <input type="radio" id="Trabalho" name="address" value="Trabalho" />
+              <input type="radio" id="Trabalho" name="address" value="Trabalho" @input="handleInputChange" />
               <label for="Trabalho"> Trabalho</label>
             </div>
           </div>
@@ -173,9 +178,9 @@
         </div>
         <div class="md:grid-cols-3 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
           <label class="col-span-3" for="skill2">18. Cônjuge /Companheiro (a)</label>
-          <input type="text" id="skill2" class="border border-zinc-950 h-7 col-span-3" />
+          <input type="text" id="skill2" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
           <label class="md:col-span-5" for="work2">19. Atividade profissional do cônjuge</label>
-          <input type="text" id="work2" class="border border-zinc-950 h-7 col-span-3" />
+          <input type="text" id="work2" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
         </div>
         <!--! Section 2 -->
         <div>
@@ -188,18 +193,21 @@
         <div class="md:grid md:grid-cols-3 gap-4">
           <div>
             <label for="atividade" class="block mb-2">20. Atividade</label>
-            <input id="atividade" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" />
+            <input id="atividade" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+              @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
           <div>
             <label for="orgao" class="block mb-2">21. Órgão, Empresa, etc.</label>
-            <input id="orgao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" />
+            <input id="orgao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+              @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
           <div>
             <label for="remuneracao" class="block mb-2">22. Remuneração/Renda</label>
-            <input id="remuneracao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" />
+            <input id="remuneracao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+              @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
         </div>
         <div class="flex items-start gap-2">
@@ -242,22 +250,25 @@
         <div class="md:grid md:grid-cols-3 gap-4  items-end">
           <div>
             <label for="atividade2" class="block mb-2">25. Tipo</label>
-            <input id="atividade2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" />
+            <input id="atividade2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+              @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
           <div>
             <label for="orgao2" class="block mb-2">26. Administrador, se terceiro, e parentesco com o
               declarante.</label>
-            <input id="orgao2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" />
+            <input id="orgao2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+              @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
           <div>
             <label for="remuneracao2" class="block mb-2">27. Valor do bem</label>
-            <input id="remuneracao2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" />
+            <input id="remuneracao2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+              @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" @input="handleInputChange" />
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
         </div>
         <div>
@@ -435,25 +446,29 @@
           <div class="md:flex space-x-4">
             <div class="flex flex-col">
               <label for="local" class="mb-1">Local</label>
-              <input id="local" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center">
+              <input id="local" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center"
+                @input="handleInputChange" />
             </div>
             <div class="md:flex flex-col">
               <label for="data" class="mb-1">Data</label>
-              <input id="data" type="date" class="border-b border-gray-400 focus:outline-none px-2 text-center">
+              <input id="data" type="date" class="border-b border-gray-400 focus:outline-none px-2 text-center"
+                @input="handleInputChange" />
             </div>
           </div>
 
           <!-- Assinatura -->
           <div class="md:flex flex-col w-full max-w-xs">
             <label for="assinatura" class="mb-1">Assinatura:</label>
-            <input id="assinatura" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center">
+            <input id="assinatura" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center"
+              @input="handleInputChange" />
           </div>
 
           <!-- Nome e CPF -->
           <div class="md:flex space-x-4">
             <div class="flex flex-col">
               <label for="nome" class="mb-1">Nome:</label>
-              <input id="nome" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center">
+              <input id="nome" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center"
+                @input="handleInputChange" />
             </div>
             <div class="flex flex-col">
               <label for="cpf" class="mb-1">CPF:</label>
@@ -476,28 +491,34 @@
 <script setup>
 import SectionSix from "@/components/sectionsTheMain/SectionsSix.vue";
 import SectionFive from "@/components/sectionsTheMain/SectionFive.vue";
-import { ref } from "vue";
+import { useFormStore } from "@/stores/useFormStore";
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 import { handleInputCep1, handleInputCep2, cep1, cep2, logradouro1, logradouro2, cidade1, cidade2 } from "@/hooks/useCep";
 import { telefone, telefoneCel, telefoneRes } from "@/hooks/formatTel";
 import { handleInputNumber, handleInputNumber2 } from "@/hooks/formatNCasa";
 import { cpf } from "@/hooks/formatCPF";
 
-const selectedOption1 = ref("nao1");
-const selectedOption2 = ref("nao2");
-const selectedOption3 = ref("Casado");
-const selectedOption4 = ref("sim3");
-const selectedOption5 = ref("nao5");
-const selectedOption6 = ref("nao6");
-const selectedOption7 = ref("nao7");
-const selectedOption8 = ref("nao8");
-const selectedOption9 = ref("nao9");
-const checked = ref(false);
-const checked2 = ref(false);
-const checked3 = ref(false);
-const checked4 = ref(false);
-const checked5 = ref(false);
-const checked6 = ref(false);
+const formStore = useFormStore();
+const {
+  selectedOption1, selectedOption2, selectedOption3, selectedOption4, selectedOption5,
+  selectedOption6, selectedOption7, selectedOption8, selectedOption9,
+  checked, checked2, checked3, checked4, checked5, checked6,
+  otherInputs
+} = storeToRefs(formStore);
 
+const handleInputChange = (event) => {
+  formStore.updateOtherInput(event.target.id, event.target.value);
+};
+
+onMounted(() => {
+  setTimeout(() => {
+    Object.entries(otherInputs.value).forEach(([ id, value ]) => {
+      const input = document.getElementById(id);
+      if (input) input.value = value;
+    });
+  }, 300);
+});
 </script>
 
 <style scoped>

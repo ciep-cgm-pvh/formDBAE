@@ -1,12 +1,12 @@
 import { ref, watch } from "vue";
 
 export function useCep() {
-  const cep1 = ref("");
-  const cep2 = ref("");
-  const cidade1 = ref("");
-  const cidade2 = ref("");
-  const logradouro1 = ref("");
-  const logradouro2 = ref("");
+  const cep1 = ref(localStorage.getItem("cep1") || "");
+  const cep2 = ref(localStorage.getItem("cep2") || "");
+  const cidade1 = ref(localStorage.getItem("cidade1") || "");
+  const cidade2 = ref(localStorage.getItem("cidade2") || "");
+  const logradouro1 = ref(localStorage.getItem("logradouro1") || "");
+  const logradouro2 = ref(localStorage.getItem("logradouro2") || "");
   const formattedCep1 = ref("");
   const formattedCep2 = ref("");
 
@@ -35,6 +35,9 @@ export function useCep() {
       if (json.logradouro) {
         logradouroRef.value = json.logradouro;
         cidadeRef.value = json.localidade;
+        // Atualiza o localStorage com os novos valores
+        localStorage.setItem("logradouro1", logradouroRef.value);
+        localStorage.setItem("cidade1", cidadeRef.value);
       }
     } catch (error) {
       console.error("Erro ao buscar CEP:", error);
@@ -44,11 +47,30 @@ export function useCep() {
   watch(cep1, (newValue) => {
     formattedCep1.value = formatCep(newValue);
     cep1.value = formattedCep1.value;
+    localStorage.setItem("cep1", cep1.value); // Atualiza o localStorage
   });
 
   watch(cep2, (newValue) => {
     formattedCep2.value = formatCep(newValue);
     cep2.value = formattedCep2.value;
+    localStorage.setItem("cep2", cep2.value); // Atualiza o localStorage
+  });
+
+  // Adiciona watchers para cidade e logradouro
+  watch(cidade1, (newValue) => {
+    localStorage.setItem("cidade1", newValue);
+  });
+
+  watch(logradouro1, (newValue) => {
+    localStorage.setItem("logradouro1", newValue);
+  });
+
+  watch(cidade2, (newValue) => {
+    localStorage.setItem("cidade2", newValue);
+  });
+
+  watch(logradouro2, (newValue) => {
+    localStorage.setItem("logradouro2", newValue);
   });
 
   return {
@@ -64,18 +86,19 @@ export function useCep() {
   };
 }
 
-export const handleInputCep1 = () => {
+export const handleInputCep1 = (cepRef, cidadeRef, logradouroRef) => {
   if (cep1.value.replace(/\D/g, "").length === 8) {
     fetchCepData(cep1, cidade1, logradouro1);
   }
 };
 
-export const handleInputCep2 = () => {
+export const handleInputCep2 = (cepRef, cidadeRef, logradouroRef) => {
   if (cep2.value.replace(/\D/g, "").length === 8) {
     fetchCepData(cep2, cidade2, logradouro2);
   }
 };
 
+// Exporta os valores iniciais do hook
 export const {
   cep1,
   cep2,

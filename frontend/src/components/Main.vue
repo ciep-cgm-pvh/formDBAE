@@ -25,12 +25,12 @@
         <div class="grid grid-cols-14 gap-4">
           <label for="fullName" class="flex items-center">
             1. Nome completo:
-            <span class="text-red-500 ml-1">*</span>
+            <span class="text-red-500">*</span>
           </label>
           <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72" required
             @input="handleInputChange" />
           <label for="dataNas" class="mt-4">2. Data de nascimento:
-            <span class="text-red-500 ml-1">*</span>
+            <span class="text-red-500">*</span>
           </label>
           <input id="dataNas" type="date" class="border-b border-gray-400 focus:outline-none text-center w-56"
             @input="handleInputChange">
@@ -109,36 +109,45 @@
           <input v-model="cidade1" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro1" name="rua" placeholder="Rua" disabled />
           <!-- N° -->
-          <label for="numberAddress">N°</label>
-          <input type="text" class="border border-zinc-950 h-7 w-20 text-center" size="5" id="numberAddress"
-            @input="handleInputNumber" />
+          <div>
+            <label for="numberAddress">
+              N°
+              <span class="text-red-500">*</span>
+            </label>
+            <input type="text" class="border border-zinc-950 h-7 w-20 text-center ml-4" size="5" id="numberAddress"
+              @input="handleInputNumber" required />
+          </div>
         </div>
         <div>
           <label for="phoneTra">11. Telefone do trabalho: </label>
           <input v-model="telefone" type="tel" placeholder="(99) 99999-9999" id="phoneTra"
-            class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
+            class="border border-gray-300 rounded-lg p-2 focus:outline-none" @input="handleInputChange" />
         </div>
         <div class="grid grid-cols-13 md:grid-cols-3 gap-4 items-center">
           <label for="cep2">12. CEP da residência: </label>
           <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="00000-000"
-            class="outline-none mx-2" />
+            class="outline-none" />
           <input v-model="cidade2" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />
-          <label for="numberAddress2">N°</label>
-          <input type="text" class="border border-zinc-950 h-7 w-20 text-center" size="5" id="numberAddress2"
-            @input="handleInputNumber2" />
+          <div>
+            <label for="numberAddress2">
+              N°
+              <span class="text-red-500">*</span></label>
+            <input type="text" class="border border-zinc-950 h-7 w-20 text-center ml-4" size="5" id="numberAddress2"
+              @input="handleInputNumber2" required />
+          </div>
         </div>
         <div>
           <label for="telefoneRes">13. Telefone residencial: </label>
           <input v-model="telefoneRes" type="tel" placeholder="(99) 99999-9999" id="telefoneRes"
-            class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
+            class="border border-gray-300 rounded-lg p-2 focus:outline-none" @input="handleInputChange" />
         </div>
-        <div class="md:grid-cols-4 grid gap-4 items-center justify-start">
-          <label for="email">14. E-mail: </label>
-          <input type="email" id="email" size="20" placeholder=".+@example.com" @input="handleInputChange" />
-          <label for="telefoneCel">15. Celular: </label>
+        <div class="gap-4 flex flex-col md:flex-row md:items-center justify-start">
+          <label for="email">14. E-mail: <span class="text-red-500">*</span></label>
+          <input type="email" id="email" size="32" placeholder=".+@example.com" @input="handleInputChange" required />
+          <label for="telefoneCel">15. Celular: <span class="text-red-500">*</span></label>
           <input v-model="telefoneCel" type="tel" placeholder="(99) 99999-9999" id="telefoneCel"
-            class="border border-gray-300 rounded-lg p-2 focus:outline-none" />
+            class="border border-gray-300 rounded-lg p-2 focus:outline-none" @input="handleInputChange" required />
         </div>
         <div>
           <label>16. Endereço para correspondências: </label>

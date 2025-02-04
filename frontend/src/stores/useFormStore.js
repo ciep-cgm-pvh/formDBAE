@@ -32,5 +32,9 @@ export const useFormStore = defineStore("form", {
       this[key] = value;
       localStorage.setItem(key, value);
     },
+    resetForm() {
+      localStorage.clear(); 
+      this.$reset();
+    },
   },
 });

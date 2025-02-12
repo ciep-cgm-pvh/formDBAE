@@ -22,7 +22,7 @@
       <form id="form" class="mt-8 w-full px-4 space-y-10 mb-10">
         <!--! Section 1 -->
         <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
-        <div class="grid grid-cols-14 gap-4">
+        <div class="grid grid-cols-14 md:grid-flow-col-dense md:items-center gap-4">
           <label for="fullName" class="flex items-center">
             1. Nome completo:
             <span class="text-red-500">*</span>

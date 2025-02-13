@@ -19,8 +19,8 @@
       <h2 class="font-semibold">Consulte as normas de preenchimento.</h2>
     </div>
     <div class="border flex flex-col border-zinc-950 mt-8 justify-center items-start">
+      <!--! Section 1 -->
       <form id="form" class="mt-8 w-full px-4 space-y-10 mb-10">
-        <!--! Section 1 -->
         <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
         <div class="grid grid-cols-14 md:grid-flow-col-dense md:items-center gap-4">
           <label for="fullName" class="flex items-center">
@@ -125,8 +125,7 @@
         </div>
         <div class="grid grid-cols-13 md:grid-cols-3 gap-4 items-center">
           <label for="cep2">12. CEP da residência: </label>
-          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="00000-000"
-            class="outline-none" />
+          <input v-model="cep2" @input="handleInputCep2" name="cep2" placeholder="00000-000" class="outline-none" />
           <input v-model="cidade2" name="cidade" placeholder="Cidade" disabled />
           <input v-model="logradouro2" name="rua" placeholder="Rua" disabled />
           <div>

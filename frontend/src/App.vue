@@ -3,8 +3,8 @@
   <div v-else class="mx-auto mt-10 max-w-7xl min-h-screen px-2 bg-white text-black">
     <Header v-once />
     <router-view />
+    <Footer />
   </div>
-  <Footer />
 </template>
 
 <script setup>

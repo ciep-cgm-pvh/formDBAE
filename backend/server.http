@@ -1,0 +1,15 @@
+@BASE_URL = http://localhost:3333
+@RESOURCE = form
+
+###! create a new user
+POST {{BASE_URL}}/{{RESOURCE}}
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "entidade": "CGM"
+}
+
+###! get all users
+GET {{BASE_URL}}/{{RESOURCE}}

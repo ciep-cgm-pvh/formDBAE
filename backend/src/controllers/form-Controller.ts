@@ -4,7 +4,7 @@ class FormController {
   async create(request: Request, response: Response, next: NextFunction) {
     try {
       return response
-        .status(200)
+        .status(201)
         .json({ message: 'você conseguiu <create>!!!' })
     } catch (error) {
       next(error)

@@ -4,25 +4,30 @@ const lazyLoad = (view) => import(`@/view/${view}.vue`);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
   },
   {
-    path: "/graficos",
-    name: "Graficos",
-    component: lazyLoad("Graficos"),
+    path: '/graficos',
+    name: 'Graficos',
+    component: lazyLoad('Graficos'),
   },
   {
-    path: "/protecao",
-    name: "Protecao",
-    component: lazyLoad("Protecao"),
+    path: '/protecao',
+    name: 'Protecao',
+    component: lazyLoad('Protecao'),
   },
   {
-    path: "/:pathMatch(.*)*",
-    component: lazyLoad("PageNotFound"),
+    path: '/sucess',
+    name: 'Sucess',
+    component: lazyLoad('Sucess'),
   },
-];
+  {
+    path: '/:pathMatch(.*)*',
+    component: lazyLoad('PageNotFound'),
+  },
+]
 
 const router = createRouter({
   history: createWebHistory(),

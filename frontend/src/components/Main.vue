@@ -20,15 +20,15 @@
     </div>
     <div class="border flex flex-col border-zinc-950 mt-8 justify-center items-start">
       <!--! Section 1 -->
-      <form id="form" class="mt-8 w-full px-4 space-y-10 mb-10">
+      <form id="form" class="mt-8 w-full px-4 space-y-6 mb-10" @submit.prevent="handleSubmit">
         <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
         <div class="grid grid-cols-14 md:grid-flow-col-dense md:items-center gap-4">
           <label for="fullName" class="flex items-center">
             1. Nome completo:
             <span class="text-red-500">*</span>
           </label>
-          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72" required
-            @input="handleInputChange" />
+          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72" required @input="handleInputChange"
+            v-model="fullName" />
           <label for="dataNas" class="mt-4">2. Data de nascimento:
             <span class="text-red-500">*</span>
           </label>
@@ -48,7 +48,7 @@
           <input type="text" id="position" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
           <label class="md:col-span-2 md:mx-8" for="org">6. Órgão / Entidade:
           </label>
-          <input type="text" id="org" class="border border-zinc-950 h-7 col-span-3 uppercase"
+          <input type="text" id="org" v-model="org" class="border border-zinc-950 h-7 col-span-3 uppercase"
             @input="handleInputChange" />
         </div>
         <div class="grid md:grid-cols-4 items-center justify-start">
@@ -76,7 +76,7 @@
                 :disabled="selectedOption1 !== 'sim1'" />
             </div>
             <div>
-              <label class="md:mx-2" for="name">Órgão/entidade de origem: </label>
+              <label class="md:mx-2" for="nameOrg">Órgão/entidade de origem: </label>
               <input type="text" id="name" class="border border-zinc-950 h-7 w-56" @input="handleInputChange" />
             </div>
           </div>
@@ -143,7 +143,8 @@
         </div>
         <div class="gap-4 flex flex-col md:flex-row md:items-center justify-start">
           <label for="email">14. E-mail: <span class="text-red-500">*</span></label>
-          <input type="email" id="email" size="32" placeholder=".+@example.com" @input="handleInputChange" required />
+          <input type="email" id="email" v-model="email"  size="32" placeholder=".+@example.com"
+            @input="handleInputChange" required />
           <label for="telefoneCel">15. Celular: <span class="text-red-500">*</span></label>
           <input v-model="telefoneCel" type="tel" placeholder="(99) 99999-9999" id="telefoneCel"
             class="border border-gray-300 rounded-lg p-2 focus:outline-none" @input="handleInputChange" required />
@@ -487,7 +488,7 @@
         </div>
         <!--! section 6 and final -->
         <SectionSix />
-        <button
+        <button type="submit"
           class="border-2 w-56 h-14 bg-zinc-400 text-lg rounded-lg shadow-lg font-semibold hover:bg-zinc-300 mb-72">Enviar
           Formulário</button>
         <div />
@@ -499,13 +500,52 @@
 <script setup>
 import SectionSix from "@/components/sectionsTheMain/SectionsSix.vue";
 import SectionFive from "@/components/sectionsTheMain/SectionFive.vue";
-import { useFormStore } from "@/stores/useFormStore";
+import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
+import { useRouter } from 'vue-router';
+import { useFormStore } from "@/stores/useFormStore";
 import { handleInputCep1, handleInputCep2, cep1, cep2, logradouro1, logradouro2, cidade1, cidade2 } from "@/hooks/useCep";
 import { telefone, telefoneCel, telefoneRes } from "@/hooks/formatTel";
 import { handleInputNumber, handleInputNumber2 } from "@/hooks/formatNCasa";
 import { cpf } from "@/hooks/formatCPF";
+import { createUser } from '../api/userService';
+
+const fullName = ref('');
+const email = ref('');
+const org = ref('');
+
+const router = useRouter();
+
+async function handleSubmit() {
+  try {
+    const userData = {
+      name: fullName.value,
+      email: email.value,
+      entidade: org.value,
+      createdAt: new Date().toISOString(),
+    };
+
+    console.log('Dados do formulário:', userData);
+
+    if (!userData.name || !userData.email || !userData.entidade) {
+      alert('Todos os campos são obrigatórios.');
+      return;
+    }
+
+    const response = await createUser(userData);
+
+    console.log('Resposta do backend:', response);
+
+    fullName.value = '';
+    email.value = '';
+    org.value = '';
+
+    router.push('/sucess');
+  } catch (error) {
+    alert('Erro ao criar usuário. Verifique o console para mais detalhes.');
+    console.error('Erro ao criar usuário:', error);
+  }
+}
 
 const formStore = useFormStore();
 const {

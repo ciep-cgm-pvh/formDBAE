@@ -13,4 +13,4 @@ Content-Type: application/json
 }
 
 ###! Delete users
-DELETE {{BASE_URL}}/67b34ca0b4024a0ca5ba39e1
+DELETE {{BASE_URL}}/<:id>

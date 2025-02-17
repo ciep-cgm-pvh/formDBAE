@@ -2,7 +2,7 @@
 
 GET  {{BASE_URL}}
 
-###! create data the user
+###* create data the user
 POST {{BASE_URL}}
 Content-Type: application/json
 
@@ -11,3 +11,6 @@ Content-Type: application/json
   "email": "test@gmail.com",
   "entidade": "test"
 }
+
+###! Delete users
+DELETE {{BASE_URL}}/67b34ca0b4024a0ca5ba39e1

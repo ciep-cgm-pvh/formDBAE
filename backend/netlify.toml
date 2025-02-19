@@ -1,0 +1,8 @@
+[build]
+  command = "pnpm install && pnpm run build" 
+  publish = "dist"                          
+
+[[redirects]]
+  from = "/*"                            
+  to = "/server.js" 
+  status = 200

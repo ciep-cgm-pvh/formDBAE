@@ -4,7 +4,7 @@ import { connectToDatabase } from './connect.js'
 import { ObjectId } from 'mongodb'
 
 const app = express()
-const PORT = 3000
+const PORT = 3333
 
 const corsOptions = {
   origin: '*',
@@ -89,5 +89,5 @@ app.delete('/:id', async (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando 🚀 na porta ${PORT}`)
+  console.log(`Server is running in port ${PORT}`)
 })

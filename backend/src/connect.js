@@ -7,7 +7,7 @@ const client = new MongoClient(URI)
 export const connectToDatabase = async () => {
   try {
     await client.connect()
-    return client.db('formDBAE') // Retorna a instância do banco de dados
+    return client.db('formDBAE') 
   } catch (error) {
     console.error('Erro ao conectar ao MongoDB:', error)
     throw error

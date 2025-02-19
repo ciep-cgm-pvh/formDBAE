@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch ./src/server.js"
+    "dev": "node --watch ./src/server.js",
+    "build": "babel src --out-dir dist"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,10 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mongodb": "^6.13.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9"
   }
 }

@@ -1,8 +1,8 @@
 [build]
-  command = "pnpm install && pnpm run build" 
-  publish = "dist"                          
+  command = "pnpm install && pnpm run build"
+  publish = "dist"
 
 [[redirects]]
-  from = "/*"                            
-  to = "/server.js" 
+  from = "/*"
+  to = "/index.html"
   status = 200

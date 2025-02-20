@@ -16,6 +16,7 @@ app.use(express.json())
 
 let db
 export const handler = async (req, res) => {
+  console.log("To no handler!")
   // Configuração simplificada do CORS para aceitar todas as chamadas
   res.setHeader('Access-Control-Allow-Origin', '*'); // Permite qualquer origem
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE'); // Métodos permitidos

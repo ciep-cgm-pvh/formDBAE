@@ -6,7 +6,13 @@ if (!URI) {
   throw new Error('A variável de ambiente MONGODB_URI não está definida.')
 }
 
-const client = new MongoClient(URI)
+const client = new MongoClient(URI, {
+  ssl: true, // Enable SSL/TLS
+  tlsAllowInvalidCertificates: false, // Do not allow invalid certificates
+  tlsAllowInvalidHostnames: false, // Ensure hostname validation
+  connectTimeoutMS: 30000, // Increase connection timeout
+  socketTimeoutMS: 30000, // Increase socket timeout
+})
 
 export const connectToDatabase = async () => {
   try {

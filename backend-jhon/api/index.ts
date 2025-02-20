@@ -11,6 +11,7 @@ app.use(cors());
 
 // Define a rota padrão GET que retorna "Hello World"
 app.get('/', (req, res) => {
+   console.log("defualt route")
   res.send('Hello World');
 });
 
@@ -19,13 +20,15 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
   });
-  
+  console.log("in middleware")
   // Environment variables
   const PORT = process.env.PORT || 3000;
   
   // Connect to the database before starting the server
   let db; // This will hold the database connection
+  console.log("befores connection")
   connectToDatabase()
+  console.log("post connection")
     .then((database) => {
       db = database; // Store the database connection
       console.log('Database connected successfully.');

@@ -20,6 +20,7 @@ const client = new MongoClient(connectionString, {
  * @returns {Promise<Db>} A promise that resolves to the MongoDB database instance.
  */
 export const connectToDatabase = async () => {
+  console.log("start connection")
   try {
     console.log('Iniciando conexão com o MongoDB...');
     

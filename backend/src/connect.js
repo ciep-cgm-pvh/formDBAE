@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb'
 
-const URI = process.env.MONGODB_URI
+export const URI = process.env.MONGODB_URI
 
 if (!URI) {
   throw new Error('A variável de ambiente MONGODB_URI não está definida.')

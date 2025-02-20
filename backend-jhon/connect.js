@@ -13,7 +13,9 @@ const client = new MongoClient(connectionString, {
   tlsAllowInvalidHostnames: false, // Ensure hostname validation
   connectTimeoutMS: 30000, // Increase connection timeout
   socketTimeoutMS: 30000, // Increase socket timeout
-})
+  useNewUrlParser: true, // Use the new URL parser
+  useUnifiedTopology: true, // Use the unified topology engine
+});
 
 /**
  * Connects to the MongoDB database and returns the database instance.

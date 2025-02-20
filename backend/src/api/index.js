@@ -20,6 +20,7 @@ console.error('Falha ao iniciar o servidor:', error)
 process.exit(1)
 })
 app.get('/', async (req, res) => {
+  console.log("Get nois")
 try {
 const formCollection = await db.collection('form').find({}).toArray()
 res.send(formCollection)

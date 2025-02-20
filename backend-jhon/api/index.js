@@ -8,7 +8,7 @@ const app = express();
 // Habilita CORS para aceitar todas as origens (*)
 const corsOptions = {
   origin: "*",
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST"], 
 };
 app.use(cors(corsOptions));
 

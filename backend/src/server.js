@@ -25,8 +25,7 @@ export const handler = async (req, res) => {
         .send({ error: 'Erro ao conectar ao banco de dados' })
     }
   }
-
-  // Rotas
+  
   if (req.method === 'GET') {
     try {
       const formCollection = await db.collection('form').find({}).toArray()

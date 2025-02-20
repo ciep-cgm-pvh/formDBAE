@@ -24,23 +24,25 @@ app.use((err, req, res, next) => {
   // Environment variables
   const PORT = process.env.PORT || 3000;
   
-  // Connect to the database before starting the server
-  let db; // This will hold the database connection
-  console.log("befores connection")
-  connectToDatabase()
-  console.log("post connection")
-    .then((database) => {
-      db = database; // Store the database connection
+  /// Connect to the database before starting the server
+(async () => {
+    console.log("Before connection");
+  
+    try {
+      console.log("Start connection");
+      const db = await connectToDatabase(); // Wait for the database connection
       console.log('Database connected successfully.');
   
       // Start the server only after a successful database connection
       app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
       });
-    })
-    .catch((error) => {
+    } catch (error) {
       console.error('Failed to connect to the database:', error);
       process.exit(1); // Exit the process if the database connection fails
-    });
+    }
+  
+    console.log("After connection");
+  })();
 
 module.exports = app;

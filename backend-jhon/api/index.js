@@ -17,6 +17,10 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+app.get("/api", (req, res) => {
+  res.send("Hello World");
+});
+
 // Exporta a função handler para ser usada pelo Vercel
 const handler = serverless(app);
 

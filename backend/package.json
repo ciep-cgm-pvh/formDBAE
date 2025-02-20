@@ -5,9 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch ./api/index.js",
+    "dev": "node --watch ./src/api/index.js",
     "build": "babel src --out-dir dist",
-    "start": "node dist/api/index.js"
+    "start": "node dist/src/api/index.js"
   },
   "keywords": [],
   "author": "",

@@ -1,15 +1,19 @@
 import express from 'express'
 import cors from 'cors'
-import { connectToDatabase } from './connect.js'
+import { connectToDatabase } from '../connect.js'
 import { ObjectId } from 'mongodb'
-const app = express()
+
 const PORT = 3333
+const app = express()
+
 const corsOptions = {
   origin: '',
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'DELETE'],
 }
+
 app.use(cors(corsOptions))
 app.use(express.json())
+
 let db
 connectToDatabase()
   .then((database) => {

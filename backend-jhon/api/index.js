@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 // Exporta a função handler para ser usada pelo Vercel
-export const handler = serverless(app);
+export default handler = serverless(app);
 
 // Inicia o servidor localmente (apenas para desenvolvimento)
 if (process.env.NODE_ENV !== 'production') {

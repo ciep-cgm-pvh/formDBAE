@@ -1,3 +1,4 @@
+import 'dotenv/config';
 const express = require("express");
 const cors= require('cors');
 const app = express();
@@ -12,6 +13,30 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+// Error-handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
+  
+  // Environment variables
+  const PORT = process.env.PORT || 3000;
+  
+  // Connect to the database before starting the server
+  let db; // This will hold the database connection
+  connectToDatabase()
+    .then((database) => {
+      db = database; // Store the database connection
+      console.log('Database connected successfully.');
+  
+      // Start the server only after a successful database connection
+      app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+      });
+    })
+    .catch((error) => {
+      console.error('Failed to connect to the database:', error);
+      process.exit(1); // Exit the process if the database connection fails
+    });
 
 module.exports = app;

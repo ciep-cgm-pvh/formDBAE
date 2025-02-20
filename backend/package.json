@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch ./src/api/index.js",
+    "dev": "node --watch ./api/index.js",
     "build": "babel src --out-dir dist",
     "start": "node dist/api/index.js"
   },

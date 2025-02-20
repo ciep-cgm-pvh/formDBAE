@@ -13,7 +13,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Define a rota padrão GET que retorna "Hello World"
-app.get("/", (req, res) => { 
+app.get("/", (req, res) => {
   res.send("Hello World");
 });
 

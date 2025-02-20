@@ -27,6 +27,7 @@ export const handler = async (req, res) => {
   }
   
   if (req.method === 'GET') {
+    console.log("testing get route");
     try {
       const formCollection = await db.collection('form').find({}).toArray()
       return res.send(formCollection)

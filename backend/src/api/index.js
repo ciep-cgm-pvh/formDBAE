@@ -1,10 +1,10 @@
 import 'dotenv/config'
-import express from 'express'
+//import express from 'express'
 import cors from 'cors'
 import { connectToDatabase } from './connect.js'
 import { ObjectId } from 'mongodb'
 
-const app = express()
+/*const app = express()
 
 const corsOptions = {
   origin: '*',
@@ -12,9 +12,21 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 app.use(express.json())
+*/
 
 let db
 export const handler = async (req, res) => {
+  // Configuração simplificada do CORS para aceitar todas as chamadas
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Permite qualquer origem
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE'); // Métodos permitidos
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Cabeçalhos permitidos
+
+  // Responde às requisições OPTIONS (pré-voo)
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // logica do banco de dados e rotas
   if (!db) {
     try {
       db = await connectToDatabase()

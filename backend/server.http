@@ -1,0 +1,16 @@
+GET https://form-dbae.vercel.app/
+
+###
+
+POST https://form-dbae.vercel.app/
+Content-Type: application/json
+
+{
+  "name": "test",
+  "email": "test@test.com",
+  "entidade": "CGM"
+}
+
+###
+
+DELETE https://form-dbae.vercel.app/<:id>

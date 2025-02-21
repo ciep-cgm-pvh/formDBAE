@@ -1,16 +1,9 @@
-GET https://form-dbae.vercel.app/
+@BASE_URL = http://localhost:3333
+@RESOURCES = form
+
+GET {{BASE_URL}}/{{RESOURCES}}
 
 ###
 
-POST https://form-dbae.vercel.app/
+POST {{BASE_URL}}/{{RESOURCES}}
 Content-Type: application/json
-
-{
-  "name": "test",
-  "email": "test@test.com",
-  "entidade": "CGM"
-}
-
-###
-
-DELETE https://form-dbae.vercel.app/<:id>

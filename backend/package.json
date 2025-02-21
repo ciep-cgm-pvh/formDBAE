@@ -1,26 +1,29 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch ./src/api/index.js",
-    "build": "babel src --out-dir dist",
-    "start": "node dist/src/api/index.js"
+    "dev:watch": "tsup --watch",
+    "dev": "tsx watch --env-file=.env src/server.ts",
+    "build": "tsup-node"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
+    "@prisma/client": "^6.4.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongodb": "^6.13.0"
+    "mongodb": "^6.13.1",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.26.4",
-    "@babel/core": "^7.26.9",
-    "@babel/preset-env": "^7.26.9"
+    "@biomejs/biome": "^1.9.4",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "prisma": "^6.4.1",
+    "tsup": "^8.3.6",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
   }
 }

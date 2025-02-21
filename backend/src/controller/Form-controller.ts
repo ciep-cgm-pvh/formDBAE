@@ -7,4 +7,7 @@ export class FormController {
   async create(req: Request, res: Response) {
     return res.json({ message: 'Create' })
   }
+  async delete(req: Request, res: Response) {
+    return res.json({ message: 'Delete' })
+  }
 }

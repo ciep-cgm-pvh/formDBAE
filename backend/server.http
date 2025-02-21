@@ -7,3 +7,8 @@ GET {{BASE_URL}}/{{RESOURCES}}
 
 POST {{BASE_URL}}/{{RESOURCES}}
 Content-Type: application/json
+
+###
+
+DELETE {{BASE_URL}}/{{RESOURCES}}/1
+

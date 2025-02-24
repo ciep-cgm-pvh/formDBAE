@@ -4,11 +4,15 @@
 GET {{BASE_URL}}/{{RESOURCES}}
 
 ###
-
 POST {{BASE_URL}}/{{RESOURCES}}
 Content-Type: application/json
 
-###
+{
+  "name": "teste2",
+  "email": "teste@teste2.com",
+  "entidade": "teste2"
+}
 
-DELETE {{BASE_URL}}/{{RESOURCES}}/1
+###
+DELETE {{BASE_URL}}/{{RESOURCES}}/<:id>
 

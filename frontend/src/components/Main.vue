@@ -32,7 +32,7 @@
           <label for="dataNas" class="mt-4">2. Data de nascimento:
             <span class="text-red-500">*</span>
           </label>
-          <input id="dataNas" type="date" class="border-b border-gray-400 focus:outline-none text-center w-56"
+          <input id="dataNas" type="date" class="border-b border-gray-400 focus:outline-none text-center w-56" required
             @input="handleInputChange">
         </div>
         <div class="grid md:grid-cols-12 gap-4 items-center justify-start">
@@ -47,6 +47,7 @@
           </label>
           <input type="text" id="position" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
           <label class="md:col-span-2 md:mx-8" for="org">6. Órgão / Entidade:
+            <span class="text-red-500">*</span>
           </label>
           <input type="text" id="org" v-model="org" class="border border-zinc-950 h-7 col-span-3 uppercase"
             @input="handleInputChange" />
@@ -143,7 +144,7 @@
         </div>
         <div class="gap-4 flex flex-col md:flex-row md:items-center justify-start">
           <label for="email">14. E-mail: <span class="text-red-500">*</span></label>
-          <input type="email" id="email" v-model="email"  size="32" placeholder=".+@example.com"
+          <input type="email" id="email" v-model="email" size="32" placeholder=".+@example.com"
             @input="handleInputChange" required />
           <label for="telefoneCel">15. Celular: <span class="text-red-500">*</span></label>
           <input v-model="telefoneCel" type="tel" placeholder="(99) 99999-9999" id="telefoneCel"
@@ -522,7 +523,6 @@ async function handleSubmit() {
       name: fullName.value,
       email: email.value,
       entidade: org.value,
-      createdAt: new Date().toISOString(),
     };
 
     console.log('Dados do formulário:', userData);
@@ -540,7 +540,7 @@ async function handleSubmit() {
     email.value = '';
     org.value = '';
 
-    router.push('/sucess');
+    router.push('/success');
   } catch (error) {
     alert('Erro ao criar usuário. Verifique o console para mais detalhes.');
     console.error('Erro ao criar usuário:', error);

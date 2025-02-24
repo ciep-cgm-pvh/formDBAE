@@ -1,24 +1,29 @@
-import cors from 'cors'
-import dotenv from 'dotenv'
 import express from 'express'
-import { routes } from './routes'
+import cors from 'cors'
+import formRoutes from './routes/form-routes'
+import { connectToDatabase } from './database/connect'
 
-dotenv.config()
-
-const PORT = process.env.PORT || 3333
-
+const PORT = 3333
 const app = express()
 
+
 const corsOptions = {
-  origin: '*',
+  origin: '*', 
   methods: ['GET', 'POST', 'DELETE'],
 }
 
 app.use(cors(corsOptions))
 app.use(express.json())
 
-app.use(routes)
+connectToDatabase()
+  .then((database) => {
+    app.use('/form', formRoutes(database))
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`)
+    })
+  })
+  .catch((error) => {
+    console.error('Falha ao conectar ao banco de dados:', error)
+    process.exit(1) 
+  })

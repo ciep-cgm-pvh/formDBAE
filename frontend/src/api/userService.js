@@ -2,7 +2,7 @@ export async function createUser(userData) {
   try {
     console.log('Dados enviados ao backend:', userData)
 
-    const response = await fetch('http://localhost:3000/', {
+    const response = await fetch('http://localhost:3333/form', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,9 +1,23 @@
-import { Router } from 'express'
-import { FormController } from '../controller/Form-Controller'
+import express from 'express'
+import { FormController } from '../controller/Form-controller'
 
-export const formRoutes = Router()
-const formController = new FormController()
+const formRoutes = (database: any) => {
+  const router = express.Router()
+  const formController = new FormController(database)
 
-formRoutes.get('/', formController.index)
-formRoutes.post('/', formController.create)
-formRoutes.delete('/:_id', formController.delete)
+  router.get('/', async (req, res) => {
+    return formController.index(req, res)
+  })
+
+  router.post('/', async (req, res) => {
+    return formController.create(req, res)
+  })
+  
+  router.delete('/:id', async (req, res) => {
+    return formController.delete(req, res)
+  })
+
+  return router
+}
+
+export default formRoutes

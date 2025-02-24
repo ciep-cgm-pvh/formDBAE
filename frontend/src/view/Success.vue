@@ -1,11 +1,9 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <div class="flex flex-col items-center justify-center min-h-screen">
     <h1 class="text-4xl font-bold text-green-600 mb-6 animate-fade-in">
       Formulário Concluído com Sucesso!
     </h1>
-
     <p class="text-lg text-gray-700 mb-8">Obrigado por preencher o formulário.</p>
-
     <button @click="startConfetti"
       class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300">
       Celebrar Novamente!

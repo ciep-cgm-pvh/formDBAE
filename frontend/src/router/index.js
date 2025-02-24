@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/view/Home.vue";
-const lazyLoad = (view) => import(`@/view/${view}.vue`);
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '@/view/Home.vue'
+
+const lazyLoad = (view) => () => import(`@/view/${view}.vue`)
 
 const routes = [
   {
@@ -19,12 +20,13 @@ const routes = [
     component: lazyLoad('Protecao'),
   },
   {
-    path: '/sucess',
-    name: 'Sucess',
-    component: lazyLoad('Sucess'),
+    path: '/success',
+    name: 'Success',
+    component: lazyLoad('Success'),
   },
   {
     path: '/:pathMatch(.*)*',
+    name: 'NotFound',
     component: lazyLoad('PageNotFound'),
   },
 ]
@@ -32,6 +34,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
-export default router;
+export default router

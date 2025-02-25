@@ -27,7 +27,7 @@
             1. Nome completo:
             <span class="text-red-500">*</span>
           </label>
-          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72" required @input="handleInputChange"
+          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72 uppercase" required @input="handleInputChange"
             v-model="fullName" />
           <label for="dataNas" class="mt-4">2. Data de nascimento:
             <span class="text-red-500">*</span>

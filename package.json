@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",
+    "chart.js": "^4.4.8",
     "flatpickr": "^4.6.13",
     "init": "^0.1.2",
     "moment": "^2.30.1",

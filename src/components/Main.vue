@@ -422,7 +422,39 @@
           <textarea name="campFinal" class="border w-full outline-none"></textarea>
         </div>
         <!--! section 5 -->
-        <SectionFive />
+        <div>
+          <h1 class="text-lg font-semibold">V. ANEXOS OPCIONAIS</h1>
+          <div class="border border-zinc-400 p-4 gap-2">
+            <div v-for="(item, index) in anexos" :key="index"
+              class="flex flex-col md:flex-row items-center justify-between mb-2">
+              <h2 class="text-sm">
+                <span v-if="item.pdf">{{ item.icon }}</span>
+                <span v-else>❌</span>
+                {{ item.text }}
+              </h2>
+              <input type="file" accept=".pdf" @change="(event) => handleFileUpload(event, index)"
+                class="mt-2 md:mt-0 md:ml-2 w-full md:w-auto" ref="fileInputs" />
+              <button v-if="item.pdf" @click="() => removeFile(index)"
+                class="mt-2 md:mt-0 md:ml-2 bg-red-500 text-white px-2 py-1 rounded w-full md:w-auto">
+                Excluir
+              </button>
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row items-center justify-between">
+            <h2 class="text-sm">
+              <span v-if="outrosDocumentos.pdf">{{ outrosDocumentos.icon }}</span>
+              <span v-else>❌</span>
+              Outros documentos.
+            </h2>
+            <input type="file" accept=".pdf" @change="handleOutrosDocumentosUpload"
+              class="mt-2 md:mt-0 md:ml-2 w-full md:w-auto" ref="outrosDocumentosInput" />
+            <button v-if="outrosDocumentos.pdf" @click="removeOutrosDocumentos"
+              class="mt-2 md:mt-0 md:ml-2 bg-red-500 text-white px-2 py-1 rounded w-full md:w-auto">
+              Excluir
+            </button>
+          </div>
+        </div>
+
         <div class="flex items-start gap-2">
           <label>36. </label>
           <div>
@@ -504,19 +536,18 @@
 </template>
 
 <script setup>
-import SectionSix from "@/components/sectionsTheMain/SectionsSix.vue";
-import SectionFive from "@/components/sectionsTheMain/SectionFive.vue";
-import { onMounted, ref } from "vue";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/css/index.css";
 import { storeToRefs } from "pinia";
+import { onMounted, ref } from "vue";
 import { useRouter } from 'vue-router';
 import { useFormStore } from "@/stores/useFormStore";
 import { handleInputCep1, handleInputCep2, cep1, cep2, logradouro1, logradouro2, cidade1, cidade2 } from "@/hooks/useCep";
 import { telefone, telefoneCel, telefoneRes } from "@/hooks/formatTel";
 import { handleInputNumber, handleInputNumber2 } from "@/hooks/formatNCasa";
 import { cpf } from "@/hooks/formatCPF";
-import { createUser } from '../api/userService';
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/css/index.css";
+import { createUser, sendFormWithAttachment } from '../api/userService';
+import SectionSix from "@/components/sectionsTheMain/SectionsSix.vue";
 
 const isLoading = ref(false);
 const fullName = ref('');
@@ -525,6 +556,58 @@ const org = ref('');
 const form = ref(null);
 
 const router = useRouter();
+
+const anexos = ref([
+  {
+    text: "Imposto de Renda - Cópia da última declaração de bens e direitos.",
+    pdf: null,
+    icon: "✅",
+  },
+  {
+    text: "Imposto de Renda - Cópia da última declaração de rendimentos.",
+    pdf: null,
+    icon: "✅",
+  },
+]);
+
+const outrosDocumentos = ref({ pdf: null, icon: "✅" });
+
+const fileInputs = ref([]);
+const outrosDocumentosInput = ref(null);
+
+const handleFileUpload = (event, index) => {
+  const file = event.target.files[ 0 ];
+  if (file && file.type === "application/pdf") {
+    anexos.value[ index ].pdf = file;
+    anexos.value[ index ].icon = "✅";
+  } else {
+    alert("Por favor, selecione um arquivo PDF.");
+  }
+  event.preventDefault();
+};
+
+const handleOutrosDocumentosUpload = (event) => {
+  const file = event.target.files[ 0 ];
+  if (file && file.type === "application/pdf") {
+    outrosDocumentos.value.pdf = file;
+    outrosDocumentos.value.icon = "✅";
+  } else {
+    alert("Por favor, selecione um arquivo PDF.");
+  }
+  event.preventDefault();
+};
+
+const removeFile = (index) => {
+  anexos.value[ index ].pdf = null;
+  anexos.value[ index ].icon = "❌";
+  fileInputs.value[ index ].value = "";
+};
+
+const removeOutrosDocumentos = () => {
+  outrosDocumentos.value.pdf = null;
+  outrosDocumentos.value.icon = "❌";
+  outrosDocumentosInput.value.value = "";
+};
 
 async function handleSubmit() {
   try {
@@ -542,12 +625,25 @@ async function handleSubmit() {
       entidade: org.value,
     };
 
-    const response = await createUser(userData);
+    const formData = new FormData();
+    formData.append('name', fullName.value);
+    formData.append('email', email.value);
+    formData.append('entidade', org.value);
+
+    files.value.forEach((file, index) => {
+      formData.append(`attachment${index + 1}`, file);
+    });
+
+    const response = await createUser(userData,);
     console.log('Resposta do backend:', response);
+
+    const response2 = await sendFormWithAttachment(formData);
+    console.log('Resposta do backend (com anexos):', response2);
 
     fullName.value = '';
     email.value = '';
     org.value = '';
+    files.value = [];
 
     router.push('/success');
   } catch (error) {

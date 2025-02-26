@@ -1,28 +1,26 @@
 <template>
-  <div class="p-6">
+  <div class="p-6 h-screen">
     <h1 class="text-2xl font-bold mb-6 text-center">Gráficos</h1>
-
-    <!-- Tabela para exibir todos os dados -->
+    <div class="max-w-md mx-auto mb-10">
+      <canvas ref="pieChart"></canvas>
+    </div>
     <div class="flex flex-col justify-center items-center mb-5">
       <table class="min-w-full bg-white border border-gray-300">
         <thead>
           <tr class="bg-gray-100">
-            <th class="py-2 px-4 border-b">Nome</th>
-            <th class="py-2 px-4 border-b">Entidade</th>
+            <th class="py-2 px-2 border-b text-left">Nº</th>
+            <th class="py-2 px-2 border-b text-left">Nome</th>
+            <th class="py-2 px-2 border-b text-left">Orgão/Entidade</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(user, index) in sortedUsers" :key="index" class="border-b">
-            <td class="py-2 px-4">{{ user.name }}</td>
-            <td class="py-2 px-4">{{ user.entidade }}</td>
+            <td class="py-2 px-2 text-left uppercase">{{ index + 1 }}</td>
+            <td class="py-2 px-2 text-left uppercase">{{ user.name }}</td>
+            <td class="py-2 px-2 text-left uppercase">{{ user.entidade }}</td>
           </tr>
         </tbody>
       </table>
-    </div>
-
-    <!-- Gráfico de pizza -->
-    <div class="max-w-md mx-auto">
-      <canvas ref="pieChart"></canvas>
     </div>
   </div>
 </template>
@@ -32,17 +30,17 @@ import { ref, onMounted, computed } from 'vue'
 import { getAllUsers } from '../api/userService'
 import Chart from 'chart.js/auto'
 
-const users = ref([]) 
-const pieChart = ref(null) 
+const users = ref([])
+const pieChart = ref(null)
 
 async function fetchDataAndCreateChart() {
   try {
-    const data = await getAllUsers() 
+    const data = await getAllUsers()
     users.value = data
 
     const chartData = data.map(user => ({
-      nome: user.name,
-      entidade: user.entidade,
+      nome: user.name.toUpperCase(),
+      entidade: user.entidade.toUpperCase(),
     }))
 
     const entityCounts = {}
@@ -57,32 +55,15 @@ async function fetchDataAndCreateChart() {
     const labels = Object.keys(entityCounts)
     const values = Object.values(entityCounts)
 
-    
+    const totalUsers = values.reduce((sum, count) => sum + count, 0)
+
     const colors = [
-      '#FF6384', 
-      '#36A2EB', 
-      '#FFCE56',
-      '#4BC0C0', 
-      '#9966FF', 
-      '#FF9F40', 
-      '#C9CBCF', 
-      '#FFCD56', 
-      '#8B0000', 
-      '#008000',
-      '#FF4500', 
-      '#2E8B57', 
-      '#DAA520', 
-      '#8A2BE2', 
-      '#DC143C', 
-      '#00FFFF', 
-      '#FF1493', 
-      '#ADFF2F', 
-      '#7B68EE', 
-      '#20B2AA', 
-      '#FF69B4'  
+      '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40',
+      '#C9CBCF', '#FFCD56', '#8B0000', '#008000', '#FF4500', '#2E8B57',
+      '#DAA520', '#8A2BE2', '#DC143C', '#00FFFF', '#FF1493', '#ADFF2F',
+      '#7B68EE', '#20B2AA', '#FF69B4',
     ]
 
-    // Inicializa o gráfico de pizza
     new Chart(pieChart.value, {
       type: 'pie',
       data: {
@@ -91,7 +72,7 @@ async function fetchDataAndCreateChart() {
           {
             label: 'Usuários por Entidade',
             data: values,
-            backgroundColor: colors.slice(0, labels.length), // Usa apenas as cores necessárias
+            backgroundColor: colors.slice(0, labels.length),
           },
         ],
       },
@@ -103,7 +84,7 @@ async function fetchDataAndCreateChart() {
           },
           title: {
             display: true,
-            text: 'Distribuição de Usuários por Entidade',
+            text: `Distribuição de Usuários por Entidade - Total: ${totalUsers}`, 
           },
         },
       },
@@ -113,16 +94,14 @@ async function fetchDataAndCreateChart() {
   }
 }
 
-// Ordena os usuários por entidade (ordem alfabética)
 const sortedUsers = computed(() => {
   return users.value.slice().sort((a, b) => {
-    const entidadeA = a.entidade?.toLowerCase() || ''
-    const entidadeB = b.entidade?.toLowerCase() || ''
+    const entidadeA = a.entidade?.toUpperCase() || ''
+    const entidadeB = b.entidade?.toUpperCase() || ''
     return entidadeA.localeCompare(entidadeB)
   })
 })
 
-// Executa a função ao montar o componente
 onMounted(() => {
   fetchDataAndCreateChart()
 })

@@ -1,5 +1,6 @@
 <template>
   <div class="flex-grow">
+    <Loading v-if="isLoading" :active="isLoading" :is-full-page="true" />
     <h1 class=" text-lg font-bold justify-center flex mb-8">
       Anexo I – Formulário de Declaração de Informações de Bens e Atividades
       Econômicas
@@ -20,14 +21,14 @@
     </div>
     <div class="border flex flex-col border-zinc-950 mt-8 justify-center items-start">
       <!--! Section 1 -->
-      <form id="form" class="mt-8 w-full px-4 space-y-6 mb-10" @submit.prevent="handleSubmit">
+      <form id="form" ref="form" class="mt-8 w-full px-4 space-y-6 mb-10" @submit.prevent="handleSubmit">
         <h1 class="text-lg font-semibold px-4">I - DADOS PESSOAIS</h1>
         <div class="grid grid-cols-14 md:grid-flow-col-dense md:items-center gap-4">
           <label for="fullName" class="flex items-center">
             1. Nome completo:
             <span class="text-red-500">*</span>
           </label>
-          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72 uppercase" required @input="handleInputChange"
+          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72 uppercase" required
             v-model="fullName" />
           <label for="dataNas" class="mt-4">2. Data de nascimento:
             <span class="text-red-500">*</span>
@@ -49,12 +50,11 @@
           <label class="md:col-span-2 md:mx-8" for="org">6. Órgão / Entidade:
             <span class="text-red-500">*</span>
           </label>
-          <input type="text" id="org" v-model="org" class="border border-zinc-950 h-7 col-span-3 uppercase"
-            @input="handleInputChange" />
+          <input type="text" id="org" v-model="org" class="border border-zinc-950 h-7 col-span-3 uppercase" required />
         </div>
         <div class="grid md:grid-cols-4 items-center justify-start">
           <label for="dataNome" class="mb-1">7. Data da nomeação / designação:</label>
-          <input id="dataNome" type="date" class="border-b border-gray-400 focus:outline-none text-center"
+          <input id="dataNome" type="date" class="border-b border-gray-400 focus:outline-none text-center" required
             @input="handleInputChange">
         </div>
         <div>
@@ -432,24 +432,26 @@
             </label>
           </div>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="gap-2">
           <div>
-            <input type="checkbox" id="checkersection6" v-model="checked5" class="mr-2" />
+            <input type="checkbox" id="checkersection6" v-model="checked5" class="mr-2" required />
             <label for="checkersection6">Concordo que os dados fornecidos poderão ser utilizados pela prefeitura para
               fins administrativos e
               estatísticos.
               <router-link to="/protecao" class="text-blue-500" target="_blank">
                 Leia mais.
               </router-link>
+              <span class="text-red-500">*</span>
             </label>
           </div>
         </div>
-        <div class="flex items-center gap-2">
-          <input type="checkbox" id="checkersection7" v-model="checked6" class="mr-2" />
+        <div class="gap-2">
+          <input type="checkbox" id="checkersection7" v-model="checked6" class="mr-2" required />
           <label for="checkersection7">
             Comprometo-me com a veracidade dos fatos relatados e responsabilizo-me por possíveis omissões, que possam
             resultar na transgressão do Código de Conduta Ética do Agente Público e da Alta Administração municipal.
           </label>
+          <span class="text-red-500">*</span>
         </div>
         <div class="flex flex-col items-end text-center p-4 space-y-4">
           <!-- Linha para Local e Data -->
@@ -489,9 +491,12 @@
         </div>
         <!--! section 6 and final -->
         <SectionSix />
-        <button type="submit"
-          class="border-2 w-56 h-14 bg-zinc-400 text-lg rounded-lg shadow-lg font-semibold hover:bg-zinc-300 mb-72">Enviar
-          Formulário</button>
+        <button type="submit" :disabled="isLoading" :class="[
+          'border-2 w-56 h-14 text-lg rounded-lg shadow-lg font-semibold mb-72',
+          isLoading ? 'bg-zinc-200 cursor-not-allowed' : 'bg-zinc-400 hover:bg-zinc-300'
+        ]" @click="handleSubmit">
+          {{ isLoading ? 'Enviando...' : 'Enviar Formulário' }}
+        </button>
         <div />
       </form>
     </div>
@@ -510,30 +515,34 @@ import { telefone, telefoneCel, telefoneRes } from "@/hooks/formatTel";
 import { handleInputNumber, handleInputNumber2 } from "@/hooks/formatNCasa";
 import { cpf } from "@/hooks/formatCPF";
 import { createUser } from '../api/userService';
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/css/index.css";
 
+const isLoading = ref(false);
 const fullName = ref('');
 const email = ref('');
 const org = ref('');
+const form = ref(null);
 
 const router = useRouter();
 
 async function handleSubmit() {
   try {
+    if (!form.value.checkValidity()) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      form.value.reportValidity();
+      return;
+    }
+
+    isLoading.value = true;
+
     const userData = {
       name: fullName.value,
       email: email.value,
       entidade: org.value,
     };
 
-    console.log('Dados do formulário:', userData);
-
-    if (!userData.name || !userData.email || !userData.entidade) {
-      alert('Todos os campos são obrigatórios.');
-      return;
-    }
-
     const response = await createUser(userData);
-
     console.log('Resposta do backend:', response);
 
     fullName.value = '';
@@ -542,8 +551,10 @@ async function handleSubmit() {
 
     router.push('/success');
   } catch (error) {
-    alert('Erro ao criar usuário. Verifique o console para mais detalhes.');
+    alert('Erro de preenchimento do usuário. Verifique os detalhes com o provedor do link!');
     console.error('Erro ao criar usuário:', error);
+  } finally {
+    isLoading.value = false;
   }
 }
 

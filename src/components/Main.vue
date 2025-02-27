@@ -425,6 +425,7 @@
         <div>
           <h1 class="text-lg font-semibold">V. ANEXOS OPCIONAIS</h1>
           <div class="border border-zinc-400 p-4 gap-2">
+            <!-- Lista de anexos -->
             <div v-for="(item, index) in anexos" :key="index"
               class="flex flex-col md:flex-row items-center justify-between mb-2">
               <h2 class="text-sm">
@@ -440,6 +441,7 @@
               </button>
             </div>
           </div>
+
           <div class="flex flex-col md:flex-row items-center justify-between">
             <h2 class="text-sm">
               <span v-if="outrosDocumentos.pdf">{{ outrosDocumentos.icon }}</span>
@@ -454,7 +456,6 @@
             </button>
           </div>
         </div>
-
         <div class="flex items-start gap-2">
           <label>36. </label>
           <div>
@@ -542,6 +543,7 @@ import { storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";
 import { useRouter } from 'vue-router';
 import { useFormStore } from "@/stores/useFormStore";
+import html2canvas from "html2canvas";
 import { handleInputCep1, handleInputCep2, cep1, cep2, logradouro1, logradouro2, cidade1, cidade2 } from "@/hooks/useCep";
 import { telefone, telefoneCel, telefoneRes } from "@/hooks/formatTel";
 import { handleInputNumber, handleInputNumber2 } from "@/hooks/formatNCasa";
@@ -554,24 +556,13 @@ const fullName = ref('');
 const email = ref('');
 const org = ref('');
 const form = ref(null);
-
 const router = useRouter();
 
 const anexos = ref([
-  {
-    text: "Imposto de Renda - Cópia da última declaração de bens e direitos.",
-    pdf: null,
-    icon: "✅",
-  },
-  {
-    text: "Imposto de Renda - Cópia da última declaração de rendimentos.",
-    pdf: null,
-    icon: "✅",
-  },
+  { text: "Imposto de Renda - Cópia da última declaração de bens e direitos.", pdf: null, icon: "❌" },
+  { text: "Imposto de Renda - Cópia da última declaração de rendimentos.", pdf: null, icon: "❌" },
 ]);
-
-const outrosDocumentos = ref({ pdf: null, icon: "✅" });
-
+const outrosDocumentos = ref({ pdf: null, icon: "❌" });
 const fileInputs = ref([]);
 const outrosDocumentosInput = ref(null);
 
@@ -609,6 +600,26 @@ const removeOutrosDocumentos = () => {
   outrosDocumentosInput.value.value = "";
 };
 
+const captureScreenshot = async () => {
+  const element = document.querySelector("body");
+  const canvas = await html2canvas(element);
+  const screenshot = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  const blob = dataURLtoBlob(screenshot);
+  return blob;
+};
+
+const dataURLtoBlob = (dataURL) => {
+  const arr = dataURL.split(",");
+  const mime = arr[ 0 ].match(/:(.*?);/)[ 1 ];
+  const bstr = atob(arr[ 1 ]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[ n ] = bstr.charCodeAt(n);
+  }
+  return new Blob([ u8arr ], { type: mime });
+};
+
 async function handleSubmit() {
   try {
     if (!form.value.checkValidity()) {
@@ -619,42 +630,59 @@ async function handleSubmit() {
 
     isLoading.value = true;
 
-    const userData = {
-      name: fullName.value,
-      email: email.value,
-      entidade: org.value,
-    };
+    const screenshot = await captureScreenshot();
 
     const formData = new FormData();
     formData.append('name', fullName.value);
     formData.append('email', email.value);
     formData.append('entidade', org.value);
 
-    files.value.forEach((file, index) => {
-      formData.append(`attachment${index + 1}`, file);
+    anexos.value.forEach((item, index) => {
+      if (item.pdf) {
+        formData.append(`attachment${index + 1}`, item.pdf);
+      }
     });
 
-    const response = await createUser(userData,);
-    console.log('Resposta do backend:', response);
+    if (outrosDocumentos.value.pdf) {
+      formData.append("outrosDocumentos", outrosDocumentos.value.pdf);
+    }
 
-    const response2 = await sendFormWithAttachment(formData);
-    console.log('Resposta do backend (com anexos):', response2);
+    if (screenshot) {
+      formData.append("screenshot", screenshot, "screenshot.png");
+    }
+
+    const emailResponse = await sendFormWithAttachment(formData);
+    console.log("Resposta do backend (e-mail):", emailResponse);
+
+    const userData = {
+      name: fullName.value,
+      email: email.value,
+      entidade: org.value,
+    };
+    const userResponse = await createUser(userData);
+    console.log("Resposta do backend (usuário):", userResponse);
 
     fullName.value = '';
     email.value = '';
     org.value = '';
-    files.value = [];
+    anexos.value.forEach(item => {
+      item.pdf = null;
+      item.icon = "❌";
+    });
+    outrosDocumentos.value.pdf = null;
+    outrosDocumentos.value.icon = "❌";
 
     router.push('/success');
   } catch (error) {
-    alert('Erro de preenchimento do usuário. Verifique os detalhes com o provedor do link!');
-    console.error('Erro ao criar usuário:', error);
+    alert('Erro ao enviar o formulário. Verifique os detalhes com o provedor do link!');
+    console.error('Erro ao enviar o formulário:', error);
   } finally {
     isLoading.value = false;
   }
 }
 
 const formStore = useFormStore();
+
 const {
   selectedOption1, selectedOption2, selectedOption3, selectedOption4, selectedOption5,
   selectedOption6, selectedOption7, selectedOption8, selectedOption9,

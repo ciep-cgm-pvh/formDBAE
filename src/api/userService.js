@@ -1,5 +1,5 @@
 const API_URL = 'https://backendformdbae.onrender.com'
-const API_URL_EMAIL = 'http://localhost:3000'
+const API_URL_EMAIL = 'https://backendformdbaeemail.onrender.com'
 
 export async function createUser(userData) {
   try {
@@ -32,7 +32,7 @@ export async function getAllUsers() {
   try {
     console.log('Buscando todos os usuários no backend...')
     const response = await fetch(`${API_URL}/form`, {
-      method: 'GET', 
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },

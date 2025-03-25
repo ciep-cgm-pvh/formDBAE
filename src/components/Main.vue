@@ -301,9 +301,9 @@
               <input type="radio" id="sim5" name="drone4" value="sim5" v-model="selectedOption5" />
               <label for="sim5"> Sim</label>
             </div>
-            <div v-if="selectedOption5 === 'sim5'">
+            <div class="flex items-center" v-if="selectedOption5 === 'sim5'">
               <label for="outro5" :disabled="selectedOption5 !== 'sim5'">Qual(is)?</label>
-              <input type="text" id="outro5" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              <TextareaAutosize type="text" id="outro5" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption5 !== 'sim5'" />
             </div>
           </div>
@@ -342,9 +342,9 @@
               <input type="radio" id="sim6" name="drone5" value="sim6" v-model="selectedOption6" />
               <label for="sim6"> Sim</label>
             </div>
-            <div v-if="selectedOption6 === 'sim6'">
+            <div class="flex items-center" v-if="selectedOption6 === 'sim6'">
               <label for="outro6" :disabled="selectedOption6 !== 'sim6'">Descrever:</label>
-              <input type="text" id="outro6" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              <TextareaAutosize type="text" id="outro6" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption6 !== 'sim6'" />
             </div>
           </div>
@@ -369,12 +369,12 @@
               <input type="radio" id="sim7" name="drone7" value="sim7" v-model="selectedOption7" />
               <label for="sim7"> Sim</label>
             </div>
-            <div v-if="selectedOption7 === 'sim7'">
+            <div class="flex items-center" v-if="selectedOption7 === 'sim7'">
               <label for="outro7" :disabled="selectedOption7 !== 'sim7'">Qual?
               </label>
+              <TextareaAutosize type="text" id="outro7" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+                :disabled="selectedOption7 !== 'sim7'" />
             </div>
-            <input type="text" id="outro7" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
-              :disabled="selectedOption7 !== 'sim7'" />
           </div>
         </div>
         <div>
@@ -390,12 +390,12 @@
               <input type="radio" id="sim8" name="drone8" value="sim8" v-model="selectedOption8" />
               <label for="sim8"> Sim</label>
             </div>
-            <div v-if="selectedOption8 === 'sim8'">
+            <div class="flex items-center" v-if="selectedOption8 === 'sim8'">
               <label for="outro8" :disabled="selectedOption8 !== 'sim8'">Qual?
               </label>
+              <TextareaAutosize type="text" id="outro8" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+                :disabled="selectedOption8 !== 'sim8'" />
             </div>
-            <input type="text" id="outro8" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
-              :disabled="selectedOption8 !== 'sim8'" />
           </div>
         </div>
         <div>
@@ -423,7 +423,7 @@
             35. Descrever a situação ou atividade, no caso de marcar “Sim” ou
             “Tenho dúvida” no campo 34.
           </legend>
-          <textarea name="campFinal" class="border w-full outline-none"></textarea>
+          <TextareaAutosize name="campFinal" class="border w-full outline-none"></TextareaAutosize>
         </div>
         <!--! section 5 -->
         <div>

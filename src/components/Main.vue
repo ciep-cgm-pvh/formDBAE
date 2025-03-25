@@ -179,10 +179,11 @@
               <input type="radio" id="outro3" name="civil" v-model="selectedOption3" value="outro3" />
               <label for="outro3"> Outros:</label>
             </div>
-            <div v-if="selectedOption3 === 'outro3'">
-              <label for="out">Qual?</label>
-              <input type="text" id="out" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
-                :disabled="selectedOption3 !== 'outro3'" />
+            <div class="flex" v-if="selectedOption3 === 'outro3'">
+              <label class="self-center" for="out">Qual?</label>
+              <TextareaAutosize id="out"
+              rows="1" v-model="otherSelectedOption3" class=" resize-y w-56 mx-2 p-1 rounded h-7enabled:border enabled:border-zinc-950"
+                :disabled="selectedOption3 !== 'outro3'"/>
             </div>
           </div>
         </div>
@@ -203,21 +204,21 @@
         <div class="md:grid md:grid-cols-3 gap-4">
           <div>
             <label for="atividade" class="block mb-2">20. Atividade</label>
-            <input id="atividade" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+            <TextareaAutosize id="atividade" type="text" class="w-full p-2 border border-gray-300 rounded "
               @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
           <div>
             <label for="orgao" class="block mb-2">21. Órgão, Empresa, etc.</label>
-            <input id="orgao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+            <TextareaAutosize id="orgao" type="text" class="w-full p-2 border border-gray-300 rounded"
               @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
           <div>
             <label for="remuneracao" class="block mb-2">22. Remuneração/Renda</label>
-            <input id="remuneracao" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+            <TextareaAutosize id="remuneracao" type="text" class="w-full p-2 border border-gray-300 rounded "
               @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
         </div>
         <div class="flex items-start gap-2">
@@ -242,10 +243,13 @@
               <input type="radio" id="nao3" name="drone3" value="nao3" v-model="selectedOption4" />
               <label for="nao3">Não</label>
             </div>
-            <div v-if="selectedOption4 === 'sim3'">
-              <label for="outro4" :disabled="selectedOption4 !== 'sim3'">Qual(is)?</label>
-              <input type="text" id="outro4" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
-                :disabled="selectedOption4 !== 'sim3'" />
+            <div class="flex items-center gap-2" v-if="selectedOption4 === 'sim3'">
+              <label for="outro4" class="self-center">Qual(is)?</label>
+              <TextareaAutosize 
+                placeholder="Digite aqui"
+                id="outro4" v-model="otherSelectedOption4"
+                class="w-56 h-7 px-2 rounded border border-zinc-950 resize-y"
+              :disabled="selectedOption4 !== 'sim3'"></TextareaAutosize>
             </div>
           </div>
         </div>
@@ -260,25 +264,25 @@
         <div class="md:grid md:grid-cols-3 gap-4  items-end">
           <div>
             <label for="atividade2" class="block mb-2">25. Tipo</label>
-            <input id="atividade2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+            <TextareaAutosize id="atividade2" type="text" class="w-full p-2 border border-gray-300 rounded "
               @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded " @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
           <div>
             <label for="orgao2" class="block mb-2">26. Administrador, se terceiro, e parentesco com o
               declarante.</label>
-            <input id="orgao2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+            <TextareaAutosize id="orgao2" type="text" class="w-full p-2 border border-gray-300 rounded "
               @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded " @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
           <div>
             <label for="remuneracao2" class="block mb-2">27. Valor do bem</label>
-            <input id="remuneracao2" type="text" class="w-full p-2 border border-gray-300 rounded mb-4"
+            <TextareaAutosize id="remuneracao2" type="text" class="w-full p-2 border border-gray-300 rounded"
               @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded mb-4" @input="handleInputChange" />
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
+            <TextareaAutosize type="text" class="w-full p-2 border border-gray-300 rounded" @input="handleInputChange" />
           </div>
         </div>
         <div>
@@ -537,19 +541,20 @@
 </template>
 
 <script setup>
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/css/index.css";
-import { storeToRefs } from "pinia";
-import { onMounted, ref } from "vue";
-import { useRouter } from 'vue-router';
+import SectionSix from "@/components/sectionsTheMain/SectionsSix.vue";
+import { cpf } from "@/hooks/formatCPF";
+import { handleInputNumber, handleInputNumber2 } from "@/hooks/formatNCasa";
+import { telefone, telefoneCel, telefoneRes } from "@/hooks/formatTel";
+import { cep1, cep2, cidade1, cidade2, handleInputCep1, handleInputCep2, logradouro1, logradouro2 } from "@/hooks/useCep";
 import { useFormStore } from "@/stores/useFormStore";
 import html2canvas from "html2canvas";
-import { handleInputCep1, handleInputCep2, cep1, cep2, logradouro1, logradouro2, cidade1, cidade2 } from "@/hooks/useCep";
-import { telefone, telefoneCel, telefoneRes } from "@/hooks/formatTel";
-import { handleInputNumber, handleInputNumber2 } from "@/hooks/formatNCasa";
-import { cpf } from "@/hooks/formatCPF";
+import { storeToRefs } from "pinia";
+import { onMounted, ref } from "vue";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/css/index.css";
+import { useRouter } from 'vue-router';
 import { createUser, sendFormWithAttachment } from '../api/userService';
-import SectionSix from "@/components/sectionsTheMain/SectionsSix.vue";
+import TextareaAutosize from './TextareaAutosize.vue';
 
 const isLoading = ref(false);
 const fullName = ref('');
@@ -575,7 +580,7 @@ const handleFileUpload = (event, index) => {
     alert("Por favor, selecione um arquivo PDF.");
   }
   event.preventDefault();
-};
+};  
 
 const handleOutrosDocumentosUpload = (event) => {
   const file = event.target.files[ 0 ];
@@ -684,7 +689,7 @@ async function handleSubmit() {
 const formStore = useFormStore();
 
 const {
-  selectedOption1, selectedOption2, selectedOption3, selectedOption4, selectedOption5,
+  selectedOption1, selectedOption2, selectedOption3, otherSelectedOption3, selectedOption4, otherSelectedOption4, selectedOption5,
   selectedOption6, selectedOption7, selectedOption8, selectedOption9,
   checked, checked2, checked3, checked4, checked5, checked6,
   otherInputs

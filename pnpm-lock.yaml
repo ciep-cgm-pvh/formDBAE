@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      autosize:
+        specifier: ^6.0.1
+        version: 6.0.1
       canvas-confetti:
         specifier: ^1.9.3
         version: 1.9.3
@@ -496,6 +499,9 @@ packages:
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
+
+  autosize@6.0.1:
+    resolution: {integrity: sha512-f86EjiUKE6Xvczc4ioP1JBlWG7FKrE13qe/DxBCpe8GCipCq2nFw73aO8QEBKHfSbYGDN5eB9jXWKen7tspDqQ==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1369,6 +1375,8 @@ snapshots:
       picocolors: 1.0.1
       postcss: 8.4.40
       postcss-value-parser: 4.2.0
+
+  autosize@6.0.1: {}
 
   balanced-match@1.0.2: {}
 

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "autosize": "^6.0.1",
     "canvas-confetti": "^1.9.3",
     "chart.js": "^4.4.8",
     "flatpickr": "^4.6.13",

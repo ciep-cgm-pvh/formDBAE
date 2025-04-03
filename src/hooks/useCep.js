@@ -48,12 +48,24 @@ export function useCep() {
     formattedCep1.value = formatCep(newValue);
     cep1.value = formattedCep1.value;
     localStorage.setItem("cep1", cep1.value); // Atualiza o localStorage
+    if (!newValue) {
+      cidade1.value = "";
+      logradouro1.value = "";
+      localStorage.removeItem("cidade1");
+      localStorage.removeItem("logradouro1");
+    }
   });
 
   watch(cep2, (newValue) => {
     formattedCep2.value = formatCep(newValue);
     cep2.value = formattedCep2.value;
     localStorage.setItem("cep2", cep2.value); // Atualiza o localStorage
+    if (!newValue) {
+      cidade2.value = "";
+      logradouro2.value = "";
+      localStorage.removeItem("cidade2");
+      localStorage.removeItem("logradouro2");
+    }
   });
 
   // Adiciona watchers para cidade e logradouro

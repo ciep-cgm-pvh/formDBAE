@@ -71,14 +71,14 @@
               <input type="radio" id="nao1" name="drone1" value="nao1" v-model="selectedOption1" checked />
               <label for="nao1">Não</label>
             </div>
-            <div v-if="selectedOption1 === 'sim1'">
+            <div class="flex items-center" v-if="selectedOption1 === 'sim1'">
               <label for="outro1">Qual?</label>
-              <input type="text" id="outro1" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              <TextareaAutosize type="text" id="outro1" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption1 !== 'sim1'" />
             </div>
-            <div>
-              <label class="md:mx-2" for="nameOrg">Órgão/entidade de origem: </label>
-              <input type="text" id="name" class="border border-zinc-950 h-7 w-56" @input="handleInputChange" />
+            <div class="flex items-center">
+              <label class="md:mx-2 mr-2" for="nameOrg">Órgão/entidade de origem: </label>
+              <TextareaAutosize type="text" id="name" class="border border-zinc-950 h-7 w-56" @input="handleInputChange" />
             </div>
           </div>
         </div>
@@ -95,10 +95,10 @@
               <input type="radio" id="nao2" name="drone2" value="nao2" v-model="selectedOption2" />
               <label for="nao2">Não</label>
             </div>
-            <div v-if="selectedOption2 === 'sim2'">
+            <div class="flex items-center" v-if="selectedOption2 === 'sim2'">
               <label for="outro2" :disabled="selectedOption2 !== 'sim2'">Qual(is)?
               </label>
-              <input type="text" id="outro2" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              <TextareaAutosize type="text" id="outro2" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption2 !== 'sim2'" />
             </div>
           </div>
@@ -144,7 +144,7 @@
         </div>
         <div class="gap-4 flex flex-col md:flex-row md:items-center justify-start">
           <label for="email">14. E-mail: <span class="text-red-500">*</span></label>
-          <input type="email" id="email" v-model="email" size="32" placeholder=".+@example.com"
+          <input type="email" id="email" v-model="email" size="32" placeholder="Seu email" class="border border-gray-300 rounded-lg p-2"
             @input="handleInputChange" required />
           <label for="telefoneCel">15. Celular: <span class="text-red-500">*</span></label>
           <input v-model="telefoneCel" type="tel" placeholder="(99) 99999-9999" id="telefoneCel"

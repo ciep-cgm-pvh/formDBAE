@@ -28,7 +28,7 @@
             1. Nome completo:
             <span class="text-red-500">*</span>
           </label>
-          <input type="text" id="fullName" class="border-2 border-gray-400 h-7 w-72 uppercase" required
+          <TextareaAutosize type="text" id="fullName" class="border-2 border-gray-400 px-2 h-7 w-72 uppercase" required
             v-model="fullName" />
           <label for="dataNas" class="mt-4">2. Data de nascimento:
             <span class="text-red-500">*</span>
@@ -36,21 +36,21 @@
           <input id="dataNas" type="date" class="border-b border-gray-400 focus:outline-none text-center w-56" required
             @input="handleInputChange">
         </div>
-        <div class="grid md:grid-cols-12 gap-4 items-center justify-start">
+        <div class="grid md:grid-cols-12 items-center justify-start">
           <label class="col-span-3" for="skill">3. Formação profissional:
           </label>
-          <input type="text" id="skill" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
+          <TextareaAutosize type="text" id="skill" class="border border-zinc-950 px-2 h-7 col-span-3" @input="handleInputChange" />
           <label class="md:col-span-2 md:mx-8" for="work">4. Cargo: </label>
-          <input type="text" id="work" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
+          <TextareaAutosize type="text" id="work" class="border border-zinc-950 px-2 h-7 col-span-3" @input="handleInputChange" />
         </div>
         <div class="grid md:grid-cols-12 gap-4 items-center justify-start">
           <label for="position" class="md:col-span-2">5. Cargo Efetivo:
           </label>
-          <input type="text" id="position" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
+          <TextareaAutosize type="text" id="position" class="border border-zinc-950 px-2 h-7 col-span-3" @input="handleInputChange" />
           <label class="md:col-span-2 md:mx-8" for="org">6. Órgão / Entidade:
             <span class="text-red-500">*</span>
           </label>
-          <input type="text" id="org" v-model="org" class="border border-zinc-950 h-7 col-span-3 uppercase" required />
+          <TextareaAutosize type="text" id="org" v-model="org" class="border border-zinc-950 h-7 px-2 col-span-3 uppercase" required />
         </div>
         <div class="grid md:grid-cols-4 items-center justify-start">
           <label for="dataNome" class="mb-1">7. Data da nomeação / designação:</label>
@@ -189,7 +189,7 @@
         </div>
         <div class="md:grid-cols-3 md:grid flex flex-col gap-4 md:justify-around md:items-center mt-2">
           <label class="col-span-3" for="skill2">18. Cônjuge /Companheiro (a)</label>
-          <input type="text" id="skill2" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
+          <input type="text" id="skill2" class="border border-zinc-950 px-2 h-7 col-span-3" @input="handleInputChange" />
           <label class="md:col-span-5" for="work2">19. Atividade profissional do cônjuge</label>
           <input type="text" id="work2" class="border border-zinc-950 h-7 col-span-3" @input="handleInputChange" />
         </div>
@@ -303,7 +303,7 @@
             </div>
             <div class="flex items-center" v-if="selectedOption5 === 'sim5'">
               <label for="outro5" :disabled="selectedOption5 !== 'sim5'">Qual(is)?</label>
-              <TextareaAutosize type="text" id="outro5" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              <TextareaAutosize type="text" id="outro5" class="h-7 w-56 mx-2 px-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption5 !== 'sim5'" />
             </div>
           </div>
@@ -344,7 +344,7 @@
             </div>
             <div class="flex items-center" v-if="selectedOption6 === 'sim6'">
               <label for="outro6" :disabled="selectedOption6 !== 'sim6'">Descrever:</label>
-              <TextareaAutosize type="text" id="outro6" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              <TextareaAutosize type="text" id="outro6" class="h-7 w-56 mx-2 px-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption6 !== 'sim6'" />
             </div>
           </div>
@@ -372,7 +372,7 @@
             <div class="flex items-center" v-if="selectedOption7 === 'sim7'">
               <label for="outro7" :disabled="selectedOption7 !== 'sim7'">Qual?
               </label>
-              <TextareaAutosize type="text" id="outro7" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              <TextareaAutosize type="text" id="outro7" class="h-7 w-56 mx-2 px-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption7 !== 'sim7'" />
             </div>
           </div>
@@ -393,7 +393,7 @@
             <div class="flex items-center" v-if="selectedOption8 === 'sim8'">
               <label for="outro8" :disabled="selectedOption8 !== 'sim8'">Qual?
               </label>
-              <TextareaAutosize type="text" id="outro8" class="h-7 w-56 mx-2 enabled:border enabled:border-zinc-950"
+              <TextareaAutosize type="text" id="outro8" class="h-7 w-56 mx-2 px-2 enabled:border enabled:border-zinc-950"
                 :disabled="selectedOption8 !== 'sim8'" />
             </div>
           </div>
@@ -490,10 +490,10 @@
           </label>
           <span class="text-red-500">*</span>
         </div>
-        <div class="flex flex-col items-end text-center p-4 space-y-4">
+        <div class="grid grid-cols-4 grid-rows-3 gap-10 items-center justify-items-center  text-center p-4 space-y-4">
           <!-- Linha para Local e Data -->
-          <div class="md:flex space-x-4">
-            <div class="flex flex-col">
+          <div class="md:flex col-span-4  row-span-1 space-x-20">
+            <div class="flex  flex-col">
               <label for="local" class="mb-1">Local</label>
               <input id="local" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center"
                 @input="handleInputChange" />
@@ -506,20 +506,20 @@
           </div>
 
           <!-- Assinatura -->
-          <div class="md:flex flex-col w-full max-w-xs">
+          <div class="md:flex col-span-4 row-span-2 flex-col w-full max-w-xs">
             <label for="assinatura" class="mb-1">Assinatura:</label>
             <input id="assinatura" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center"
               @input="handleInputChange" />
           </div>
 
           <!-- Nome e CPF -->
-          <div class="md:flex space-x-4">
+          <div class="md:flex col-span-4 row-span-3 space-x-20">
             <div class="flex flex-col">
               <label for="nome" class="mb-1">Nome:</label>
               <input id="nome" type="text" class="border-b border-gray-400 focus:outline-none px-2 text-center"
                 @input="handleInputChange" />
             </div>
-            <div class="flex flex-col">
+            <div class="flex col-span-2 row-span-3 flex-col">
               <label for="cpf" class="mb-1">CPF:</label>
               <input id="cpf" type="text" v-model="cpf" placeholder="000.000.000-00"
                 class="border-b border-gray-400 focus:outline-none px-2 text-center" maxlength="14" />

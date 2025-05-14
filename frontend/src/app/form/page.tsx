@@ -1,4 +1,4 @@
-import PersonalDataCard from './../../components/PersonalDataCard';
+import PersonalDataCard from '../../components/PersonalDataCard';
 
 const Form = () => {
   return (

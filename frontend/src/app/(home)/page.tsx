@@ -4,7 +4,7 @@ export default function Home() {
       HELLO WORLD! GO TO -- 
       <a className='text-blue-800 underline hover:text-blue-400 hover:font-bold  
       transform transition-all delay-150 duration-300' 
-      href="/Form"> /Form</a>
+      href="/form"> /Form</a>
     </h1>
   );
 }

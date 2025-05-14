@@ -32,6 +32,10 @@ const PersonalDataCard = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='px-4 py-2'>
+      <div className="border-2 px-4 py-2 rounded-t-lg flex items-end">
+        <p className="font-bold text-lg">I - Dados Pessoais</p>
+        
+      </div>
       {/* Linha 1 */}
       <div className="grid grid-cols-2 gap-4 mt-4">
         <div>
@@ -188,7 +192,7 @@ const PersonalDataCard = () => {
           <input type="text" {...register("atividadeConjuge")} className="w-full border p-1" />
         </div>
       </div>
-      <button type='submit' className='bg-blue-500 self-center'> enviar</button>
+      {/* <button type='submit' className='bg-blue-500 self-center'> enviar</button> */}
     </form>
   );
 }

@@ -25,15 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          src="https://cdn.cloud.pspdfkit.com/pspdfkit-web@1.0.0/nutrient-viewer.js"
-          // Load before the page becomes interactive to reference window.NutrientViewer in the client
-          strategy="beforeInteractive"
-        />
-      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-5xl mx-auto`}
       >
         {children}
       </body>

@@ -47,7 +47,7 @@ const PreviousActivitiesCard = () => {
         <p className="text-sm font-medium pl-1">- Atividades exercidadas nos últimos 12 meses antes da posse atual</p>
       </div>
 
-      <section className="py-3">
+      <section className="py-3 px-4 border-x border-b rounded-b-lg">
         <div className="flex flex-col"> {/*Tabela de atividades */}
           <div className="grid grid-cols-3 pb-2">
             <span className="px-1">20. Atividade</span>
@@ -90,7 +90,7 @@ const PreviousActivitiesCard = () => {
           <button
             type="button"
             onClick={() => append({ atividade: "", orgao: "", remuneracao: "" })}
-            className="bg-blue-500 w-fit flex self-end text-white text-sm px-3 py-1 rounded hover:bg-blue-600"
+            className="bg-blue-500 w-fit flex self-end text-white text-sm px-3 py-1 mr-1 rounded hover:bg-blue-600"
           >
             + Adicionar linha
           </button>
@@ -152,12 +152,12 @@ const PreviousActivitiesCard = () => {
 
       </section>
 
-      <button
+      {/* <button
         type="submit"
         className="ml-4 bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
       >
         Enviar
-      </button>
+      </button> */}
     </form>
   )
 }

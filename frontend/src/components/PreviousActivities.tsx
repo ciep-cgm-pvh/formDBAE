@@ -34,7 +34,7 @@ const PreviousActivitiesCard = () => {
     control,
   })
 
-  const naoExerceu = watch("statusProfissonal.naoExerceuProfissao") === false;
+  const naoExerceu = watch("statusProfissonal.naoExerceuProfissao") === true;
   const atividadeAtual = watch("statusProfissonal.statusProfissao.boolean");
 
   const onSubmit = (data: FormData) => {
@@ -114,7 +114,7 @@ const PreviousActivitiesCard = () => {
           </label>
         </div>
 
-        {naoExerceu && (
+        {!naoExerceu && (
           <div className="col-span-2">
             <label className="block text-sm mb-1">
               24. Permanece exercendo alguma(s) atividade(s) citada(s) acima?

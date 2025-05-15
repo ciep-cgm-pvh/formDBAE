@@ -4,7 +4,15 @@ const Form = () => (
   <form className="space-y-8 border p-6 my-2 rounded-lg shadow-lg ">
     <PersonalInformationSection />
     {/* Add other sections here */}
-    <div className="mt-6 flex items-center justify-end gap-x-6">
+    <FormButtons/>
+  </form>
+);
+
+
+const FormButtons = () => {
+  return (
+    <>
+      <div className="mt-6 flex items-center justify-end gap-x-6">
       <button type="button" className="text-sm font-semibold text-gray-900">
         Cancelar
       </button>
@@ -15,7 +23,7 @@ const Form = () => (
         Enviar
       </button>
     </div>
-  </form>
-);
-
+    </>
+  )
+}
 export default Form;

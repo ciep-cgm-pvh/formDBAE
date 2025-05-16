@@ -1,6 +1,8 @@
-import PreviousActivitiesCard from '@/components/PreviousActivities';
-import PersonalDataCard from './../../components/PersonalDataCard';
-import BensDireitosCard from './../../components/BensEDireitosCard';
+import PreviousActivitiesCard from '@/components/cardsForm/PreviousActivities';
+import PersonalDataCard from './../../components/cardsForm/PersonalDataCard';
+import BensDireitosCard from '../../components/cardsForm/BensEDireitosCard';
+import ConflictCard from './../../components/cardsForm/ConflictCard';
+import OptionalAttachment from '../../components/cardsForm/OptionalAttachment';
 
 const Form = () => {
   return (
@@ -8,6 +10,8 @@ const Form = () => {
       <PersonalDataCard />
       <PreviousActivitiesCard />
       <BensDireitosCard />
+      <ConflictCard />
+      <OptionalAttachment />
     </div>
   )
 }

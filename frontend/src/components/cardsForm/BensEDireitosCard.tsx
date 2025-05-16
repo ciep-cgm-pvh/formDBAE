@@ -43,7 +43,7 @@ const BensDireitosCard = () => {
 
   return (
     <form className="py-3 px-4" onSubmit={handleSubmit(onSubmit)}>
-      <div className="border-2 px-4 py-2 rounded-t-lg flex justify-evenly items-end">
+      <div className="border-2 px-4 py-2 rounded-t-lg flex gap-1 items-end">
         <p className="font-bold text-lg text-nowrap">III - Bens e Direitos</p>
         <p className="text-sm font-medium tracking-tighter">- Bens e direitos pessoais ou entrega de cópia da declaração de imposto de renda da RFB</p>
       </div>

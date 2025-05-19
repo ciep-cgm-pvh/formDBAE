@@ -1,12 +1,5 @@
-"use client"
-import { useForm } from 'react-hook-form'
 import { FileUpload } from '../../components/inputFiles';
 
-interface AttachmentData {
-  anexoIRBensDireitos: File
-  anexoIRRendimentos: FileList
-  anexosOutrosDocs: FileList
-  }
 const OptionalAttachment = () => {
 
   return (
@@ -16,15 +9,21 @@ const OptionalAttachment = () => {
       </div>
       
       <section className="flex flex-col gap-1 py-3 px-4 border-x border-b rounded-b-lg">
-        <div>
-          <label>Imposto de Renda  -  Cópia da última declaração de bens e direitos.
-          </label>
+        <ul>
+          <li className="text-sm">
+            Imposto de Renda - Cópia da última declaração de bens e direitos.
+          </li>
+          <li className="text-sm">
+            Imposto de Renda - Cópia da última declaração de rendimentos.
+          </li>
+          <li className="text-sm">
+            Outros documentos
+          </li>
+        </ul>
           <FileUpload
             id="meus-pdfs"
             label="Selecionar PDFs"
           />
-        </div>
-
       </section>
     </div>
   )

@@ -143,8 +143,8 @@ const FormClient = () => {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={onSubmit} className="flex flex-col items-center p-4">
-          <div className='mx-auto mt-6 px-4'>
+      <form onSubmit={onSubmit} className="flex flex-col items-center">
+          <div className='mx-auto mt-6'>
             <PersonalDataCard />
             <PreviousActivitiesCard />
             <BensDireitosCard />

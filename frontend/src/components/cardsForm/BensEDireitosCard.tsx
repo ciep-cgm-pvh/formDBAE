@@ -1,49 +1,21 @@
 "use client"
-import { useForm, useFieldArray, SubmitHandler } from "react-hook-form"
+import { useFieldArray, useFormContext } from "react-hook-form"
 
-interface BensDireitos {
-    tipo: string
-    administrador: string
-    valorBem: string
-  }
-  
-  interface BensDireitosData {
-    naoPossuiBem: boolean,
-    naoPossuiBemAlemDoRFB: boolean,
-    familiarProprietario: {boolean: string, qual: string},
-    participacao5perc: {boolean: string, qual: string},
-  }
-  
-  interface FormData {
-    bens: BensDireitos[];
-    checkboxBens: BensDireitosData
-  }
 
 const BensDireitosCard = () => {
-  const { register, control, handleSubmit, watch, setValue } = useForm<FormData>({
-    defaultValues: {
-      bens: [
-        { tipo: "", administrador: "", valorBem: "" },
-        { tipo: "", administrador: "", valorBem: "" },
-      ],
-    },}
-  )
+  const { register, control, watch } = useFormContext()
 
   const { fields, append, remove } = useFieldArray({
-    name: "bens",
+    name: "bensEDireitos.bens",
     control,
   })
 
-  const participacaoAtual = watch("checkboxBens.participacao5perc.boolean");
-  const familiarProprietario = watch("checkboxBens.familiarProprietario.boolean");
-
-  const onSubmit = (data: FormData) => {
-    console.log(data)
-  }
+  const participacaoAtual = watch("bensEDireitos.checkboxBens.participacao5perc.boolean");
+  const familiarProprietario = watch("bensEDireitos.checkboxBens.familiarProprietario.boolean");
 
   return (
-    <form className="py-3 px-4" onSubmit={handleSubmit(onSubmit)}>
-      <div className="border-2 px-4 py-2 rounded-t-lg flex gap-1 items-end">
+    <div className="py-3 px-4">
+      <div className="border-2 px-4 py-2 rounded-t-lg flex gap-1 items-center sm:items-end">
         <p className="font-bold text-lg text-nowrap">III - Bens e Direitos</p>
         <p className="text-sm font-medium tracking-tighter">- Bens e direitos pessoais ou entrega de cópia da declaração de imposto de renda da RFB</p>
       </div>
@@ -59,18 +31,18 @@ const BensDireitosCard = () => {
           {fields.map((field, index) => (
             <div key={field.id} className="grid grid-cols-4 gap-2 items-center mb-2">
               <input
-                {...register(`bens.${index}.tipo`)}
+                {...register(`bensEDireitos.bens.${index}.tipo`)}
                 className="border p-1"
                 placeholder="Tipo"
               />
               <input
-                {...register(`bens.${index}.administrador`)}
+                {...register(`bensEDireitos.bens.${index}.administrador`)}
                 className="border p-1 col-span-2"
                 placeholder="Administrador"
               />
               <div className="flex items-center gap-1">
                 <input
-                  {...register(`bens.${index}.valorBem`)}
+                  {...register(`bensEDireitos.bens.${index}.valorBem`)}
                   className="border p-1 w-full"
                   placeholder="R$0,00"
                 />
@@ -91,7 +63,7 @@ const BensDireitosCard = () => {
           <button
             type="button"
             onClick={() => append({ tipo: "", administrador: "", valorBem: "" })}
-            className="bg-blue-500 w-fit flex self-end text-white text-sm px-3 py-1 mr-1 rounded hover:bg-blue-600"
+            className="bg-blue-500 w-fit flex self-end text-white text-sm px-3 py-1 mr-1 rounded hover:bg-blue-600 hover:cursor-pointer"
           >
             + Adicionar linha
           </button>
@@ -105,7 +77,7 @@ const BensDireitosCard = () => {
               <label>
                 <input
                   type="radio"
-                  {...register("checkboxBens.participacao5perc.boolean")}
+                  {...register("bensEDireitos.checkboxBens.participacao5perc.boolean")}
                   value="nao"
                 />{" "}
                 Não
@@ -113,7 +85,7 @@ const BensDireitosCard = () => {
               <label>
                 <input
                   type="radio"
-                  {...register("checkboxBens.participacao5perc.boolean")}
+                  {...register("bensEDireitos.checkboxBens.participacao5perc.boolean")}
                   value="sim"
                 />{" "}
                 Sim
@@ -124,7 +96,7 @@ const BensDireitosCard = () => {
                 <input
                   type="text"
                   placeholder="Qual?"
-                  {...register("checkboxBens.participacao5perc.qual")}
+                  {...register("bensEDireitos.checkboxBens.participacao5perc.qual")}
                   className="border p-1 w-40"
                 />
               )}
@@ -136,14 +108,14 @@ const BensDireitosCard = () => {
             29.
             <input
               type="checkbox"
-              {...register("checkboxBens.naoPossuiBem")} />
+              {...register("bensEDireitos.checkboxBens.naoPossuiBem")} />
               Não possuo nenhum bem ou direito. 
           </label>
           <label className="text-sm flex items-center gap-1 py-1">
             30.
             <input
               type="checkbox"
-              {...register("checkboxBens.naoPossuiBemAlemDoRFB")} />
+              {...register("bensEDireitos.checkboxBens.naoPossuiBemAlemDoRFB")} />
               Não possuo bem ou direito além dos constantes na declaração de imposto de renda da RFB
           </label>
         </div>
@@ -156,7 +128,7 @@ const BensDireitosCard = () => {
               <label>
                 <input
                   type="radio"
-                  {...register("checkboxBens.familiarProprietario.boolean")}
+                  {...register("bensEDireitos.checkboxBens.familiarProprietario.boolean")}
                   value="nao"
                 />{" "}
                 Não
@@ -164,7 +136,7 @@ const BensDireitosCard = () => {
               <label>
                 <input
                   type="radio"
-                  {...register("checkboxBens.familiarProprietario.boolean")}
+                  {...register("bensEDireitos.checkboxBens.familiarProprietario.boolean")}
                   value="sim"
                 />{" "}
                 Sim
@@ -175,20 +147,15 @@ const BensDireitosCard = () => {
                 <input
                   type="text"
                   placeholder="Qual?"
-                  {...register("checkboxBens.familiarProprietario.qual")}
+                {...register("bensEDireitos.checkboxBens.familiarProprietario.qual")}
                   className="border p-1 w-40"
                 />
               )}
             </div>
           </div>
-      {/* <button
-        type="submit"
-        className="ml-4 bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
-      >
-        Enviar
-      </button> */}
       </section>
-    </form>
+    </div>
   )
 }
+
 export default BensDireitosCard;

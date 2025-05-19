@@ -1,27 +1,18 @@
 "use client"
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useFormContext } from "react-hook-form"
 
-interface ConflictData {
-  atividadeAdjacente: {boolean: string, qual: string},
-  rendaExtra: {boolean: string, qual: string},
-  potencialConflito: {boolean: string, descricao: string},
-  valorBem: string
-  }
+
 
 const ConflictCard = () => {
-  const { register, control, handleSubmit, watch, setValue } = useForm<ConflictData>()
+  const { register, control, watch } = useFormContext()
 
-  const atividadeAdjacente = watch("atividadeAdjacente.boolean");
-  const rendaExtra = watch("rendaExtra.boolean");
-
-  const onSubmit = (data: ConflictData) => {
-    console.log(data)
-  }
+  const atividadeAdjacente = watch("conflitoDeInteresse.atividadeAdjacente.boolean");
+  const rendaExtra = watch("conflitoDeInteresse.rendaExtra.boolean")
 
   return (
-    <form className="py-3 px-4" onSubmit={handleSubmit(onSubmit)}>
+    <div className="py-3 px-4">
       <div className="border-2 px-4 py-2 rounded-t-lg">
-        <p className="font-bold text-lg text-nowrap">IV - Situações que podem suscitar conflito com o interesse público</p>
+        <p className="font-bold text-lg md:text-nowrap">IV - Situações que podem suscitar conflito com o interesse público</p>
       </div>
     
       <section className="flex flex-col gap-1 py-3 px-4 border-x border-b rounded-b-lg">
@@ -34,7 +25,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
-                {...register("atividadeAdjacente.boolean")}
+                {...register("conflitoDeInteresse.atividadeAdjacente.boolean")}
                 value="nao"
               />
               Não
@@ -42,7 +33,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
-                {...register("atividadeAdjacente.boolean")}
+                {...register("conflitoDeInteresse.atividadeAdjacente.boolean")}
                 value="sim"
               />
               Sim
@@ -53,7 +44,7 @@ const ConflictCard = () => {
               <input
                 type="text"
                 placeholder="Qual?"
-                {...register("atividadeAdjacente.qual")}
+                {...register("conflitoDeInteresse.atividadeAdjacente.qual")}
                 className="border p-1 w-40 h-7"
               />
             )}
@@ -68,7 +59,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
-                {...register("rendaExtra.boolean")}
+                {...register("conflitoDeInteresse.rendaExtra.boolean")}
                 value="nao"
               />
               Não
@@ -76,7 +67,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
-                {...register("rendaExtra.boolean")}
+                {...register("conflitoDeInteresse.rendaExtra.boolean")}
                 value="sim"
               />
               Sim
@@ -87,7 +78,7 @@ const ConflictCard = () => {
               <input
                 type="text"
                 placeholder="Qual?"
-                {...register("rendaExtra.qual")}
+                {...register("conflitoDeInteresse.rendaExtra.qual")}
                 className="border h-7 p-1 w-40"
               />
             )}
@@ -102,7 +93,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
-                {...register("potencialConflito.boolean")}
+                {...register("conflitoDeInteresse.potencialConflito.boolean")}
                 value="nao"
               />
               Não
@@ -110,7 +101,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
-                {...register("potencialConflito.boolean")}
+                {...register("conflitoDeInteresse.potencialConflito.boolean")}
                 value="sim"
               />
               Sim. Preencher campo 35
@@ -118,7 +109,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
-                {...register("potencialConflito.boolean")}
+                {...register("conflitoDeInteresse.potencialConflito.boolean")}
                 value="tem dúvida"
               />
               Tenho dúvida. Preencher campo 35
@@ -131,19 +122,13 @@ const ConflictCard = () => {
             35. Descrever a situação ou atividade, no caso de marcar “Sim” ou “Tenho dúvida” no campo 34.
           </label>
           <textarea
-            {...register("potencialConflito.descricao")}
+            {...register("conflitoDeInteresse.potencialConflito.descricao")}
             className="border p-1 w-full h-20"
           />
         </div>
-
-      {/* <button
-        type="submit"
-        className="ml-4 bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
-      >
-        Enviar
-      </button> */}
       </section>
-    </form>
+    </div>
   )
 }
+
 export default ConflictCard;

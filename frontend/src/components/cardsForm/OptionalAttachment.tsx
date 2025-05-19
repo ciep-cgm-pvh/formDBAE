@@ -10,7 +10,7 @@ interface AttachmentData {
 const OptionalAttachment = () => {
 
   return (
-    <form className="py-3 px-4">
+    <div className="py-3 px-4">
       <div className="border-2 px-4 py-2 rounded-t-lg">
         <p className="font-bold text-lg text-nowrap">V - Anexos Opcionais</p>
       </div>
@@ -20,14 +20,13 @@ const OptionalAttachment = () => {
           <label>Imposto de Renda  -  Cópia da última declaração de bens e direitos.
           </label>
           <FileUpload
-            id="anexoIRBensDireitos"
-            label='Selecione o arquivo'
-            accept="application/pdf"
+            id="meus-pdfs"
+            label="Selecionar PDFs"
           />
         </div>
 
       </section>
-    </form>
+    </div>
   )
 }
 

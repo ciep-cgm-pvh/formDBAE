@@ -136,9 +136,47 @@ const FormClient = () => {
     }
   })
 
-  const onSubmit = form.handleSubmit(data => {
-    console.log('Dados finais:', data)
-    // aqui você envia para o backend
+  const onSubmit = form.handleSubmit(async (data) => {
+    try {
+      // 1. Enviar JSON para o backend
+      const response = await fetch("http://localhost:3003/api/enviar-json", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Erro ao enviar dados.");
+      }
+
+      console.log("✅ Arquivos gerados com sucesso!");
+
+      // 2. Baixar DOCX
+      const docxResponse = await fetch("http://localhost:3003/api/baixar-docx");
+      const docxBlob = await docxResponse.blob();
+      const docxUrl = window.URL.createObjectURL(docxBlob);
+      const docxLink = document.createElement("a");
+      docxLink.href = docxUrl;
+      docxLink.download = "resultado.docx";
+      docxLink.click();
+
+      // 3. Baixar PDF
+      const pdfResponse = await fetch("http://localhost:3003/api/baixar-pdf");
+      const pdfBlob = await pdfResponse.blob();
+      const pdfUrl = window.URL.createObjectURL(pdfBlob);
+      const pdfLink = document.createElement("a");
+      pdfLink.href = pdfUrl;
+      pdfLink.download = "resultado.pdf";
+      pdfLink.click();
+
+    } catch (err: any) {
+      console.error("❌ Erro:", err.message);
+      alert("Erro ao gerar os arquivos: " + err.message);
+    }
   })
 
   return (

@@ -10,12 +10,17 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "docx2pdf-converter": "^2.1.1",
+    "docxtemplater": "^3.63.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "next": "15.3.2",
+    "pizzip": "^3.2.0",
+    "puppeteer": "^24.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.56.3"
+    "react-hook-form": "^7.56.3",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

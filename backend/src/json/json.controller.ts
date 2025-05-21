@@ -44,12 +44,13 @@ export class JsonController {
     try {
       await topdf.convert(outputDocx, outputPdf);
       console.log('✅ PDF gerado com sucesso');
+      fs.unlinkSync(outputDocx)
     } catch (err) {
       console.error('Erro na conversão para PDF:', err);
       return { error: 'Erro ao converter para PDF' };
     }
 
-    return { message: 'Arquivos gerados com sucesso!' };
+    return { message: 'Arquivo gerado com sucesso!' };
   }
 
   @Get('ver-json')
@@ -60,21 +61,19 @@ export class JsonController {
     return this.storedData;
   }
 
-  @Get('baixar-docx')
-  baixarDocx(@Res() res: Response) {
-    const filePath = path.resolve(__dirname, '..', '..', 'output', 'resultado.docx');
-    if (fs.existsSync(filePath)) {
-      res.download(filePath);
-    } else {
-      res.status(404).json({ error: 'Arquivo DOCX não encontrado.' });
-    }
-  }
 
   @Get('baixar-pdf')
   baixarPdf(@Res() res: Response) {
     const filePath = path.resolve(__dirname, '..', '..', 'output', 'resultado.pdf');
     if (fs.existsSync(filePath)) {
-      res.download(filePath);
+      res.download(filePath, 'resultado.pdf', (err) => {
+        if (err) {
+          console.error('Erro ao enviar o PDF:', err);
+        } else {
+          fs.unlinkSync(filePath); // Apaga o PDF após o download
+          console.log('🧹 PDF removido após download');
+        }
+      });
     } else {
       res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
     }

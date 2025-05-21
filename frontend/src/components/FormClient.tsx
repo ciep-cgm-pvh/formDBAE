@@ -153,24 +153,15 @@ const FormClient = () => {
         throw new Error(result.error || "Erro ao enviar dados.");
       }
 
-      console.log("✅ Arquivos gerados com sucesso!");
+      console.log("✅ Arquivo gerado com sucesso!");
 
-      // 2. Baixar DOCX
-      const docxResponse = await fetch("http://localhost:3003/api/baixar-docx");
-      const docxBlob = await docxResponse.blob();
-      const docxUrl = window.URL.createObjectURL(docxBlob);
-      const docxLink = document.createElement("a");
-      docxLink.href = docxUrl;
-      docxLink.download = "resultado.docx";
-      docxLink.click();
-
-      // 3. Baixar PDF
+      // 2. Baixar PDF
       const pdfResponse = await fetch("http://localhost:3003/api/baixar-pdf");
       const pdfBlob = await pdfResponse.blob();
       const pdfUrl = window.URL.createObjectURL(pdfBlob);
       const pdfLink = document.createElement("a");
       pdfLink.href = pdfUrl;
-      pdfLink.download = "resultado.pdf";
+      pdfLink.download = "FormDBAE.pdf";
       pdfLink.click();
 
     } catch (err: any) {

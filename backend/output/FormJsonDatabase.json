@@ -1,0 +1,270 @@
+{
+  "FormJson_1": {
+    "personalData": {
+      "nome": "clara",
+      "nascimento": "2002-02-11",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "1",
+      "orgao": "1",
+      "dataNomeacao": "2025-05-06",
+      "cargoPublico": {
+        "boolean": "sim",
+        "qual": "1"
+      },
+      "orgaoOrigem": "1",
+      "conselho": {
+        "boolean": "sim",
+        "qual": "1"
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "1",
+      "enderecoResidencial": "1",
+      "cepResidencial": "1",
+      "telResidencial": "1",
+      "email": "1@gmail.com",
+      "celular": "1",
+      "enderecoCorrespondencia": "1",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": "1"
+      },
+      "conjuge": "1",
+      "atividadeConjuge": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "1",
+          "orgao": "1",
+          "remuneracao": "1"
+        },
+        {
+          "atividade": "1",
+          "orgao": "1",
+          "remuneracao": "1"
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "sim",
+          "qual": "1"
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "1",
+          "administrador": "1",
+          "valorBem": "1"
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": true,
+        "naoPossuiBemAlemDoRFB": true,
+        "familiarProprietario": {
+          "boolean": "sim",
+          "qual": "1"
+        },
+        "participacao5perc": {
+          "boolean": "sim",
+          "qual": "1"
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "sim",
+        "qual": "1"
+      },
+      "rendaExtra": {
+        "boolean": "sim",
+        "qual": "1"
+      },
+      "potencialConflito": {
+        "boolean": "sim",
+        "descricao": "1"
+      }
+    }
+  },
+  "FormJson_2": {
+    "personalData": {
+      "nome": "leo",
+      "nascimento": "2003-01-31",
+      "formacaoProfissional": "2",
+      "cargo": "2",
+      "cargoEfetivo": "2",
+      "orgao": "2",
+      "dataNomeacao": "2025-04-10",
+      "cargoPublico": {
+        "boolean": "nao",
+        "qual": "2"
+      },
+      "orgaoOrigem": "2",
+      "conselho": {
+        "boolean": "nao",
+        "qual": "2"
+      },
+      "enderecoTrabalho": "2",
+      "cepTrabalho": "2",
+      "telTrabalho": "2",
+      "enderecoResidencial": "2",
+      "cepResidencial": "2",
+      "telResidencial": "2",
+      "email": "2@gmail.com",
+      "celular": "2",
+      "enderecoCorrespondencia": "2",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": "2"
+      },
+      "conjuge": "2",
+      "atividadeConjuge": "2"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "2",
+          "orgao": "2",
+          "remuneracao": "2"
+        },
+        {
+          "atividade": "2",
+          "orgao": "2",
+          "remuneracao": "2"
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": true,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "2",
+          "administrador": "2",
+          "valorBem": "2"
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": true,
+        "naoPossuiBemAlemDoRFB": true,
+        "familiarProprietario": {
+          "boolean": "nao",
+          "qual": "1"
+        },
+        "participacao5perc": {
+          "boolean": "nao",
+          "qual": "2"
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": "1"
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": "1"
+      },
+      "potencialConflito": {
+        "boolean": "nao",
+        "descricao": "2"
+      }
+    }
+  },
+  "FormJson_3": {
+    "personalData": {
+      "nome": "teste",
+      "nascimento": "",
+      "formacaoProfissional": "",
+      "cargo": "",
+      "cargoEfetivo": "",
+      "orgao": "",
+      "dataNomeacao": "",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "",
+      "cepTrabalho": "",
+      "telTrabalho": "",
+      "enderecoResidencial": "",
+      "cepResidencial": "",
+      "telResidencial": "",
+      "email": "",
+      "celular": "",
+      "enderecoCorrespondencia": "",
+      "estadoCivil": {
+        "boolean": "",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": ""
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import BensDireitosCard from '@/components/cardsForm/BensEDireitosCard';
 import ConflictCard from '@/components/cardsForm/ConflictCard';
 import OptionalAttachment from '@/components/cardsForm/OptionalAttachment';
 import { useForm, FormProvider } from 'react-hook-form';
+import { useState } from 'react';
 
 interface PersonalData {
   nome: string,
@@ -139,7 +140,7 @@ const FormClient = () => {
   const onSubmit = form.handleSubmit(async (data) => {
     try {
       // 1. Enviar JSON para o backend
-      const response = await fetch("http://localhost:3003/api/enviar-json", {
+      const response = await fetch("http://localhost:3003/api/gerarPdf", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -153,10 +154,10 @@ const FormClient = () => {
         throw new Error(result.error || "Erro ao enviar dados.");
       }
 
-      console.log("✅ Arquivo gerado com sucesso!");
+      console.log("✅ Pdf gerado com sucesso!");
 
       // 2. Baixar PDF
-      const pdfResponse = await fetch("http://localhost:3003/api/baixar-pdf");
+      const pdfResponse = await fetch("http://localhost:3003/api/baixarPdf");
       const pdfBlob = await pdfResponse.blob();
       const pdfUrl = window.URL.createObjectURL(pdfBlob);
       const pdfLink = document.createElement("a");

@@ -266,5 +266,177 @@
         "descricao": ""
       }
     }
+  },
+  "FormJson_4": {
+    "personalData": {
+      "nome": "clara teste ",
+      "nascimento": "",
+      "formacaoProfissional": "",
+      "cargo": "",
+      "cargoEfetivo": "",
+      "orgao": "",
+      "dataNomeacao": "",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "",
+      "cepTrabalho": "",
+      "telTrabalho": "",
+      "enderecoResidencial": "",
+      "cepResidencial": "",
+      "telResidencial": "",
+      "email": "",
+      "celular": "",
+      "enderecoCorrespondencia": "",
+      "estadoCivil": {
+        "boolean": "",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": ""
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    }
+  },
+  "FormJson_5": {
+    "personalData": {
+      "nome": "clara helena",
+      "nascimento": "",
+      "formacaoProfissional": "",
+      "cargo": "",
+      "cargoEfetivo": "",
+      "orgao": "",
+      "dataNomeacao": "",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "",
+      "cepTrabalho": "",
+      "telTrabalho": "",
+      "enderecoResidencial": "",
+      "cepResidencial": "",
+      "telResidencial": "",
+      "email": "",
+      "celular": "",
+      "enderecoCorrespondencia": "",
+      "estadoCivil": {
+        "boolean": "",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": ""
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    }
   }
 }

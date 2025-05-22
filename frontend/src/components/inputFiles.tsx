@@ -5,20 +5,23 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { PhotoIcon } from '@heroicons/react/24/solid';
 
-interface FileUploadProps {
+type FileUploadProps = {
   id: string;
   label: string;
-}
+  onFilesChange: (files: File[]) => void;
+};
 
-export const FileUpload: React.FC<FileUploadProps> = ({ id, label }) => {
+export const FileUpload: React.FC<FileUploadProps> = ({ id, label, onFilesChange }) => {
   const [ arquivos, setArquivos ] = useState<File[]>([]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const filesArray = Array.from(e.target.files).filter(
-        file => file.type === 'application/pdf'
+        (file) => file.type === 'application/pdf'
       );
-      setArquivos(prev => [ ...prev, ...filesArray ]);
+      const newFiles = [ ...arquivos, ...filesArray ];
+      setArquivos(newFiles);
+      onFilesChange(newFiles);
     }
   };
 
@@ -68,10 +71,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({ id, label }) => {
               id={id}
               name={id}
               type="file"
+              multiple
               accept=".pdf,application/pdf"
               className="sr-only"
               onChange={handleFileChange}
-              multiple
             />
           </label>
           <p className="pl-1">or drag and drop</p>
@@ -90,17 +93,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ id, label }) => {
               ))}
             </ul>
           </div>
-        )}
-
-        {/* Botão de download */}
-        {arquivos.length > 0 && (
-          <button
-            type="button"
-            onClick={handleDownloadAll}
-            className="mt-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Baixar todos (.zip)
-          </button>
         )}
       </div>
     </div>

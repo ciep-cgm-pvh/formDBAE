@@ -1,11 +1,13 @@
 'use client'
-import PreviousActivitiesCard from '@/components/cardsForm/PreviousActivities';
-import PersonalDataCard from '@/components/cardsForm/PersonalDataCard';
 import BensDireitosCard from '@/components/cardsForm/BensEDireitosCard';
 import ConflictCard from '@/components/cardsForm/ConflictCard';
 import OptionalAttachment from '@/components/cardsForm/OptionalAttachment';
-import { useForm, FormProvider } from 'react-hook-form';
+import PersonalDataCard from '@/components/cardsForm/PersonalDataCard';
+import PreviousActivitiesCard from '@/components/cardsForm/PreviousActivities';
 import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { PDFDocument } from 'pdf-lib';
+import { saveAs } from 'file-saver';
 
 interface PersonalData {
   nome: string,
@@ -121,7 +123,7 @@ const FormClient = () => {
         }
       },
       bensEDireitos: {
-        bens: [{ tipo: '', administrador: '', valorBem: '' }],
+        bens: [ { tipo: '', administrador: '', valorBem: '' } ],
         checkboxBens: {
           naoPossuiBem: false,
           naoPossuiBemAlemDoRFB: false,
@@ -136,35 +138,61 @@ const FormClient = () => {
       }
     }
   })
+  const [ arquivos, setArquivos ] = useState<File[]>([]);
+
+  const handleFilesChange = (files: File[]) => {
+    setArquivos(files);
+  };
 
   const onSubmit = form.handleSubmit(async (data) => {
     try {
-      // 1. Enviar JSON para o backend
+      // 1. Enviar JSON para o backend para gerar o PDF
       const response = await fetch("http://localhost:3003/api/gerarPdf", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
+  
       const result = await response.json();
-
+  
       if (!response.ok) {
         throw new Error(result.error || "Erro ao enviar dados.");
       }
-
+  
       console.log("✅ Pdf gerado com sucesso!");
-
-      // 2. Baixar PDF
+  
+      // 2. Ler os arquivos PDF do FileUpload (arquivos do estado)
+      const arquivosBuffers = await Promise.all(
+        arquivos.map(file => file.arrayBuffer())
+      );
+  
+      // 3. Baixar o PDF gerado do backend
       const pdfResponse = await fetch("http://localhost:3003/api/baixarPdf");
-      const pdfBlob = await pdfResponse.blob();
-      const pdfUrl = window.URL.createObjectURL(pdfBlob);
-      const pdfLink = document.createElement("a");
-      pdfLink.href = pdfUrl;
-      pdfLink.download = "FormDBAE.pdf";
-      pdfLink.click();
+      const backendPdfBlob = await pdfResponse.blob();
+      const backendPdfBuffer = await backendPdfBlob.arrayBuffer();
+  
+      // 4. Criar um PDF combinado com pdf-lib
+      const mergedPdf = await PDFDocument.create();
+  
+      async function copyPagesFromPdf(pdfBuffer: ArrayBuffer) {
+        const pdf = await PDFDocument.load(pdfBuffer);
+        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+        copiedPages.forEach(page => mergedPdf.addPage(page));
+      }
+  
+      // Primeiro: copiar páginas do PDF do backend (formulário preenchido)
+      await copyPagesFromPdf(backendPdfBuffer);
 
+      // Depois: copiar páginas dos arquivos anexados
+      for (const buffer of arquivosBuffers) {
+        await copyPagesFromPdf(buffer);
+      }
+  
+      // 5. Salvar e baixar o PDF combinado
+      const mergedPdfBytes = await mergedPdf.save();
+      const mergedBlob = new Blob([mergedPdfBytes], { type: "application/pdf" });
+      saveAs(mergedBlob, "FormDBAE.pdf");
+  
     } catch (err: any) {
       console.error("❌ Erro:", err.message);
       alert("Erro ao gerar os arquivos: " + err.message);
@@ -174,16 +202,16 @@ const FormClient = () => {
   return (
     <FormProvider {...form}>
       <form onSubmit={onSubmit} className="flex flex-col items-center">
-          <div className='mx-auto mt-6'>
-            <PersonalDataCard />
-            <PreviousActivitiesCard />
-            <BensDireitosCard />
-            <ConflictCard />
-            <OptionalAttachment />
-          </div>
-          <button type="submit" className=" w-fit mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded hover:cursor-pointer">
-            Enviar formulário
-          </button>
+        <div className='mx-auto mt-6'>
+          <PersonalDataCard />
+          <PreviousActivitiesCard />
+          <BensDireitosCard />
+          <ConflictCard />
+          <OptionalAttachment onFilesChange={handleFilesChange} />
+        </div>
+        <button type="submit" className=" w-fit mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded hover:cursor-pointer">
+          Enviar formulário
+        </button>
       </form>
     </FormProvider>
   )

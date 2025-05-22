@@ -1,10 +1,10 @@
-import { Controller, Post, Get, Body, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { JsonService } from './json.service';
 
 @Controller('api')
 export class JsonController {
-  constructor(private readonly jsonService: JsonService) {}
+  constructor(private readonly jsonService: JsonService) { }
 
   @Post('gerarPdf')
   async gerarPdf(@Body() data: any) {

@@ -1,6 +1,9 @@
 import { FileUpload } from '../../components/inputFiles';
 
-const OptionalAttachment = () => {
+type OptionalAttachmentProps = {
+  onFilesChange: (files: File[]) => void;
+};
+const OptionalAttachment: React.FC<OptionalAttachmentProps> = ({ onFilesChange }) => {
 
   return (
     <div className="py-3 px-4">
@@ -23,6 +26,7 @@ const OptionalAttachment = () => {
           <FileUpload
             id="meus-pdfs"
             label="Selecionar PDFs"
+          onFilesChange={onFilesChange}
           />
       </section>
     </div>

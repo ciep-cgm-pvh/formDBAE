@@ -1,38 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import * as topdf from 'docx2pdf-converter';
+import * as Docxtemplater from 'docxtemplater';
 import { Response } from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as PizZip from 'pizzip';
-import * as Docxtemplater from 'docxtemplater';
-import * as topdf from 'docx2pdf-converter';
 
 @Injectable()
 export class JsonService {
   private storedData: any = null;
 
-  // Caminho fixo para o arquivo JSON com todas as entradas do form
-  private filePath = path.resolve(__dirname, '..', '..', 'output', 'FormJsonDatabase.json');
-
-  // Lê o conteúdo atual do arquivo JSON (banco de dados em disco)
-  private loadJsonFile(): Record<string, any> {
-    if (fs.existsSync(this.filePath)) {
-      const content = fs.readFileSync(this.filePath, 'utf-8');
-      return JSON.parse(content);
-    }
-    return {};
-  }
-
-  // Salva o conteúdo no arquivo JSON (sobrescreve o atual)
-  private saveJsonFile(data: Record<string, any>) {
-    fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2));
-  }
-
   // Retorna os dados armazenados na memória (última submissão)
   getJson() {
     if (!this.storedData) {
-          return { message: 'Nenhum JSON recebido ainda.' };
-        }
-        return this.storedData;
+      return { message: 'Nenhum JSON recebido ainda.' };
+    }
+    return this.storedData;
   }
 
   // Salva o json no arquivo FormJsonDatabase.json 
@@ -61,7 +44,7 @@ export class JsonService {
       console.error('Erro ao salvar no banco JSON:', err);
     }
   }
-  
+
   // Retorna todos os dados do "banco" JSON
   getAllJson() {
     const filePath = path.resolve(__dirname, '..', '..', 'output', 'FormJsonDatabase.json');

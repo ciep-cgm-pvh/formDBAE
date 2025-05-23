@@ -14,11 +14,11 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm">1. Nome completo</label>
-            <input type="text"   {...register("personalData.nome")} className="w-full border p-1"/>
+            <input type="text" required {...register("personalData.nome")} className="w-full border p-1"/>
           </div>
           <div>
             <label className="block text-sm">2. Data de nascimento</label>
-            <input type="date" {...register("personalData.nascimento")} className="w-full border p-1" />
+            <input type="date" required {...register("personalData.nascimento")} className="w-full border p-1" />
           </div>
         </div>
 
@@ -26,11 +26,11 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div>
             <label className="block text-sm">3. Formação profissional</label>
-            <input type="text" {...register("personalData.formacaoProfissional")} className="w-full border p-1" />
+            <input type="text" required {...register("personalData.formacaoProfissional")} className="w-full border p-1" />
           </div>
           <div>
-            <label className="block text-sm">4. Cargo</label>
-            <input type="text" {...register("personalData.cargo")} className="w-full border p-1" />
+            <label className="block text-sm">4. Cargo comissionado</label>
+            <input type="text" required {...register("personalData.cargo")} className="w-full border p-1" />
           </div>
           <div>
             <label className="block text-sm">5. Cargo efetivo</label>
@@ -42,11 +42,11 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div>
             <label className="block text-sm">6. Órgão / Entidade</label>
-            <input type="text" {...register("personalData.orgao")} className="w-full border p-1" />
+            <input type="text" required {...register("personalData.orgao")} className="w-full border p-1" />
           </div>
           <div>
             <label className="block text-sm">7. Data da nomeação/designação</label>
-            <input type="date" {...register("personalData.dataNomeacao")} className="w-full border p-1" />
+            <input type="date" required {...register("personalData.dataNomeacao")} className="w-full border p-1" />
           </div>
         </div>
 
@@ -54,7 +54,7 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-4 md:grid-cols-3 gap-4 mt-4">
           <div className='col-span-2'>
             <label className="block text-sm mb-1">
-              8. Ocupa outro cargo ou emprego de quadro permanente na Administração Pública?
+              8. Ocupa outro cargo ou emprego de quadro permanente na Administração Pública em outro órgão?
             </label>
             <div className="flex items-center gap-4 flex-wrap">
               <label>
@@ -90,15 +90,15 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div>
             <label className="block text-sm">10. Endereço do trabalho</label>
-            <input type="text" {...register("personalData.enderecoTrabalho")} className="w-full border p-1" />
+            <input type="text" required {...register("personalData.enderecoTrabalho")} className="w-full border p-1" />
           </div>
           <div>
             <label className="block text-sm">CEP</label>
-            <input type="text" {...register("personalData.cepTrabalho")} className="w-full border p-1" />
+            <input type="text" required {...register("personalData.cepTrabalho")} className="w-full border p-1" />
           </div>
           <div>
             <label className="block text-sm">11. Telefone do trabalho</label>
-            <input type="tel" {...register("personalData.telTrabalho", { maxLength: { value: 11, message: "Insira no máximo 11 caracteres" } })} className="w-full border p-1" />
+            <input type="tel" required {...register("personalData.telTrabalho", { maxLength: { value: 11, message: "Insira no máximo 11 caracteres" } })} className="w-full border p-1" />
           </div>
         </div>
 
@@ -106,15 +106,15 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div>
             <label className="block text-sm">12. Endereço residencial</label>
-            <input type="text" {...register("personalData.enderecoResidencial")} className="w-full border p-1" />
+            <input type="text" required {...register("personalData.enderecoResidencial")} className="w-full border p-1" />
           </div>
           <div>
             <label className="block text-sm">CEP</label>
-            <input type="text" {...register("personalData.cepResidencial")} className="w-full border p-1" />
+            <input type="text" required {...register("personalData.cepResidencial")} className="w-full border p-1" />
           </div>
           <div>
             <label className="block text-sm">13. Telefone residencial</label>
-            <input type="tel" {...register("personalData.telResidencial", { maxLength: { value: 11, message: "Insira no máximo 11 caracteres" } })} className="w-full border p-1" />
+            <input type="tel" required {...register("personalData.telResidencial", { maxLength: { value: 11, message: "Insira no máximo 11 caracteres" } })} className="w-full border p-1" />
           </div>
         </div>
 
@@ -122,7 +122,7 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-2 gap-4 mt-4">
           <div>
             <label className="block text-sm">14. E-mail</label>
-            <input type="email" {...register("personalData.email")} className="w-full border p-1" />
+            <input type="email" required {...register("personalData.email")} className="w-full border p-1" />
           </div>
           <div>
             <label className="block text-sm">15. Celular</label>
@@ -134,13 +134,13 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div className='col-span-1'>
             <label className="block text-sm mb-2">16. Endereço para correspondências</label>
-            <input type="text" {...register("personalData.enderecoCorrespondencia")} className="w-full border p-1" />
+            <input type="text" required {...register("personalData.enderecoCorrespondencia")} className="w-full border p-1" />
           </div>
           <div className='col-span-2'>
             <label className="block text-sm mb-1">17. Estado Civil</label>
             <div className="flex items-center gap-4 flex-wrap">
               <label>
-                <input type="radio" {...register("personalData.estadoCivil.boolean")} value="casado" /> Casado
+                <input type="radio" required {...register("personalData.estadoCivil.boolean")} value="casado" /> Casado
               </label>
               <label>
                 <input type="radio" {...register("personalData.estadoCivil.boolean")} value="solteiro" /> Solteiro

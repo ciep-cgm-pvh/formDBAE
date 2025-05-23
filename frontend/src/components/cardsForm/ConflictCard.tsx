@@ -25,6 +25,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
+                required 
                 {...register("conflitoDeInteresse.atividadeAdjacente.boolean")}
                 value="nao"
               />
@@ -43,6 +44,7 @@ const ConflictCard = () => {
             {atividadeAdjacente === "sim" && (
               <input
                 type="text"
+                required 
                 placeholder="Qual?"
                 {...register("conflitoDeInteresse.atividadeAdjacente.qual")}
                 className="border p-1 w-40 h-7"
@@ -59,6 +61,7 @@ const ConflictCard = () => {
             <label className="flex items-center gap-1">
               <input
                 type="radio"
+                required 
                 {...register("conflitoDeInteresse.rendaExtra.boolean")}
                 value="nao"
               />

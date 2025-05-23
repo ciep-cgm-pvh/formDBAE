@@ -7,6 +7,7 @@ import PreviousActivitiesCard from '@/components/cardsForm/PreviousActivities';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormValues } from '@/types/formTypes';
+import { useRouter } from 'next/navigation';
 
 const FormClient = () => {
   const form = useForm<FormValues>({
@@ -65,6 +66,7 @@ const FormClient = () => {
     }
   })
   const [ arquivos, setArquivos ] = useState<File[]>([]);
+  const router = useRouter();
 
   const handleFilesChange = (files: File[]) => {
     setArquivos(files);
@@ -103,7 +105,7 @@ const FormClient = () => {
       a.download = "FormDBAE.pdf";
       a.click();
 
-      console.log("✅ PDF final baixado com sucesso!");
+      router.push("/success");
 
     } catch (err: any) {
       console.error("❌ Erro:", err.message);

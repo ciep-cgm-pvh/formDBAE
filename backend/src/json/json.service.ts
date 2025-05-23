@@ -5,6 +5,7 @@ import { Response } from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as PizZip from 'pizzip';
+import { PDFDocument } from 'pdf-lib';
 
 @Injectable()
 export class JsonService {
@@ -97,22 +98,35 @@ export class JsonService {
     }
 
     return { message: 'Arquivo gerado com sucesso!' };
-  }
-
-  // Envia o PDF gerado ao frontend para download e o remove do disco após o envio
-  downloadPdf(res: Response) {
-    const filePath = path.resolve(__dirname, '..', '..', 'output', 'resultado.pdf');
-    if (fs.existsSync(filePath)) {
-      res.download(filePath, 'resultado.pdf', (err) => {
-        if (err) {
-          console.error('Erro ao enviar o PDF:', err);
-        } else {
-          fs.unlinkSync(filePath); // Apaga o PDF após o download
-          console.log('🧹 PDF removido após download');
-        }
-      });
-    } else {
-      res.status(404).json({ error: 'Arquivo PDF não encontrado.' });
     }
+
+  // Faz o merge do formPdf + anexos
+  async mergeWithAttachments(anexos: Express.Multer.File[]): Promise<Buffer | null> {
+    const resultadoPath = path.resolve(__dirname, '..', '..', 'output', 'resultado.pdf');
+
+    if (!fs.existsSync(resultadoPath)) {
+      console.error('Arquivo resultado.pdf não encontrado.');
+      return null;
+    }
+
+    const mergedPdf = await PDFDocument.create();
+
+    const addPdfToMerged = async (buffer: Buffer) => {
+      const pdf = await PDFDocument.load(buffer);
+      const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+      pages.forEach(page => mergedPdf.addPage(page));
+    };
+
+    // 1. Adiciona o PDF do formulário gerado
+    const resultadoBuffer = fs.readFileSync(resultadoPath);
+    await addPdfToMerged(resultadoBuffer);
+
+    // 2. Adiciona os PDFs anexados
+    for (const file of anexos) {
+      await addPdfToMerged(file.buffer);
+    }
+
+    const finalBuffer = await mergedPdf.save();
+    return Buffer.from(finalBuffer);
   }
 }

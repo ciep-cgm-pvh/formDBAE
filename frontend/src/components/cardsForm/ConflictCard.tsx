@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form"
 
 
 const ConflictCard = () => {
-  const { register, control, watch } = useFormContext()
+  const { register, watch } = useFormContext()
 
   const atividadeAdjacente = watch("conflitoDeInteresse.atividadeAdjacente.boolean");
   const rendaExtra = watch("conflitoDeInteresse.rendaExtra.boolean")
@@ -110,7 +110,7 @@ const ConflictCard = () => {
               <input
                 type="radio"
                 {...register("conflitoDeInteresse.potencialConflito.boolean")}
-                value="tem dúvida"
+                value="temDuvida"
               />
               Tenho dúvida. Preencher campo 35
             </label>

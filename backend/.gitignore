@@ -42,9 +42,14 @@ lerna-debug.log*
 .env.production.local
 .env.local
 
+# Ignorar arquivos sensíveis
+credentials.json
+tokens.json
+
 # temp directory
 .temp
 .tmp
+temp/
 
 # Runtime data
 pids

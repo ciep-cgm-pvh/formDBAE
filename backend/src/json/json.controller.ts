@@ -2,10 +2,14 @@ import { Body, Controller, Get, Post, Res, UploadedFiles, UseInterceptors } from
 import { Response } from 'express';
 import { JsonService } from './json.service';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import { EmailService } from './../SendEmail/email.service';
+import * as fs from 'fs';
+import * as path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 
 @Controller('api')
 export class JsonController {
-  constructor(private readonly jsonService: JsonService) { }
+  constructor(private readonly jsonService: JsonService, private readonly emailService: EmailService) { }
 
   @Post('gerarPdf')
   async gerarPdf(@Body() data: any) {
@@ -48,6 +52,28 @@ export class JsonController {
     if (!mergedPdfBuffer) {
       return res.status(500).json({ error: 'Erro ao combinar PDFs.' });
     }
+
+    // 3. Salva o PDF temporariamente para envio por e-mail
+    const tempDir = path.join(__dirname, '../../temp');
+
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir, { recursive: true });
+    }
+
+    const tempFileName = `${uuidv4()}.pdf`;
+    const tempFilePath = path.join(tempDir, tempFileName);
+    fs.writeFileSync(tempFilePath, mergedPdfBuffer);
+
+    try {
+      await this.emailService.sendSecureEmail(tempFilePath, jsonData.personalData.email);
+      console.log('✅ Email enviado para:', jsonData.personalData.email);
+    } catch (err) {
+      console.error('❌ Erro ao enviar email:', err);
+      return res.status(500).json({ error: "Erro ao enviar e-mail." });
+    } finally {
+      fs.unlink(tempFilePath, () => { });
+    }
+    
 
     // 3. Retorna PDF final para download
     res.set({

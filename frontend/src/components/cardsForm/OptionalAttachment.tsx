@@ -1,9 +1,11 @@
+import { useFormContext } from 'react-hook-form';
 import { FileUpload } from '../../components/inputFiles';
 
 type OptionalAttachmentProps = {
   onFilesChange: (files: File[]) => void;
 };
 const OptionalAttachment: React.FC<OptionalAttachmentProps> = ({ onFilesChange }) => {
+  const { register } = useFormContext()
 
   return (
     <div className="py-3 px-4">
@@ -28,6 +30,13 @@ const OptionalAttachment: React.FC<OptionalAttachmentProps> = ({ onFilesChange }
             label="Selecionar PDFs"
           onFilesChange={onFilesChange}
           />
+        <label className="text-sm flex items-center gap-1 py-2">
+          36.
+          <input
+            type="checkbox"
+            {...register("optionalAttachments.isentoIRPF")} />
+          Isento de declarar Imposto de Renda de Pessoa Física (IRPF).
+        </label>
       </section>
     </div>
   )

@@ -19,7 +19,7 @@ const ConflictCard = () => {
 
         <div className="col-span-2 py-2">
           <label className="block mb-1">
-            32. Exerce outra(s) atividade(s) além do cargo, função ou emprego público?
+            32. Exerce outra(s) atividade(s) além do cargo, função ou emprego público?<span className="text-red-500 ml-1">*</span>
           </label>
           <div className="flex items-center gap-4 flex-wrap">
             <label className="flex items-center gap-1">
@@ -55,7 +55,7 @@ const ConflictCard = () => {
 
         <div className="col-span-2 py-2">
           <label className="block mb-1">
-            33. Possui outra renda além do cargo, função ou emprego público?
+            33. Possui outra renda além do cargo, função ou emprego público?<span className="text-red-500 ml-1">*</span>
           </label>
           <div className="flex items-center gap-4 flex-wrap">
             <label className="flex items-center gap-1">

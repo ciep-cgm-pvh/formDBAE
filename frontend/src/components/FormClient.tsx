@@ -73,6 +73,7 @@ const FormClient = () => {
   };
 
   const onSubmit = form.handleSubmit(async (data) => {
+    router.push("/loading");
     try {
       const formData = new FormData();
 
@@ -82,18 +83,19 @@ const FormClient = () => {
       formData.append("json", new Blob([ JSON.stringify(data) ], { type: "application/json" }));
 
       // 2. Adiciona os arquivos PDF
-      arquivos.forEach((file, index) => {
+      arquivos.forEach((file) => {
         formData.append("anexos", file); // nome da chave igual ao usado no backend (ex: "anexos")
       });
 
       // 3. Envia tudo para o backend
-      const response = await fetch("http://localhost:3003/api/gerarPdfComAnexos", {
+      const response = await fetch("http://10.148.2.58:3003/api/gerarPdfComAnexos", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
         const result = await response.json();
+        router.push("/form");
         throw new Error(result.error || "Erro ao gerar o PDF.");
       }
 
@@ -107,9 +109,20 @@ const FormClient = () => {
 
       router.push("/success");
 
-    } catch (err: any) {
-      console.error("❌ Erro:", err.message);
-      alert("Erro ao gerar o PDF: " + err.message);
+    } catch (err: unknown) {
+      let message: string;
+      // Verifica se err é uma instância de Error ou uma string
+      // e define a mensagem de erro apropriada
+      if (err instanceof Error) {
+        message = err.message;
+      } else if (typeof err === 'string') {
+        message = err;
+      } else {
+        message = 'Unknown error';
+      }
+
+      console.error("❌ Erro:", message);
+      alert("Erro ao gerar o PDF: " + message);
     }
   });
 

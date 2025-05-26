@@ -4,10 +4,10 @@ import ConflictCard from '@/components/cardsForm/ConflictCard';
 import OptionalAttachment from '@/components/cardsForm/OptionalAttachment';
 import PersonalDataCard from '@/components/cardsForm/PersonalDataCard';
 import PreviousActivitiesCard from '@/components/cardsForm/PreviousActivities';
-import { useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
 import { FormValues } from '@/types/formTypes';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const FormClient = () => {
   const form = useForm<FormValues>({
@@ -80,8 +80,18 @@ const FormClient = () => {
 
       data.optionalAttachments.anexos = arquivos.map(file => file.name);
 
+      // Adiciona a data atual formatada (ex: 26/05/2025)
+      const dataAtual = new Date();
+      const dataFormatada = dataAtual.toLocaleDateString('pt-BR');
+
+      // Insere a data de geração no objeto de dados
+      const dadosComData: FormValues = {
+        ...data,
+        dataGeracao: dataFormatada
+      };
+
       // 1. Adiciona o JSON do formulário
-      formData.append("json", new Blob([ JSON.stringify(data) ], { type: "application/json" }));
+      formData.append("json", new Blob([ JSON.stringify(dadosComData) ], { type: "application/json" }));
 
       // 2. Adiciona os arquivos PDF
       arquivos.forEach((file) => {

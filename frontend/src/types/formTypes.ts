@@ -86,4 +86,5 @@ export interface FormValues {
   bensEDireitos: BensDireitosForm;
   conflitoDeInteresse: ConflictData;
   optionalAttachments: OptionalAttachmentsData;
+  dataGeracao?: string;
 }

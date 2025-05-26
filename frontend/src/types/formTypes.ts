@@ -2,6 +2,7 @@
 export interface PersonalData {
   nome: string;
   nascimento: string;
+  cpf: string;
   formacaoProfissional: string;
   cargo: string;
   cargoEfetivo: string;

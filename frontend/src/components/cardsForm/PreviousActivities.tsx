@@ -1,6 +1,16 @@
 "use client"
+import { useFormContext, useFieldArray, Controller } from "react-hook-form"
 
-import { useFormContext, useFieldArray } from "react-hook-form"
+const currencyFormatter = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
+
+function formatCurrency(value: string) {
+  const numeric = value.replace(/\D/g, ""); // remove não números
+  const formatted = (Number(numeric) / 100).toFixed(2);
+  return currencyFormatter.format(Number(formatted));
+}
 
 const PreviousActivitiesCard = () => {
   const { register, control, watch, setValue } = useFormContext()
@@ -41,10 +51,26 @@ const PreviousActivitiesCard = () => {
                 placeholder="Órgão"
               />
               <div className="flex items-center gap-1">
-                <input
-                  {...register(`previousActivities.atividades.${index}.remuneracao`)}
-                  className="border p-1 w-full"
-                  placeholder="R$0,00"
+                <Controller
+                  control={control}
+                  name={`previousActivities.atividades.${index}.remuneracao`}
+                  render={({ field: { onChange, value, ...rest } }) => (
+                    <input
+                      {...rest}
+                      className="border p-1 w-full"
+                      placeholder="R$0,00"
+                      value={value}
+                      onChange={(e) => {
+                        const rawValue = e.target.value;
+                        const numeric = rawValue.replace(/\D/g, "");
+                        const formatted = new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(Number(numeric) / 100);
+                        onChange(formatted);
+                      }}
+                    />
+                  )}
                 />
                 {fields.length > 1 && (
                   <button

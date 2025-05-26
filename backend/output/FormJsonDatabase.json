@@ -2470,5 +2470,189 @@
         "Calendario-Unisapiens-2025.1.pdf"
       ]
     }
+  },
+  "FormJson_29": {
+    "personalData": {
+      "nome": "Zenildo Alves Santos de Carvalho",
+      "nascimento": "1974-06-05",
+      "formacaoProfissional": "Ciências Contábeis",
+      "cargo": "Coordenador de Informações Estratégicas e Prevenção à Corrupção",
+      "cargoEfetivo": "",
+      "orgao": "Controladoria Geral do Município",
+      "dataNomeacao": "2024-02-28",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "Avenida dos Imigrantes, 5857",
+      "cepTrabalho": "76821-449",
+      "telTrabalho": "6939013063",
+      "enderecoResidencial": "Avenida dos Imigrantes, 5857",
+      "cepResidencial": "76821-449",
+      "telResidencial": "69981193001",
+      "email": "zenildo7@hotmail.com",
+      "celular": "",
+      "enderecoCorrespondencia": "Avenida dos Imigrantes, 5857",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": "RO"
+      },
+      "conjuge": "",
+      "atividadeConjuge": ""
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": []
+    }
+  },
+  "FormJson_30": {
+    "personalData": {
+      "nome": "clara",
+      "nascimento": "2025-05-01",
+      "formacaoProfissional": "55555",
+      "cargo": "5",
+      "cargoEfetivo": "5",
+      "orgao": "5",
+      "dataNomeacao": "2025-05-20",
+      "cargoPublico": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "orgaoOrigem": "5",
+      "conselho": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "enderecoTrabalho": "5",
+      "cepTrabalho": "55555-555",
+      "telTrabalho": "(55)5555-5555",
+      "enderecoResidencial": "5RO",
+      "cepResidencial": "55555-555",
+      "telResidencial": "(55)5555-5555",
+      "email": "clarahelenasena@gmail.com",
+      "celular": "(55)55555-5555",
+      "enderecoCorrespondencia": "5",
+      "estadoCivil": {
+        "boolean": "solteiro",
+        "qual": "5"
+      },
+      "conjuge": "5",
+      "atividadeConjuge": "5",
+      "cpf": "999.999.999-99"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": "R$ 33.333,33",
+          "valorBem": "R$ 333,33"
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "sim",
+        "qual": "5"
+      },
+      "rendaExtra": {
+        "boolean": "sim",
+        "qual": "5"
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": true,
+      "anexos": [
+        "Calendario-Unisapiens-2025.1.pdf"
+      ]
+    }
   }
 }

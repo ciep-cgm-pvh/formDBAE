@@ -13,6 +13,7 @@
     "docx2pdf-converter": "^2.1.1",
     "docxtemplater": "^3.63.0",
     "file-saver": "^2.0.5",
+    "imask": "^7.6.1",
     "jszip": "^3.10.1",
     "next": "15.3.2",
     "pdf-lib": "^1.17.1",
@@ -21,6 +22,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.3",
+    "react-imask": "^7.6.1",
+    "react-input-mask": "^2.0.4",
+    "react-input-mask-next": "^3.0.0-alpha.12",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
@@ -30,6 +34,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-input-mask": "^3.0.6",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "tailwindcss": "^4",

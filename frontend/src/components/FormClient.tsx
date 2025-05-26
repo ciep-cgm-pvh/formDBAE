@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 
 const FormClient = () => {
   const form = useForm<FormValues>({
+    mode: "onTouched",
     defaultValues: {
       personalData: {
         nome: '',

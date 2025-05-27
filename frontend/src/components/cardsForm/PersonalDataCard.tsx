@@ -169,7 +169,7 @@ const PersonalDataCard = () => {
                 mask="00000-000"
                 {...field}
                 onAccept={(value) => field.onChange(value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2"
+                className="w-full border px-2 py-1"
               />
             )}
           />
@@ -213,7 +213,7 @@ const PersonalDataCard = () => {
                   mask="00000-000"
                   {...field}
                   onAccept={(value) => field.onChange(value)}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2"
+                  className="w-full border px-2 py-1"
                 />
               )}
             />

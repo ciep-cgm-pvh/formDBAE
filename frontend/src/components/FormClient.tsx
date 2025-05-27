@@ -82,7 +82,14 @@ const FormClient = () => {
 
       // Adiciona a data atual formatada (ex: 26/05/2025)
       const dataAtual = new Date();
-      const dataFormatada = dataAtual.toLocaleDateString('pt-BR');
+      const dataFormatada = dataAtual.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
 
       // Insere a data de geração no objeto de dados
       const dadosComData: FormValues = {
@@ -147,7 +154,7 @@ const FormClient = () => {
           <ConflictCard />
           <OptionalAttachment onFilesChange={handleFilesChange} />
         </div>
-        <button type="submit" className=" w-fit mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded hover:cursor-pointer">
+        <button type="submit" className=" w-fit mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded hover:cursor-pointer mb-4">
           Enviar formulário
         </button>
       </form>

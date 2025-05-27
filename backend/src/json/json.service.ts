@@ -60,8 +60,12 @@ export class JsonService {
   async generatePdf(data: any) {
     this.storedData = data;
 
+    const temAnexos = data.optionalAttachments?.anexos?.length > 0;
+
     // 1. Caminhos
-    const templatePath = path.resolve(__dirname, '..', '..', 'templates', 'modelo.docx');
+    const templatePath = path.resolve(__dirname, '..', '..', 'templates',
+      temAnexos ? 'modeloAnexos.docx' : 'modelo.docx'
+    );
     const outputDocx = path.resolve(__dirname, '..', '..', 'output', 'resultado.docx');
     const outputPdf = path.resolve(__dirname, '..', '..', 'output', 'resultado.pdf');
 

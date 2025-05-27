@@ -111,7 +111,7 @@ const PersonalDataCard = () => {
             <input type="text" {...register("personalData.cargoEfetivo")} className="w-full border px-2 py-1" />
           </div>
           <div>
-            <label className="block text-sm">7. Data da nomeação/designação<span className="text-red-500 ml-1">*</span></label>
+            <label className="block text-sm">7. Data da nomeação/cargo comissado<span className="text-red-500 ml-1">*</span></label>
             <input type="date" required {...register("personalData.dataNomeacao")} className="w-full border px-2 py-1" />
           </div>
         </div>
@@ -186,8 +186,8 @@ const PersonalDataCard = () => {
               render={({ field }) => (
                 <IMaskInput
                   {...field}
-                  mask="(00)0000-0000"
-                  placeholder="(00)0000-0000"
+                  mask="(00)00000-0000"
+                  placeholder="(00)00000-0000"
                   className="w-full border px-2 py-1"
                   onAccept={(value: string) => field.onChange(value)}
                 />
@@ -230,8 +230,8 @@ const PersonalDataCard = () => {
               render={({ field }) => (
                 <IMaskInput
                   {...field}
-                  mask="(00)0000-0000"
-                  placeholder="(00)0000-0000"
+                  mask="(00)00000-0000"
+                  placeholder="(00)00000-0000"
                   className="w-full border px-2 py-1"
                   onAccept={(value: string) => field.onChange(value)}
                 />

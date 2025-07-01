@@ -1,86 +1,67 @@
-import { Body, Controller, Get, Post, Res, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Logger, Post, Res, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { Response } from 'express';
 import { JsonService } from './json.service';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { EmailService } from './../SendEmail/email.service';
 import * as fs from 'fs';
 import * as path from 'path';
-import { v4 as uuidv4 } from 'uuid';
 
 @Controller('api')
 export class JsonController {
-  constructor(private readonly jsonService: JsonService, private readonly emailService: EmailService) { }
+  private readonly logger = new Logger(JsonController.name);
 
-  @Post('gerarPdf')
-  async gerarPdf(@Body() data: any) {
-    return this.jsonService.generatePdf(data)
-  }
+  constructor(
+    private readonly jsonService: JsonService,
+    private readonly emailService: EmailService
+  ) { }
 
-  @Get('verJson')
-  verJson() {
-    return this.jsonService.getJson()
-  }
-  @Get('getAllJson')
-  getAllJson() {
-    return this.jsonService.getAllJson()
-  }
-
-  // Recebe JSON + Anexos -> gera resultado.pdf + merge com anexos
   @Post('gerarPdfComAnexos')
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'json', maxCount: 1 },
     { name: 'anexos', maxCount: 10 }
   ]))
   async gerarPdfComAnexos(
-    @UploadedFiles()
-    files: { json?: Express.Multer.File[]; anexos?: Express.Multer.File[] },
+    @UploadedFiles() files: { json?: Express.Multer.File[]; anexos?: Express.Multer.File[] },
     @Res() res: Response,
   ) {
     const jsonFile = files.json?.[ 0 ];
     const anexos = files.anexos || [];
 
-    if (!jsonFile) return res.status(400).json({ error: 'JSON não enviado.' });
+    if (!jsonFile) {
+      return res.status(400).json({ error: 'JSON não enviado.' });
+    }
 
     const jsonData = JSON.parse(jsonFile.buffer.toString());
 
-    // 1. Gera o PDF do formulário
-    await this.jsonService.generatePdf(jsonData);
-
-    // 2. Merge com os anexos
-    const mergedPdfBuffer = await this.jsonService.mergeWithAttachments(anexos);
-
-    if (!mergedPdfBuffer) {
-      return res.status(500).json({ error: 'Erro ao combinar PDFs.' });
-    }
-
-    // 3. Salva o PDF temporariamente para envio por e-mail
-    const tempDir = path.join(__dirname, '../../temp');
-
-    if (!fs.existsSync(tempDir)) {
-      fs.mkdirSync(tempDir, { recursive: true });
-    }
-
-    const tempFileName = `${uuidv4()}.pdf`;
-    const tempFilePath = path.join(tempDir, tempFileName);
-    fs.writeFileSync(tempFilePath, mergedPdfBuffer);
-
     try {
+      // 1. Gera o PDF do formulário (agora retorna um buffer)
+      const formPdfBuffer = await this.jsonService.generatePdf(jsonData);
+
+      // 2. Merge com os anexos
+      const mergedPdfBuffer = await this.jsonService.mergeWithAttachments(formPdfBuffer, anexos);
+
+      // 3. Salva o PDF final temporariamente para envio por e-mail
+      const tempFilePath = path.join('/tmp', `form_${Date.now()}.pdf`);
+      fs.writeFileSync(tempFilePath, mergedPdfBuffer);
+      this.logger.log(`Arquivo final salvo em: ${tempFilePath}`);
+
+      // 4. Envia o e-mail com o anexo
       await this.emailService.enviarFormulario(tempFilePath, jsonData.personalData.email);
-      console.log('✅ Email enviado para:', jsonData.personalData.email);
+      this.logger.log(`✅ Email enviado para: ${jsonData.personalData.email}`);
+
+      // 5. Limpa o arquivo temporário após o envio
+      fs.unlinkSync(tempFilePath);
+
+      // 6. Retorna o PDF final para download no frontend
+      res.set({
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': 'attachment; filename=FormularioComAnexos.pdf',
+      });
+      return res.send(mergedPdfBuffer);
+
     } catch (err) {
-      console.error('❌ Erro ao enviar email:', err);
-      return res.status(500).json({ error: "Erro ao enviar e-mail." });
-    } finally {
-      fs.unlink(tempFilePath, () => { });
+      this.logger.error('❌ Erro no fluxo de geração de PDF e e-mail:', err);
+      return res.status(500).json({ error: "Erro interno no servidor.", details: err.message });
     }
-    
-
-    // 3. Retorna PDF final para download
-    res.set({
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename=FormComAnexos.pdf',
-    });
-
-    return res.send(mergedPdfBuffer);
   }
 }

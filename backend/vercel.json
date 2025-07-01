@@ -1,0 +1,18 @@
+{
+  "routes": [
+    {
+      "src": "backend/(.*)",
+      "dest": "backend/dist/$1"
+    }
+  ],
+  "version": 3,
+  "builds": [
+    {
+      "src": "backend/package.json",
+      "use": "@vercel/nestjs"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

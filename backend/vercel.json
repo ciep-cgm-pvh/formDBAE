@@ -5,14 +5,5 @@
       "dest": "dist/$1"
     }
   ],
-  "version": 2,
-  "builds": [
-    {
-      "src": "dist/main.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "version": 2
 }

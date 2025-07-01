@@ -15,6 +15,11 @@ export class JsonController {
     private readonly emailService: EmailService
   ) { }
 
+  @Get()
+  findAll(): string {
+    return 'This action returns all cats';
+  }
+
   @Get('health')
   healthCheck() {
     return { status: 'ok' };

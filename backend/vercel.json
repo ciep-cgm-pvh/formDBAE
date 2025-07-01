@@ -1,14 +1,14 @@
 {
   "routes": [
     {
-      "src": "backend/(.*)",
-      "dest": "backend/dist/$1"
+      "src": "/(.*)",
+      "dest": "/dist/$1"
     }
   ],
   "version": 2,
   "builds": [
     {
-      "src": "backend/package.json",
+      "src": "/package.json",
       "use": "@vercel/nestjs"
     }
   ],

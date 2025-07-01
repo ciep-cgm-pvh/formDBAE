@@ -12,6 +12,7 @@
     "@heroicons/react": "^2.2.0",
     "docx2pdf-converter": "^2.1.1",
     "docxtemplater": "^3.63.0",
+    "dotenv": "^17.0.1",
     "file-saver": "^2.0.5",
     "imask": "^7.6.1",
     "jszip": "^3.10.1",

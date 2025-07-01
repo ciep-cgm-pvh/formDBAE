@@ -8,6 +8,8 @@ import { FormValues } from '@/types/formTypes';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const FormClient = () => {
   const form = useForm<FormValues>({
@@ -105,8 +107,17 @@ const FormClient = () => {
         formData.append("anexos", file); // nome da chave igual ao usado no backend (ex: "anexos")
       });
 
-      // 3. Envia tudo para o backend
-      const response = await fetch("http://10.148.2.58:3003/api/gerarPdfComAnexos", {
+      // 3. Envia tudo para o backend usando a variável de ambiente
+      const isProduction = process.env.NODE_ENV === 'production';
+      const apiUrl = isProduction
+        ? process.env.NEXT_PUBLIC_API_URL
+        : process.env.NEXT_PUBLIC_API_URL_LOCAL;
+
+      // Verifica se a URL da API está definida para evitar erros
+      if (!apiUrl) {
+        throw new Error("A URL da API não está configurada nas variáveis de ambiente.");
+      }
+      const response = await fetch(`${apiUrl}/api/gerarPdfComAnexos`, {
         method: "POST",
         body: formData,
       });

@@ -3,6 +3,30 @@ import { AppModule } from './app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as express from 'express';
 
+
+// Lista de origens permitidas
+const allowedOrigins = [
+  'https://formulario-dbae.vercel.app', // Seu frontend na Vercel
+  'http://localhost:3000', // Para desenvolvimento local do frontend
+];
+
+// Configuração do CORS
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Permite requisições sem 'origin' (ex: Postman, apps mobile)
+    if (!origin) return callback(null, true);
+
+    // Se a origem estiver na lista, permite a requisição
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      // Se não estiver, rejeita a requisição
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+
 // Esta função cria uma instância do seu app NestJS
 // e a conecta a um servidor Express existente.
 const createNestServer = async (expressInstance: express.Express) => {

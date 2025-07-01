@@ -1,0 +1,1223 @@
+{
+  "FormJson_1": {
+    "personalData": {
+      "nome": "Zenildo Alves Santos de Carvalho",
+      "nascimento": "1974-06-05",
+      "formacaoProfissional": "Ciências Contábeis",
+      "cargo": "Coordenador de Informações Estratégicas e Prevenção à Corrupção",
+      "cargoEfetivo": "Auditor",
+      "orgao": "Controladoria Geral do Município",
+      "dataNomeacao": "2024-03-01",
+      "cargoPublico": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "enderecoTrabalho": "Avenida dos Imigrantes, Rio Madeira - Porto Velho/RO",
+      "cepTrabalho": "76821-449",
+      "telTrabalho": "(69)39013-063",
+      "enderecoResidencial": "Avenida dos Imigrantes, Rio Madeira - Porto Velho/RO",
+      "cepResidencial": "76821-449",
+      "telResidencial": "(69)81193-001",
+      "email": "zenildo7@hotmail.com",
+      "celular": "(69)98119-3001",
+      "enderecoCorrespondencia": "Avenida dos Imigrantes, 5857",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": "RO"
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "457.314.462-53"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "nao",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "nao",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": [
+        "Comprovante de Rendimentos - Lucy PMPV.pdf"
+      ]
+    },
+    "dataGeracao": "27/05/2025"
+  },
+  "FormJson_2": {
+    "personalData": {
+      "nome": "a",
+      "nascimento": "2025-05-01",
+      "formacaoProfissional": "2",
+      "cargo": "2",
+      "cargoEfetivo": "2",
+      "orgao": "2",
+      "dataNomeacao": "2025-05-15",
+      "cargoPublico": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "orgaoOrigem": "2",
+      "conselho": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "enderecoTrabalho": "2",
+      "cepTrabalho": "2",
+      "telTrabalho": "(2",
+      "enderecoResidencial": "2",
+      "cepResidencial": "2",
+      "telResidencial": "(2",
+      "email": "clara@gmail.c",
+      "celular": "",
+      "enderecoCorrespondencia": "1",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "2"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": []
+    },
+    "dataGeracao": "27/05/2025, 10:47:02"
+  },
+  "FormJson_3": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-05-21",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "",
+      "orgao": "1",
+      "dataNomeacao": "2025-04-30",
+      "cargoPublico": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "(1",
+      "enderecoResidencial": "1",
+      "cepResidencial": "1",
+      "telResidencial": "(1",
+      "email": "CLARA@GMAIL.C",
+      "celular": "",
+      "enderecoCorrespondencia": "1",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": [
+        "Calendario-Unisapiens-2025.1.pdf"
+      ]
+    },
+    "dataGeracao": "27/05/2025, 11:23:48"
+  },
+  "FormJson_4": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-05-07",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "1",
+      "orgao": "1",
+      "dataNomeacao": "2025-05-07",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "(1",
+      "enderecoResidencial": "1",
+      "cepResidencial": "1",
+      "telResidencial": "(1",
+      "email": "C@C.C",
+      "celular": "",
+      "enderecoCorrespondencia": "1",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": []
+    },
+    "dataGeracao": "27/05/2025, 11:25:17"
+  },
+  "FormJson_5": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-05-14",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "",
+      "orgao": "1",
+      "dataNomeacao": "2025-05-06",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "(1",
+      "enderecoResidencial": "1",
+      "cepResidencial": "1",
+      "telResidencial": "(1",
+      "email": "c@d.b",
+      "celular": "",
+      "enderecoCorrespondencia": "1",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": []
+    },
+    "dataGeracao": "27/05/2025, 12:04:42"
+  },
+  "FormJson_6": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-05-16",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "",
+      "orgao": "1",
+      "dataNomeacao": "2025-04-30",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "(1",
+      "enderecoResidencial": "1",
+      "cepResidencial": "1",
+      "telResidencial": "(1",
+      "email": "1@d.r",
+      "celular": "",
+      "enderecoCorrespondencia": "1",
+      "estadoCivil": {
+        "boolean": "solteiro",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": [
+        "Calendario-Unisapiens-2025.1.pdf"
+      ]
+    },
+    "dataGeracao": "27/05/2025, 12:05:47"
+  },
+  "FormJson_7": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-06-04",
+      "formacaoProfissional": "11111111",
+      "cargo": "111111",
+      "cargoEfetivo": "1111",
+      "orgao": "111111",
+      "dataNomeacao": "2025-06-18",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1111111111",
+      "cepTrabalho": "11111-111",
+      "telTrabalho": "(11)11111-1111",
+      "enderecoResidencial": "1111111111",
+      "cepResidencial": "11111-111",
+      "telResidencial": "(11)11111-1111",
+      "email": "clarahelenasena@gmail.com",
+      "celular": "",
+      "enderecoCorrespondencia": "w",
+      "estadoCivil": {
+        "boolean": "solteiro",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "111.111.111-11"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "w",
+          "orgao": "w",
+          "remuneracao": "R$ 0,00",
+          "valorBem": "R$ 0,01"
+        },
+        {
+          "valorBem": "R$ 0,02"
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "w",
+          "administrador": "w",
+          "valorBem": ""
+        },
+        {
+          "tipo": "w",
+          "administrador": "w",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "sim",
+        "qual": "2131"
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": [
+        "Calendario_Unisapiens-2025.2.pdf"
+      ]
+    },
+    "dataGeracao": "30/06/2025, 10:09:42"
+  },
+  "FormJson_8": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-06-12",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "1",
+      "orgao": "1",
+      "dataNomeacao": "2025-06-17",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "(1",
+      "enderecoResidencial": "2",
+      "cepResidencial": "2",
+      "telResidencial": "(2",
+      "email": "clarahelenasena@gmail.com",
+      "celular": "",
+      "enderecoCorrespondencia": "w",
+      "estadoCivil": {
+        "boolean": "solteiro",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": [
+        "Calendario_Unisapiens-2025.2.pdf"
+      ]
+    },
+    "dataGeracao": "30/06/2025, 10:15:32"
+  },
+  "FormJson_9": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-06-12",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "",
+      "orgao": "1",
+      "dataNomeacao": "2025-06-03",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "(1",
+      "enderecoResidencial": "1",
+      "cepResidencial": "1",
+      "telResidencial": "(1",
+      "email": "clarahelenasena@gmail.com",
+      "celular": "(1",
+      "enderecoCorrespondencia": "s",
+      "estadoCivil": {
+        "boolean": "solteiro",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": [
+        "Calendario_Unisapiens-2025.2.pdf"
+      ]
+    },
+    "dataGeracao": "30/06/2025, 10:27:43"
+  },
+  "FormJson_10": {
+    "personalData": {
+      "nome": "Jhonatan ",
+      "nascimento": "1998-01-04",
+      "formacaoProfissional": "asda",
+      "cargo": "asdasd",
+      "cargoEfetivo": "123",
+      "orgao": "asdasd",
+      "dataNomeacao": "2025-06-11",
+      "cargoPublico": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "enderecoTrabalho": "asd",
+      "cepTrabalho": "123",
+      "telTrabalho": "(69)99310-6200",
+      "enderecoResidencial": "asd",
+      "cepResidencial": "123",
+      "telResidencial": "(69)99310-6200",
+      "email": "jhonatan.silva.4198@gmail.com",
+      "celular": "",
+      "enderecoCorrespondencia": "asd",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "123.123.123-12"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": []
+    },
+    "dataGeracao": "30/06/2025, 10:38:58"
+  },
+  "FormJson_11": {
+    "personalData": {
+      "nome": "Jhonatan ",
+      "nascimento": "1998-01-04",
+      "formacaoProfissional": "asda",
+      "cargo": "asdasd",
+      "cargoEfetivo": "123",
+      "orgao": "asdasd",
+      "dataNomeacao": "2025-06-11",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "asd",
+      "cepTrabalho": "123",
+      "telTrabalho": "(69)99310-6200",
+      "enderecoResidencial": "asd",
+      "cepResidencial": "123",
+      "telResidencial": "(69)99310-6200",
+      "email": "jhonatan.silva.4198@gmail.com",
+      "celular": "",
+      "enderecoCorrespondencia": "asd",
+      "estadoCivil": {
+        "boolean": "casado",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "123.123.123-12"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": []
+    },
+    "dataGeracao": "30/06/2025, 10:45:03"
+  },
+  "FormJson_12": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-07-11",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "",
+      "orgao": "1",
+      "dataNomeacao": "2025-07-07",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "(1",
+      "enderecoResidencial": "1",
+      "cepResidencial": "1",
+      "telResidencial": "(1",
+      "email": "clarahelenasena@gmail.com",
+      "celular": "(1",
+      "enderecoCorrespondencia": "1",
+      "estadoCivil": {
+        "boolean": "solteiro",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": true,
+      "anexos": [
+        "Calendario_Unisapiens-2025.2.pdf"
+      ]
+    },
+    "dataGeracao": "01/07/2025, 08:35:41"
+  },
+  "FormJson_13": {
+    "personalData": {
+      "nome": "1",
+      "nascimento": "2025-07-09",
+      "formacaoProfissional": "1",
+      "cargo": "1",
+      "cargoEfetivo": "",
+      "orgao": "1",
+      "dataNomeacao": "2025-07-02",
+      "cargoPublico": {
+        "boolean": "",
+        "qual": ""
+      },
+      "orgaoOrigem": "",
+      "conselho": {
+        "boolean": "",
+        "qual": ""
+      },
+      "enderecoTrabalho": "1",
+      "cepTrabalho": "1",
+      "telTrabalho": "(1",
+      "enderecoResidencial": "1",
+      "cepResidencial": "1",
+      "telResidencial": "(1",
+      "email": "clarahelenasena@gmail.com",
+      "celular": "(1",
+      "enderecoCorrespondencia": "1",
+      "estadoCivil": {
+        "boolean": "solteiro",
+        "qual": ""
+      },
+      "conjuge": "",
+      "atividadeConjuge": "",
+      "cpf": "1"
+    },
+    "previousActivities": {
+      "atividades": [
+        {
+          "atividade": "",
+          "orgao": "",
+          "remuneracao": ""
+        }
+      ],
+      "statusProfissonal": {
+        "naoExerceuProfissao": false,
+        "statusProfissao": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "bensEDireitos": {
+      "bens": [
+        {
+          "tipo": "",
+          "administrador": "",
+          "valorBem": ""
+        }
+      ],
+      "checkboxBens": {
+        "naoPossuiBem": false,
+        "naoPossuiBemAlemDoRFB": false,
+        "familiarProprietario": {
+          "boolean": "",
+          "qual": ""
+        },
+        "participacao5perc": {
+          "boolean": "",
+          "qual": ""
+        }
+      }
+    },
+    "conflitoDeInteresse": {
+      "atividadeAdjacente": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "rendaExtra": {
+        "boolean": "nao",
+        "qual": ""
+      },
+      "potencialConflito": {
+        "boolean": "",
+        "descricao": ""
+      }
+    },
+    "optionalAttachments": {
+      "isentoIRPF": false,
+      "anexos": [
+        "Calendario_Unisapiens-2025.2.pdf"
+      ]
+    },
+    "dataGeracao": "01/07/2025, 10:14:07"
+  }
+}

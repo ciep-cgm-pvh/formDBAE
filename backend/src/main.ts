@@ -36,9 +36,7 @@ const createNestServer = async (expressInstance: express.Express) => {
   );
 
   // Mantenha suas configurações globais aqui
-  app.enableCors({
-    origin: '*', // Ajuste para produção se necessário
-  });
+  app.enableCors(corsOptions);
 
   return app.init();
 };

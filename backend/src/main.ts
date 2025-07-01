@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as express from 'express';
 
+console.log(process.env.VERCEL_ENV); // Verifica o ambiente de execução
 
 // Lista de origens permitidas
 const allowedOrigins = [
@@ -13,8 +14,10 @@ const allowedOrigins = [
 // Configuração do CORS
 const corsOptions = {
   origin: (origin, callback) => {
-    // Permite requisições sem 'origin' (ex: Postman, apps mobile)
-    if (!origin) return callback(null, true);
+    console.log(`CORS Origin: ${origin}`); // Log para depuração
+    
+    // // Permite requisições sem 'origin' (ex: Postman, apps mobile)
+    // if (!origin) return callback(null, true);
 
     // Se a origem estiver na lista, permite a requisição
     if (allowedOrigins.indexOf(origin) !== -1) {
@@ -24,6 +27,8 @@ const corsOptions = {
       return callback(new Error('Not allowed by CORS'));
     }
   },
+  credentials: true,
+  methods: 'GET,POST,OPTIONS,HEAD',
 };
 
 

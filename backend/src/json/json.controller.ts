@@ -1,4 +1,4 @@
-import { Body, Controller, Logger, Post, Res, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, Res, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { Response } from 'express';
 import { JsonService } from './json.service';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
@@ -14,6 +14,12 @@ export class JsonController {
     private readonly jsonService: JsonService,
     private readonly emailService: EmailService
   ) { }
+
+  @Get('health')
+  healthCheck() {
+    return { status: 'ok' };
+  }
+
 
   @Post('gerarPdfComAnexos')
   @UseInterceptors(FileFieldsInterceptor([

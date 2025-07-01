@@ -17,10 +17,15 @@ import { ConfigModule } from '@nestjs/config';
     }), 
   ],
   controllers: [
-    EmailController, AppController, JsonController ],
+    EmailController, 
+    AppController,
+    JsonController 
+  ],
   providers: [
     EmailAuthService,
     EmailService,
-    JsonService, AppService ],
+    JsonService, 
+    AppService
+  ],
 })
 export class AppModule { }

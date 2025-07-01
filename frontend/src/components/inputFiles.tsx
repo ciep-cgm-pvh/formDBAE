@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
+// import JSZip from 'jszip';
+// import { saveAs } from 'file-saver';
 import { PhotoIcon } from '@heroicons/react/24/solid';
 
 type FileUploadProps = {
@@ -25,37 +25,37 @@ export const FileUpload: React.FC<FileUploadProps> = ({ id, label, onFilesChange
     }
   };
 
-  const handleDownloadAll = async () => {
-    if (arquivos.length === 0) return;
+  // const handleDownloadAll = async () => {
+  //   if (arquivos.length === 0) return;
 
-    const zip = new JSZip();
+  //   const zip = new JSZip();
 
-    // Função para ler um arquivo como ArrayBuffer
-    const readFileAsync = (file: File): Promise<ArrayBuffer> => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as ArrayBuffer);
-        reader.onerror = () => reject(reader.error);
-        reader.readAsArrayBuffer(file);
-      });
-    };
+  //   // Função para ler um arquivo como ArrayBuffer
+  //   const readFileAsync = (file: File): Promise<ArrayBuffer> => {
+  //     return new Promise((resolve, reject) => {
+  //       const reader = new FileReader();
+  //       reader.onload = () => resolve(reader.result as ArrayBuffer);
+  //       reader.onerror = () => reject(reader.error);
+  //       reader.readAsArrayBuffer(file);
+  //     });
+  //   };
 
-    // Lê todos os arquivos em paralelo
-    try {
-      const filesPromises = arquivos.map(async (file, index) => {
-        const content = await readFileAsync(file);
-        zip.file(file.name, content);
-      });
+  //   // Lê todos os arquivos em paralelo
+  //   try {
+  //     const filesPromises = arquivos.map(async (file, index) => {
+  //       const content = await readFileAsync(file);
+  //       zip.file(file.name, content);
+  //     });
 
-      await Promise.all(filesPromises);
+  //     await Promise.all(filesPromises);
 
-      // Gera o .zip
-      const blob = await zip.generateAsync({ type: 'blob' });
-      saveAs(blob, 'arquivos-selecionados.zip');
-    } catch (error) {
-      console.error('Erro ao ler arquivos:', error);
-    }
-  };
+  //     // Gera o .zip
+  //     const blob = await zip.generateAsync({ type: 'blob' });
+  //     saveAs(blob, 'arquivos-selecionados.zip');
+  //   } catch (error) {
+  //     console.error('Erro ao ler arquivos:', error);
+  //   }
+  // };
 
   return (
     <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-3">

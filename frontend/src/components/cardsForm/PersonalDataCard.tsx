@@ -1,27 +1,81 @@
 "use client"
-import { fetchAddressByCep } from '@/utils/fetchCep';
 import { useEffect } from 'react';
 import { useFormContext, Controller, useWatch } from 'react-hook-form';
 import { IMaskInput } from "react-imask";
 
+// Coloque as interfaces aqui ou em um arquivo de tipos separado (ex: types.ts)
+interface ViaCepData {
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  erro?: boolean;
+}
+
+interface PersonalDataForm {
+  nome: string;
+  nascimento: string;
+  cpf: string;
+  formacaoProfissional: string;
+  cargo: string;
+  orgao: string;
+  cargoEfetivo?: string;
+  dataNomeacao: string;
+  cargoPublico: {
+    boolean: 'sim' | 'nao';
+    qual?: string;
+  };
+  orgaoOrigem?: string;
+  conselho: {
+    boolean: 'sim' | 'nao';
+    qual?: string;
+  };
+  enderecoTrabalho: string;
+  cepTrabalho: string;
+  telTrabalho: string;
+  enderecoResidencial: string;
+  cepResidencial: string;
+  telResidencial: string;
+  email: string;
+  celular?: string;
+  enderecoCorrespondencia: string;
+  estadoCivil: {
+    boolean: 'casado' | 'solteiro' | 'outros';
+    qual?: string;
+  };
+  conjuge?: string;
+  atividadeConjuge?: string;
+}
+
+interface IFormData {
+    personalData: PersonalDataForm;
+}
+
+
 const PersonalDataCard = () => {
-  const { register, control, setValue, formState: { errors } } = useFormContext()
+  // Tipando o useFormContext, o `errors` agora entende a estrutura do seu formulário
+  const { register, control, setValue, formState: { errors } } = useFormContext<IFormData>();
 
   // Monitorando os campos de CEP
   const cepResidencial = useWatch({ control, name: "personalData.cepResidencial" });
   const cepTrabalho = useWatch({ control, name: "personalData.cepTrabalho" });
 
-  // Efeito para buscar o endereço do CEP residencial
+  // Efeito unificado para buscar endereços
   useEffect(() => {
-    const fetchEndereco = async (cep: string, targetField: "personalData.enderecoResidencial" | "personalData.enderecoTrabalho") => {
-      const sanitizedCep = cep?.replace(/\D/g, "");
-      if (sanitizedCep?.length === 8) {
+    const fetchEndereco = async (cep: string | undefined, targetField: keyof Pick<PersonalDataForm, 'enderecoResidencial' | 'enderecoTrabalho'>) => {
+      if (!cep) return;
+
+      const sanitizedCep = cep.replace(/\D/g, "");
+      if (sanitizedCep.length === 8) {
         try {
           const res = await fetch(`https://viacep.com.br/ws/${sanitizedCep}/json/`);
-          const data = await res.json();
+          // Aplicando o tipo para a resposta da API
+          const data: ViaCepData = await res.json();
+          
           if (!data.erro) {
             const enderecoCompleto = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
-            setValue(targetField, enderecoCompleto);
+            // O targetField é prefixado para corresponder ao nome no formulário
+            setValue(`personalData.${targetField}`, enderecoCompleto);
           }
         } catch (error) {
           console.error("Erro ao buscar o CEP:", error);
@@ -29,28 +83,12 @@ const PersonalDataCard = () => {
       }
     };
 
-    if (cepResidencial) {
-      fetchEndereco(cepResidencial, "personalData.enderecoResidencial");
-    }
-  }, [ cepResidencial, setValue ]);
+    fetchEndereco(cepResidencial, "enderecoResidencial");
+    fetchEndereco(cepTrabalho, "enderecoTrabalho");
 
-  // Efeito para buscar o endereço do CEP do trabalho
-  useEffect(() => {
-    if (cepTrabalho) {
-      const sanitizedCep = cepTrabalho.replace(/\D/g, "");
-      if (sanitizedCep.length === 8) {
-        fetch(`https://viacep.com.br/ws/${sanitizedCep}/json/`)
-          .then(res => res.json())
-          .then(data => {
-            if (!data.erro) {
-              const enderecoCompleto = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
-              setValue("personalData.enderecoTrabalho", enderecoCompleto);
-            }
-          })
-          .catch(error => console.error("Erro ao buscar o CEP:", error));
-      }
-    }
-  }, [ cepTrabalho, setValue ]);
+  }, [cepResidencial, cepTrabalho, setValue]);
+
+
   return (
     <div className='px-4 py-2'>
       <div className="border-2 px-4 py-2 rounded-t-lg flex items-end">
@@ -73,7 +111,6 @@ const PersonalDataCard = () => {
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div>
             <label className="block text-sm">3. CPF<span className="text-red-500 ml-1">*</span> </label>
-            {/* <input type="text" required {...register("personalData.cpf")} className="w-full border px-2 py-1" /> */}
             <Controller
               name="personalData.cpf"
               control={control}
@@ -84,7 +121,6 @@ const PersonalDataCard = () => {
                   mask="000.000.000-00"
                   placeholder="___.___.___-__"
                   className="w-full border px-2 py-1"
-                  // onAccept para atualizar valor no react-hook-form
                   onAccept={(value: string) => field.onChange(value)}
                 />
               )}
@@ -161,21 +197,22 @@ const PersonalDataCard = () => {
           <div>
             <label className="block text-sm">CEP<span className="text-red-500 ml-1">*</span></label>
             <Controller
-            name="personalData.cepTrabalho"
-            control={control}
-            render={({ field }) => (
-              <IMaskInput
-                id="cepTrabalho"
-                mask="00000-000"
-                {...field}
-                onAccept={(value) => field.onChange(value)}
-                className="w-full border px-2 py-1"
-              />
+              name="personalData.cepTrabalho"
+              control={control}
+              render={({ field }) => (
+                <IMaskInput
+                  id="cepTrabalho"
+                  mask="00000-000"
+                  {...field}
+                  onAccept={(value) => field.onChange(value)}
+                  className="w-full border px-2 py-1"
+                />
+              )}
+            />
+            {/* AGORA É TYPE-SAFE! Sem 'any' ou 'unknown' */}
+            {errors.personalData?.cepTrabalho && (
+              <span className="text-red-500 text-sm">{errors.personalData.cepTrabalho.message}</span>
             )}
-          />
-          {(errors.personalData as any)?.cepTrabalho && (
-              <span className="text-red-500 text-sm">{(errors.personalData as any).cepTrabalho.message as string}</span>
-          )}
           </div>
           <div>
             <label className="block text-sm">11. Telefone do trabalho<span className="text-red-500 ml-1">*</span></label>
@@ -217,8 +254,9 @@ const PersonalDataCard = () => {
                 />
               )}
             />
-            {(errors.personalData as any)?.cepResidencial && (
-              <span className="text-red-500 text-sm">{(errors.personalData as any).cepResidencial.message as string}</span>
+            {/* AGORA É TYPE-SAFE! */}
+            {errors.personalData?.cepResidencial && (
+              <span className="text-red-500 text-sm">{errors.personalData.cepResidencial.message}</span>
             )}
           </div>
           <div>
@@ -257,9 +295,10 @@ const PersonalDataCard = () => {
               })}
               className="w-full border px-2 py-1"
             />
-            {(errors.personalData as any)?.email && (
+            {/* AGORA É TYPE-SAFE! */}
+            {errors.personalData?.email && (
               <span className="text-red-500 text-sm">
-                {(errors.personalData as any).email.message}
+                {errors.personalData.email.message}
               </span>
             )}
           </div>

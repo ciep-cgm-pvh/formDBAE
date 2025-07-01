@@ -1,16 +1,16 @@
 "use client"
 import { useFieldArray, useFormContext, Controller } from "react-hook-form"
 
-const currencyFormatter = new Intl.NumberFormat("pt-BR", {
-  style: "currency",
-  currency: "BRL",
-});
+// const currencyFormatter = new Intl.NumberFormat("pt-BR", {
+//   style: "currency",
+//   currency: "BRL",
+// });
 
-function formatCurrency(value: string) {
-  const numeric = value.replace(/\D/g, ""); // remove não números
-  const formatted = (Number(numeric) / 100).toFixed(2);
-  return currencyFormatter.format(Number(formatted));
-}
+// function formatCurrency(value: string) {
+//   const numeric = value.replace(/\D/g, ""); // remove não números
+//   const formatted = (Number(numeric) / 100).toFixed(2);
+//   return currencyFormatter.format(Number(formatted));
+// }
 
 const BensDireitosCard = () => {
   const { register, control, watch } = useFormContext()

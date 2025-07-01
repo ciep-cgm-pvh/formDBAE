@@ -65,7 +65,7 @@ export class JsonController {
     fs.writeFileSync(tempFilePath, mergedPdfBuffer);
 
     try {
-      await this.emailService.sendSecureEmail(tempFilePath, jsonData.personalData.email);
+      await this.emailService.enviarFormulario(tempFilePath, jsonData.personalData.email);
       console.log('✅ Email enviado para:', jsonData.personalData.email);
     } catch (err) {
       console.error('❌ Erro ao enviar email:', err);

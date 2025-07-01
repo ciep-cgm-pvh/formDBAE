@@ -1,4 +1,6 @@
 // src/SendEmail/email-auth.service.ts
+// Service não está sendo utilizada
+
 import { Injectable } from '@nestjs/common';
 import { google } from 'googleapis';
 import * as fs from 'fs';
@@ -25,6 +27,7 @@ export class EmailAuthService {
     } else {
       const authUrl = oauth2Client.generateAuthUrl({
         access_type: 'offline',
+        prompt: 'consent',
         scope: [
           'https://www.googleapis.com/auth/gmail.send',
           'https://www.googleapis.com/auth/userinfo.email',

@@ -90,7 +90,7 @@ const ConflictCard = () => {
 
         <div className="col-span-2 py-2">
           <label className="block mb-1">
-            34. Exerce outra(s) atividade(s) além do cargo, função ou emprego público?
+            34. Em caso afirmativo no campo 32 ou 33, há conflito em potencial com o Interesse Público?
           </label>
           <div className="flex items-center gap-4 flex-wrap">
             <label className="flex items-center gap-1">

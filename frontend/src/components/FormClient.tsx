@@ -8,8 +8,6 @@ import { FormValues } from '@/types/formTypes';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 const FormClient = () => {
   const form = useForm<FormValues>({
